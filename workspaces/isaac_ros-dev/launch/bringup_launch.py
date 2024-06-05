@@ -103,6 +103,22 @@ def generate_launch_description():
                 ])
             ])
         ),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                PathJoinSubstitution([
+                    FindPackageShare('motor_control_pkg'),
+                    'launch/motor_control_node.py'
+                ])
+            ])              
+        ),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                PathJoinSubstitution([
+                    FindPackageShare('teleop_twist_keyboard'),
+                    'launch/teleop_twist_keyboard.py'
+                ])
+            ])              
+        ),
         # ),
         # IncludeLaunchDescription(
         #     PythonLaunchDescriptionSource([
