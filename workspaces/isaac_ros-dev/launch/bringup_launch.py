@@ -82,8 +82,8 @@ def generate_launch_description():
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([
                 PathJoinSubstitution([
-                    FindPackageShare('realsense2_camera'),
-                    'launch/rs_launch.py'
+                    FindPackageShare('realsense-ros'),
+                    'realsense2_camera/launch/rs_launch.py'
                 ])
             ])              
         ),

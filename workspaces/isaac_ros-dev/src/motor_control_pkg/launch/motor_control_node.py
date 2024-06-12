@@ -1,5 +1,9 @@
 import rclpy
 from rclpy.node import Node
+from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import Node
 
 #from custom_message.msg import Wheels
 from geometry_msgs.msg import Twist
@@ -44,7 +48,22 @@ class MotorNode(Node):
         #print(message)
 
 
-
+    def generate_launch_description():
+        return LaunchDescription([
+            Node(
+                package='motor_control_pkg',  # Replace with your package name
+                executable='motor_control_node',  # The name of your executable
+                name='motor_control_node',
+                output='screen',
+                parameters=[{
+                    'serial_port': '/dev/ttyACM0',
+                    'baud_rate': 115200,
+                    'wheel_base': 1.6,
+                    'track_width': 0.87,
+                    'wheel_diameter': 0.33
+                }]
+            )
+    ])
 
     def publish_wheel_velocity(self):
         msg = Twist()
@@ -99,7 +118,6 @@ class MotorNode(Node):
         #    self.message = "0,0"
         #except Exception as e2:
         #    print("no cmdvel")
-
 
 
 def main(args=None):
