@@ -1,9 +1,5 @@
 import rclpy
 from rclpy.node import Node
-from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration
-from launch_ros.actions import Node
 
 #from custom_message.msg import Wheels
 from geometry_msgs.msg import Twist
@@ -33,11 +29,11 @@ class MotorNode(Node):
 
     def listener_callback(self, msg):
         linear_velocity = round((msg.linear.x)/1.5,2)
-        print(linear_velocity)
+       # print(linear_velocity)
         steering_angle = (msg.angular.z)
         steering_angle_int = int(steering_angle*61.0+512.0)
-        print(steering_angle_int)
-        print('listener called back')
+       # print(steering_angle_int)
+        # print('listener called back')
         #message = str("0") + "," + str("512")
         message = str(linear_velocity) + "," + str(steering_angle_int) + "\n"
         # message = str(1) + "," + str(2) + "," + str(3) 
@@ -48,22 +44,7 @@ class MotorNode(Node):
         #print(message)
 
 
-    def generate_launch_description():
-        return LaunchDescription([
-            Node(
-                package='motor_control_pkg',  # Replace with your package name
-                executable='motor_control_node',  # The name of your executable
-                name='motor_control_node',
-                output='screen',
-                parameters=[{
-                    'serial_port': '/dev/ttyACM0',
-                    'baud_rate': 115200,
-                    'wheel_base': 1.6,
-                    'track_width': 0.87,
-                    'wheel_diameter': 0.33
-                }]
-            )
-    ])
+
 
     def publish_wheel_velocity(self):
         msg = Twist()
@@ -118,6 +99,7 @@ class MotorNode(Node):
         #    self.message = "0,0"
         #except Exception as e2:
         #    print("no cmdvel")
+
 
 
 def main(args=None):
