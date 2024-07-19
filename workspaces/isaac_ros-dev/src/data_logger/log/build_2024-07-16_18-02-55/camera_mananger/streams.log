@@ -1,0 +1,276 @@
+[0.006s] Invoking command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger -- -j4 -l4
+[0.038s] [35m[1mConsolidate compiler generated dependencies of target publisher[0m
+[0.038s] [35m[1mConsolidate compiler generated dependencies of target listener[0m
+[0.049s] [ 25%] [32mBuilding CXX object CMakeFiles/publisher.dir/src/camera_pub.cpp.o[0m
+[0.049s] [ 50%] [32mBuilding CXX object CMakeFiles/listener.dir/src/camera_simulator.cpp.o[0m
+[0.405s] In file included from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:7[m[K:
+[0.405s] [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+[0.405s]    32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+[0.405s]       |                                                                                         [01;36m[K^[m[K
+[0.443s] In file included from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7[m[K:
+[0.443s] [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+[0.443s]    32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+[0.443s]       |                                                                                         [01;36m[K^[m[K
+[1.731s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:28:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kstring[m[K’ does not name a type; did you mean ‘[01m[Kstdin[m[K’?
+[1.731s]    28 |         [01;31m[Kstring[m[K data_file = "data_file_";
+[1.731s]       |         [01;31m[K^~~~~~[m[K
+[1.731s]       |         [32m[Kstdin[m[K
+[1.745s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:[m[K In member function ‘[01m[Kvoid MinimalPublisher::timer_callback()[m[K’:
+[1.745s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:39:17:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KdeviceID[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+[1.745s]    39 |             int [01;35m[KdeviceID[m[K = 0;
+[1.745s]       |                 [01;35m[K^~~~~~~~[m[K
+[1.746s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:40:17:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KapiID[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+[1.746s]    40 |             int [01;35m[KapiID[m[K = cv::CAP_ANY;
+[1.746s]       |                 [01;35m[K^~~~~[m[K
+[1.958s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:[m[K In constructor ‘[01m[KFrameMangSub::FrameMangSub()[m[K’:
+[1.958s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:34:73:[m[K [01;31m[Kerror: [m[K‘[01m[Kpath[m[K’ was not declared in this scope
+[1.959s]    34 |                         for (const auto &entry : fs::directory_iterator([01;31m[Kpath[m[K)){
+[1.959s]       |                                                                         [01;31m[K^~~~[m[K
+[1.959s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:34:73:[m[K [01;36m[Knote: [m[Ksuggested alternatives:
+[1.959s] In file included from [01m[K/usr/include/c++/11/filesystem:45[m[K,
+[1.959s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:4[m[K:
+[1.959s] [01m[K/usr/include/c++/11/bits/fs_path.h:248:9:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::filesystem::__cxx11::path[m[K’
+[1.959s]   248 |   class [01;36m[Kpath[m[K
+[1.959s]       |         [01;36m[K^~~~[m[K
+[1.959s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logger.hpp:25[m[K,
+[1.959s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:23[m[K,
+[1.960s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[1.960s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[1.960s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:40[m[K,
+[1.960s]                  from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.hpp:37[m[K,
+[1.960s]                  from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:34[m[K,
+[1.960s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7[m[K:
+[1.960s] [01m[K/opt/ros/humble/include/rcpputils/rcpputils/filesystem_helper.hpp:76:7:[m[K [01;36m[Knote: [m[K  ‘[01m[Krcpputils::fs::path[m[K’
+[1.960s]    76 | class [01;36m[Kpath[m[K
+[1.960s]       |       [01;36m[K^~~~[m[K
+[1.960s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:55:[m[K [01;31m[Kerror: [m[Kno match for ‘[01m[Koperator+[m[K’ (operand types are ‘[01m[Kstd::string[m[K’ {aka ‘[01m[Kstd::__cxx11::basic_string<char>[m[K’} and ‘[01m[Kint[m[K’)
+[1.960s]    39 |                         logging_files = [32m[Klogging_files[m[K [01;31m[K+[m[K [34m[Kfile_count[m[K;
+[1.960s]       |                                         [32m[K~~~~~~~~~~~~~[m[K [01;31m[K^[m[K [34m[K~~~~~~~~~~[m[K
+[1.960s]       |                                         [32m[K|[m[K               [34m[K|[m[K
+[1.960s]       |                                         [32m[K|[m[K               [34m[Kint[m[K
+[1.960s]       |                                         [32m[Kstd::string {aka std::__cxx11::basic_string<char>}[m[K
+[1.960s] In file included from [01m[K/usr/include/c++/11/bits/stl_algobase.h:67[m[K,
+[1.960s]                  from [01m[K/usr/include/c++/11/memory:63[m[K,
+[1.960s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:1[m[K:
+[1.960s] [01m[K/usr/include/c++/11/bits/stl_iterator.h:1276:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Iterator, class _Container> __gnu_cxx::__normal_iterator<_Iterator, _Container> __gnu_cxx::operator+(typename __gnu_cxx::__normal_iterator<_Iterator, _Container>::difference_type, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&)[m[K’
+[1.960s]  1276 |     [01;36m[Koperator[m[K+(typename __normal_iterator<_Iterator, _Container>::difference_type
+[1.960s]       |     [01;36m[K^~~~~~~~[m[K
+[1.960s] [01m[K/usr/include/c++/11/bits/stl_iterator.h:1276:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.960s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst __gnu_cxx::__normal_iterator<_Iterator, _Container>[m[K’ and ‘[01m[Kint[m[K’
+[1.960s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.960s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.960s] In file included from [01m[K/usr/include/c++/11/bits/stl_algobase.h:67[m[K,
+[1.960s]                  from [01m[K/usr/include/c++/11/memory:63[m[K,
+[1.960s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:1[m[K:
+[1.960s] [01m[K/usr/include/c++/11/bits/stl_iterator.h:585:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Iterator> constexpr std::reverse_iterator<_Iterator> std::operator+(typename std::reverse_iterator<_Iterator>::difference_type, const std::reverse_iterator<_Iterator>&)[m[K’
+[1.960s]   585 |     [01;36m[Koperator[m[K+(typename reverse_iterator<_Iterator>::difference_type __n,
+[1.960s]       |     [01;36m[K^~~~~~~~[m[K
+[1.960s] [01m[K/usr/include/c++/11/bits/stl_iterator.h:585:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.960s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst std::reverse_iterator<_Iterator>[m[K’ and ‘[01m[Kint[m[K’
+[1.960s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.961s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.961s] In file included from [01m[K/usr/include/c++/11/bits/stl_algobase.h:67[m[K,
+[1.961s]                  from [01m[K/usr/include/c++/11/memory:63[m[K,
+[1.961s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:1[m[K:
+[1.961s] [01m[K/usr/include/c++/11/bits/stl_iterator.h:1700:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Iterator> constexpr std::move_iterator<_IteratorL> std::operator+(typename std::move_iterator<_IteratorL>::difference_type, const std::move_iterator<_IteratorL>&)[m[K’
+[1.961s]  1700 |     [01;36m[Koperator[m[K+(typename move_iterator<_Iterator>::difference_type __n,
+[1.961s]       |     [01;36m[K^~~~~~~~[m[K
+[1.961s] [01m[K/usr/include/c++/11/bits/stl_iterator.h:1700:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.961s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst std::move_iterator<_IteratorL>[m[K’ and ‘[01m[Kint[m[K’
+[1.961s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.961s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.961s] In file included from [01m[K/usr/include/c++/11/string:55[m[K,
+[1.961s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:2[m[K:
+[1.961s] [01m[K/usr/include/c++/11/bits/basic_string.h:6095:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)[m[K’
+[1.961s]  6095 |     [01;36m[Koperator[m[K+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+[1.961s]       |     [01;36m[K^~~~~~~~[m[K
+[1.961s] [01m[K/usr/include/c++/11/bits/basic_string.h:6095:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.961s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst std::__cxx11::basic_string<_CharT, _Traits, _Allocator>[m[K’ and ‘[01m[Kint[m[K’
+[1.961s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.961s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.961s] In file included from [01m[K/usr/include/c++/11/string:56[m[K,
+[1.961s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:2[m[K:
+[1.961s] [01m[K/usr/include/c++/11/bits/basic_string.tcc:1169:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)[m[K’
+[1.961s]  1169 |     [01;36m[Koperator[m[K+(const _CharT* __lhs,
+[1.961s]       |     [01;36m[K^~~~~~~~[m[K
+[1.961s] [01m[K/usr/include/c++/11/bits/basic_string.tcc:1169:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.961s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst _CharT*[m[K’ and ‘[01m[Kstd::__cxx11::basic_string<char>[m[K’
+[1.961s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.961s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.961s] In file included from [01m[K/usr/include/c++/11/string:56[m[K,
+[1.961s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:2[m[K:
+[1.961s] [01m[K/usr/include/c++/11/bits/basic_string.tcc:1189:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(_CharT, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)[m[K’
+[1.961s]  1189 |     [01;36m[Koperator[m[K+(_CharT __lhs, const basic_string<_CharT, _Traits, _Alloc>& __rhs)
+[1.961s]       |     [01;36m[K^~~~~~~~[m[K
+[1.961s] [01m[K/usr/include/c++/11/bits/basic_string.tcc:1189:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.961s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst std::__cxx11::basic_string<_CharT, _Traits, _Allocator>[m[K’ and ‘[01m[Kint[m[K’
+[1.961s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.961s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.961s] In file included from [01m[K/usr/include/c++/11/string:55[m[K,
+[1.961s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:2[m[K:
+[1.962s] [01m[K/usr/include/c++/11/bits/basic_string.h:6132:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, const _CharT*)[m[K’
+[1.962s]  6132 |     [01;36m[Koperator[m[K+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+[1.962s]       |     [01;36m[K^~~~~~~~[m[K
+[1.962s] [01m[K/usr/include/c++/11/bits/basic_string.h:6132:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.962s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst _CharT*[m[K’ and ‘[01m[Kint[m[K’
+[1.962s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.962s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.962s] In file included from [01m[K/usr/include/c++/11/string:55[m[K,
+[1.962s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:2[m[K:
+[1.962s] [01m[K/usr/include/c++/11/bits/basic_string.h:6148:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, _CharT)[m[K’
+[1.962s]  6148 |     [01;36m[Koperator[m[K+(const basic_string<_CharT, _Traits, _Alloc>& __lhs, _CharT __rhs)
+[1.962s]       |     [01;36m[K^~~~~~~~[m[K
+[1.962s] [01m[K/usr/include/c++/11/bits/basic_string.h:6148:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.962s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  deduced conflicting types for parameter ‘[01m[K_CharT[m[K’ (‘[01m[Kchar[m[K’ and ‘[01m[Kint[m[K’)
+[1.962s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.962s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.962s] In file included from [01m[K/usr/include/c++/11/string:55[m[K,
+[1.962s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:2[m[K:
+[1.962s] [01m[K/usr/include/c++/11/bits/basic_string.h:6160:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&)[m[K’
+[1.962s]  6160 |     [01;36m[Koperator[m[K+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+[1.962s]       |     [01;36m[K^~~~~~~~[m[K
+[1.962s] [01m[K/usr/include/c++/11/bits/basic_string.h:6160:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.962s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst std::__cxx11::basic_string<_CharT, _Traits, _Allocator>[m[K’ and ‘[01m[Kint[m[K’
+[1.962s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.962s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.962s] In file included from [01m[K/usr/include/c++/11/string:55[m[K,
+[1.962s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:2[m[K:
+[1.962s] [01m[K/usr/include/c++/11/bits/basic_string.h:6166:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)[m[K’
+[1.962s]  6166 |     [01;36m[Koperator[m[K+(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+[1.962s]       |     [01;36m[K^~~~~~~~[m[K
+[1.962s] [01m[K/usr/include/c++/11/bits/basic_string.h:6166:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.962s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kstd::__cxx11::basic_string<_CharT, _Traits, _Allocator>[m[K’ and ‘[01m[Kint[m[K’
+[1.962s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.962s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.962s] In file included from [01m[K/usr/include/c++/11/string:55[m[K,
+[1.962s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:2[m[K:
+[1.962s] [01m[K/usr/include/c++/11/bits/basic_string.h:6172:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)[m[K’
+[1.962s]  6172 |     [01;36m[Koperator[m[K+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+[1.962s]       |     [01;36m[K^~~~~~~~[m[K
+[1.962s] [01m[K/usr/include/c++/11/bits/basic_string.h:6172:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.963s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kstd::__cxx11::basic_string<_CharT, _Traits, _Allocator>[m[K’ and ‘[01m[Kint[m[K’
+[1.963s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.963s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.963s] In file included from [01m[K/usr/include/c++/11/string:55[m[K,
+[1.963s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:2[m[K:
+[1.963s] [01m[K/usr/include/c++/11/bits/basic_string.h:6194:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(const _CharT*, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)[m[K’
+[1.963s]  6194 |     [01;36m[Koperator[m[K+(const _CharT* __lhs,
+[1.963s]       |     [01;36m[K^~~~~~~~[m[K
+[1.963s] [01m[K/usr/include/c++/11/bits/basic_string.h:6194:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.963s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst _CharT*[m[K’ and ‘[01m[Kstd::__cxx11::basic_string<char>[m[K’
+[1.963s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.963s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.963s] In file included from [01m[K/usr/include/c++/11/string:55[m[K,
+[1.963s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:2[m[K:
+[1.963s] [01m[K/usr/include/c++/11/bits/basic_string.h:6200:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(_CharT, std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&)[m[K’
+[1.963s]  6200 |     [01;36m[Koperator[m[K+(_CharT __lhs,
+[1.963s]       |     [01;36m[K^~~~~~~~[m[K
+[1.964s] [01m[K/usr/include/c++/11/bits/basic_string.h:6200:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.964s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kstd::__cxx11::basic_string<_CharT, _Traits, _Allocator>[m[K’ and ‘[01m[Kint[m[K’
+[1.964s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.964s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.964s] In file included from [01m[K/usr/include/c++/11/string:55[m[K,
+[1.964s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:2[m[K:
+[1.964s] [01m[K/usr/include/c++/11/bits/basic_string.h:6206:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, const _CharT*)[m[K’
+[1.964s]  6206 |     [01;36m[Koperator[m[K+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+[1.964s]       |     [01;36m[K^~~~~~~~[m[K
+[1.964s] [01m[K/usr/include/c++/11/bits/basic_string.h:6206:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.964s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst _CharT*[m[K’ and ‘[01m[Kint[m[K’
+[1.964s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.964s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.964s] In file included from [01m[K/usr/include/c++/11/string:55[m[K,
+[1.964s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:2[m[K:
+[1.964s] [01m[K/usr/include/c++/11/bits/basic_string.h:6212:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _CharT, class _Traits, class _Alloc> std::__cxx11::basic_string<_CharT, _Traits, _Allocator> std::operator+(std::__cxx11::basic_string<_CharT, _Traits, _Allocator>&&, _CharT)[m[K’
+[1.964s]  6212 |     [01;36m[Koperator[m[K+(basic_string<_CharT, _Traits, _Alloc>&& __lhs,
+[1.964s]       |     [01;36m[K^~~~~~~~[m[K
+[1.964s] [01m[K/usr/include/c++/11/bits/basic_string.h:6212:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.964s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  deduced conflicting types for parameter ‘[01m[K_CharT[m[K’ (‘[01m[Kchar[m[K’ and ‘[01m[Kint[m[K’)
+[1.964s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.964s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.964s] In file included from [01m[K/usr/include/opencv4/opencv2/core/cvstd.inl.hpp:47[m[K,
+[1.964s]                  from [01m[K/usr/include/opencv4/opencv2/core.hpp:3306[m[K,
+[1.964s]                  from [01m[K/usr/include/opencv4/opencv2/imgproc.hpp:46[m[K,
+[1.964s]                  from [01m[K/usr/include/opencv4/opencv2/imgproc/imgproc.hpp:48[m[K,
+[1.964s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:9[m[K:
+[1.964s] [01m[K/usr/include/c++/11/complex:332:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Tp> std::complex<_Tp> std::operator+(const std::complex<_Tp>&, const std::complex<_Tp>&)[m[K’
+[1.964s]   332 |     [01;36m[Koperator[m[K+(const complex<_Tp>& __x, const complex<_Tp>& __y)
+[1.964s]       |     [01;36m[K^~~~~~~~[m[K
+[1.964s] [01m[K/usr/include/c++/11/complex:332:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.964s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::string[m[K’ {aka ‘[01m[Kstd::__cxx11::basic_string<char>[m[K’} is not derived from ‘[01m[Kconst std::complex<_Tp>[m[K’
+[1.964s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.964s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.964s] In file included from [01m[K/usr/include/opencv4/opencv2/core/cvstd.inl.hpp:47[m[K,
+[1.965s]                  from [01m[K/usr/include/opencv4/opencv2/core.hpp:3306[m[K,
+[1.965s]                  from [01m[K/usr/include/opencv4/opencv2/imgproc.hpp:46[m[K,
+[1.965s]                  from [01m[K/usr/include/opencv4/opencv2/imgproc/imgproc.hpp:48[m[K,
+[1.965s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:9[m[K:
+[1.965s] [01m[K/usr/include/c++/11/complex:341:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Tp> std::complex<_Tp> std::operator+(const std::complex<_Tp>&, const _Tp&)[m[K’
+[1.965s]   341 |     [01;36m[Koperator[m[K+(const complex<_Tp>& __x, const _Tp& __y)
+[1.965s]       |     [01;36m[K^~~~~~~~[m[K
+[1.965s] [01m[K/usr/include/c++/11/complex:341:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.965s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::string[m[K’ {aka ‘[01m[Kstd::__cxx11::basic_string<char>[m[K’} is not derived from ‘[01m[Kconst std::complex<_Tp>[m[K’
+[1.965s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.965s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.965s] In file included from [01m[K/usr/include/opencv4/opencv2/core/cvstd.inl.hpp:47[m[K,
+[1.965s]                  from [01m[K/usr/include/opencv4/opencv2/core.hpp:3306[m[K,
+[1.965s]                  from [01m[K/usr/include/opencv4/opencv2/imgproc.hpp:46[m[K,
+[1.965s]                  from [01m[K/usr/include/opencv4/opencv2/imgproc/imgproc.hpp:48[m[K,
+[1.965s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:9[m[K:
+[1.965s] [01m[K/usr/include/c++/11/complex:350:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Tp> std::complex<_Tp> std::operator+(const _Tp&, const std::complex<_Tp>&)[m[K’
+[1.965s]   350 |     [01;36m[Koperator[m[K+(const _Tp& __x, const complex<_Tp>& __y)
+[1.965s]       |     [01;36m[K^~~~~~~~[m[K
+[1.965s] [01m[K/usr/include/c++/11/complex:350:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.965s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  mismatched types ‘[01m[Kconst std::complex<_Tp>[m[K’ and ‘[01m[Kint[m[K’
+[1.965s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.965s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.965s] In file included from [01m[K/usr/include/opencv4/opencv2/core/cvstd.inl.hpp:47[m[K,
+[1.965s]                  from [01m[K/usr/include/opencv4/opencv2/core.hpp:3306[m[K,
+[1.965s]                  from [01m[K/usr/include/opencv4/opencv2/imgproc.hpp:46[m[K,
+[1.965s]                  from [01m[K/usr/include/opencv4/opencv2/imgproc/imgproc.hpp:48[m[K,
+[1.965s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:9[m[K:
+[1.965s] [01m[K/usr/include/c++/11/complex:451:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _Tp> std::complex<_Tp> std::operator+(const std::complex<_Tp>&)[m[K’
+[1.965s]   451 |     [01;36m[Koperator[m[K+(const complex<_Tp>& __x)
+[1.965s]       |     [01;36m[K^~~~~~~~[m[K
+[1.965s] [01m[K/usr/include/c++/11/complex:451:5:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.965s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:57:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::string[m[K’ {aka ‘[01m[Kstd::__cxx11::basic_string<char>[m[K’} is not derived from ‘[01m[Kconst std::complex<_Tp>[m[K’
+[1.965s]    39 |                         logging_files = logging_files + [01;36m[Kfile_count[m[K;
+[1.965s]       |                                                         [01;36m[K^~~~~~~~~~[m[K
+[1.966s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:[m[K In member function ‘[01m[Kvoid FrameMangSub::topic_callback(const Image&)[m[K’:
+[1.966s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:90:88:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kduration_cast<std::chrono::milliseconds>(std::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> > >&)[m[K’
+[1.966s]    90 |                         auto ms = [01;31m[Kstd::chrono::duration_cast<std::chrono::milliseconds>(current_time)[m[K.count();
+[1.966s]       |                                   [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~[m[K
+[1.966s] In file included from [01m[K/usr/include/c++/11/bits/fs_fwd.h:37[m[K,
+[1.966s]                  from [01m[K/usr/include/c++/11/filesystem:44[m[K,
+[1.966s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:4[m[K:
+[1.966s] [01m[K/usr/include/c++/11/chrono:267:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Ktemplate<class _ToDur, class _Rep, class _Period> constexpr std::chrono::__enable_if_is_duration<_ToDur> std::chrono::duration_cast(const std::chrono::duration<_Rep, _Period>&)[m[K’
+[1.966s]   267 |       [01;36m[Kduration_cast[m[K(const duration<_Rep, _Period>& __d)
+[1.966s]       |       [01;36m[K^~~~~~~~~~~~~[m[K
+[1.966s] [01m[K/usr/include/c++/11/chrono:267:7:[m[K [01;36m[Knote: [m[K  template argument deduction/substitution failed:
+[1.966s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:90:88:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> > >[m[K’ is not derived from ‘[01m[Kconst std::chrono::duration<_Rep, _Period>[m[K’
+[1.966s]    90 |                         auto ms = [01;36m[Kstd::chrono::duration_cast<std::chrono::milliseconds>(current_time)[m[K.count();
+[1.966s]       |                                   [01;36m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~[m[K
+[1.974s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:94:45:[m[K [01;31m[Kerror: [m[K‘[01m[Kptr[m[K’ was not declared in this scope
+[1.974s]    94 |                         cv::imwrite(result, [01;31m[Kptr[m[K->image);
+[1.974s]       |                                             [01;31m[K^~~[m[K
+[1.974s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[1.974s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[1.974s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[1.974s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:40[m[K,
+[1.974s]                  from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.hpp:37[m[K,
+[1.974s]                  from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:34[m[K,
+[1.974s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7[m[K:
+[1.974s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:95:58:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%s[m[K’ expects argument of type ‘[01m[Kchar*[m[K’, but argument 5 has type ‘[01m[Kstd::string[m[K’ {aka ‘[01m[Kstd::__cxx11::basic_string<char>[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat=-Wformat=]8;;[m[K]
+[1.974s]    95 |                         RCLCPP_DEBUG(this->get_logger(), [01;35m[K"%s"[m[K, result);
+[1.974s]       |                                                          [01;35m[K^~~~[m[K
+[1.974s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:95:60:[m[K [01;36m[Knote: [m[Kformat string is defined here
+[1.974s]    95 |                         RCLCPP_DEBUG(this->get_logger(), "[01;36m[K%s[m[K", result);
+[1.974s]       |                                                           [01;36m[K~^[m[K
+[1.974s]       |                                                            [01;36m[K|[m[K
+[1.974s]       |                                                            [01;36m[Kchar*[m[K
+[2.411s] gmake[2]: *** [CMakeFiles/publisher.dir/build.make:76: CMakeFiles/publisher.dir/src/camera_pub.cpp.o] Error 1
+[2.411s] gmake[1]: *** [CMakeFiles/Makefile2:165: CMakeFiles/publisher.dir/all] Error 2
+[2.411s] gmake[1]: *** Waiting for unfinished jobs....
+[3.048s] gmake[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/camera_simulator.cpp.o] Error 1
+[3.048s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/listener.dir/all] Error 2
+[3.048s] gmake: *** [Makefile:146: all] Error 2
+[3.050s] Invoked command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger -- -j4 -l4

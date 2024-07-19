@@ -1,0 +1,110 @@
+[35m[1mConsolidate compiler generated dependencies of target listener[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/listener.dir/src/camera_simulator.cpp.o[0m
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:17:44:[m[K [01;31m[Kerror: [m[K‘[01m[Kstd_msg[m[K’ does not name a type
+   17 |                 void topic_callback (const [01;31m[Kstd_msg[m[K::msg::String::SharedPtr msg) const {
+      |                                            [01;31m[K^~~~~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:17:56:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[K::[m[K’ token
+   17 |                 void topic_callback (const std_msg::msg[01;31m[K::[m[KString::SharedPtr msg) const {
+      |                                                        [01;31m[K^~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:17:56:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K::[m[K’ token
+   17 |                 void topic_callback [34m[K([m[Kconst std_msg::msg[01;31m[K:[m[K[32m[K:[m[KString::SharedPtr msg) const {
+      |                                     [34m[K~[m[K                  [01;31m[K^[m[K[32m[K~[m[K
+      |                                                        [32m[K)[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:17:53:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ at end of member declaration
+   17 |                 void topic_callback (const std_msg::[01;31m[Kmsg[m[K::String::SharedPtr msg) const {
+      |                                                     [01;31m[K^~~[m[K
+      |                                                        [32m[K;[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:17:58:[m[K [01;31m[Kerror: [m[K‘[01m[KString[m[K’ in namespace ‘[01m[K::[m[K’ does not name a type
+   17 |                 void topic_callback (const std_msg::msg::[01;31m[KString[m[K::SharedPtr msg) const {
+      |                                                          [01;31m[K^~~~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:20:43:[m[K [01;31m[Kerror: [m[K‘[01m[Kmsg[m[K’ is not a member of ‘[01m[Kstd[m[K’
+   20 |                 rclcpp::Subscription<std::[01;31m[Kmsg[m[K::String>::SharedPtr subscription_;
+      |                                           [01;31m[K^~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:20:43:[m[K [01;36m[Knote: [m[Ksuggested alternatives:
+In file included from [01m[K/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/duration.hpp:7[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/duration.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/qos.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node_interfaces/node_graph_interface.hpp:32[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:42[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:3[m[K:
+[01m[K/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/duration__struct.hpp:27:11:[m[K [01;36m[Knote: [m[K  ‘[01m[Kbuiltin_interfaces::msg[m[K’
+   27 | namespace [01;36m[Kmsg[m[K
+      |           [01;36m[K^~~[m[K
+In file included from [01m[K/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/set_parameters_result.hpp:7[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/qos_overriding_options.hpp:28[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/subscription_options.hpp:30[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/subscription.hpp:45[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:3[m[K:
+[01m[K/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/set_parameters_result__struct.hpp:27:11:[m[K [01;36m[Knote: [m[K  ‘[01m[Krcl_interfaces::msg[m[K’
+   27 | namespace [01;36m[Kmsg[m[K
+      |           [01;36m[K^~~[m[K
+In file included from [01m[K/opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/metrics_message__struct.hpp:23[m[K,
+                 from [01m[K/opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/metrics_message.hpp:7[m[K,
+                 from [01m[K/opt/ros/humble/include/libstatistics_collector/libstatistics_collector/collector/generate_statistics_message.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/topic_statistics/subscription_topic_statistics.hpp:23[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/subscription.hpp:50[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:3[m[K:
+[01m[K/opt/ros/humble/include/statistics_msgs/statistics_msgs/msg/detail/statistic_data_point__struct.hpp:27:11:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstatistics_msgs::msg[m[K’
+   27 | namespace [01;36m[Kmsg[m[K
+      |           [01;36m[K^~~[m[K
+In file included from [01m[K/opt/ros/humble/include/std_msgs/std_msgs/msg/string.hpp:7[m[K,
+                 from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:4[m[K:
+[01m[K/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/string__struct.hpp:27:11:[m[K [01;36m[Knote: [m[K  ‘[01m[Kstd_msgs::msg[m[K’
+   27 | namespace [01;36m[Kmsg[m[K
+      |           [01;36m[K^~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:20:54:[m[K [01;31m[Kerror: [m[Ktemplate argument 1 is invalid
+   20 |                 rclcpp::Subscription<std::msg::String[01;31m[K>[m[K::SharedPtr subscription_;
+      |                                                      [01;31m[K^[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:20:54:[m[K [01;31m[Kerror: [m[Ktemplate argument 3 is invalid
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:20:54:[m[K [01;31m[Kerror: [m[Ktemplate argument 4 is invalid
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:20:54:[m[K [01;31m[Kerror: [m[Ktemplate argument 5 is invalid
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:20:57:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ at end of member declaration
+   20 |                 rclcpp::Subscription<std::msg::String>::[01;31m[KSharedPtr[m[K subscription_;
+      |                                                         [01;31m[K^~~~~~~~~[m[K
+      |                                                                  [32m[K;[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:20:67:[m[K [01;31m[Kerror: [m[K‘[01m[Ksubscription_[m[K’ does not name a type; did you mean ‘[01m[Krmw_subscription_t[m[K’?
+   20 |                 rclcpp::Subscription<std::msg::String>::SharedPtr [01;31m[Ksubscription_[m[K;
+      |                                                                   [01;31m[K^~~~~~~~~~~~~[m[K
+      |                                                                   [32m[Krmw_subscription_t[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:[m[K In constructor ‘[01m[KFrameMangSub::FrameMangSub()[m[K’:
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:11:25:[m[K [01;31m[Kerror: [m[K‘[01m[Ksubscription_[m[K’ was not declared in this scope; did you mean ‘[01m[Krmw_subscription_t[m[K’?
+   11 |                         [01;31m[Ksubscription_[m[K = this->create_subscription<std_msg::msg::String(
+      |                         [01;31m[K^~~~~~~~~~~~~[m[K
+      |                         [32m[Krmw_subscription_t[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:11:67:[m[K [01;31m[Kerror: [m[K‘[01m[Kstd_msg[m[K’ was not declared in this scope; did you mean ‘[01m[Kstd_msgs[m[K’?
+   11 |                         subscription_ = this->create_subscription<[01;31m[Kstd_msg[m[K::msg::String(
+      |                                                                   [01;31m[K^~~~~~~[m[K
+      |                                                                   [32m[Kstd_msgs[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:11:47:[m[K [01;31m[Kerror: [m[Kparse error in template argument list
+   11 |                         subscription_ = this->[01;31m[Kcreate_subscription<std_msg::msg::String([m[K
+      |                                               [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+   12 | [01;31m[K                        "topic", 10, std::bind(&FrameMangSub::topic_callback, this, _1))[m[K;
+      |                         [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/camera_simulator.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/listener.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

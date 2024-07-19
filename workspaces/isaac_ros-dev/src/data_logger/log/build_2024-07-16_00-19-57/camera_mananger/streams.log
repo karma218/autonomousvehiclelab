@@ -1,0 +1,70 @@
+[0.005s] Invoking command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger -- -j4 -l4
+[0.029s] [35m[1mConsolidate compiler generated dependencies of target listener[0m
+[0.029s] [35m[1mConsolidate compiler generated dependencies of target publisher[0m
+[0.043s] [ 50%] [32mBuilding CXX object CMakeFiles/listener.dir/src/camera_simulator.cpp.o[0m
+[0.043s] [ 50%] [32mBuilding CXX object CMakeFiles/publisher.dir/src/camera_pub.cpp.o[0m
+[0.228s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:44:50:[m[K [01;31m[Kerror: [m[Kmacro "CV_ERROR" requires 2 arguments, but only 1 given
+[0.228s]    44 |                 CV_ERROR("Camera failed to open."[01;31m[K)[m[K;
+[0.228s]       |                                                  [01;31m[K^[m[K
+[0.228s] In file included from [01m[K/usr/include/opencv4/opencv2/imgproc/types_c.h:46[m[K,
+[0.228s]                  from [01m[K/opt/ros/humble/include/cv_bridge/cv_bridge/cv_bridge.h:45[m[K,
+[0.228s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:11[m[K:
+[0.228s] [01m[K/usr/include/opencv4/opencv2/core/core_c.h:2679:[m[K [01;36m[Knote: [m[Kmacro "CV_ERROR" defined here
+[0.228s]  2679 | #define CV_ERROR( Code, Msg )                                       \
+[0.228s]       | 
+[0.300s] In file included from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:4[m[K:
+[0.301s] [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+[0.301s]    32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+[0.301s]       |                                                                                         [01;36m[K^[m[K
+[0.360s] In file included from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:7[m[K:
+[0.360s] [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+[0.360s]    32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+[0.360s]       |                                                                                         [01;36m[K^[m[K
+[1.524s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:[m[K In member function ‘[01m[Kvoid MinimalPublisher::timer_callback()[m[K’:
+[1.524s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:44:17:[m[K [01;31m[Kerror: [m[K‘[01m[KCV_ERROR[m[K’ was not declared in this scope
+[1.524s]    44 |                 [01;31m[KCV_ERROR[m[K("Camera failed to open.");
+[1.524s]       |                 [01;31m[K^~~~~~~~[m[K
+[1.524s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:51:20:[m[K [01;31m[Kerror: [m[K‘[01m[Kusing Header = struct std_msgs::msg::Header_<std::allocator<void> >[m[K’ {aka ‘[01m[Kstruct std_msgs::msg::Header_<std::allocator<void> >[m[K’} has no member named ‘[01m[Kseq[m[K’
+[1.524s]    51 |             header.[01;31m[Kseq[m[K = counter;
+[1.524s]       |                    [01;31m[K^~~[m[K
+[1.524s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:52:59:[m[K [01;31m[Kerror: [m[Kno match for ‘[01m[Koperator=[m[K’ (operand types are ‘[01m[Kstd_msgs::msg::Header_<std::allocator<void> >::_stamp_type[m[K’ {aka ‘[01m[Kbuiltin_interfaces::msg::Time_<std::allocator<void> >[m[K’} and ‘[01m[Kstd::chrono::_V2::steady_clock::time_point[m[K’ {aka ‘[01m[Kstd::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> > >[m[K’})
+[1.524s]    52 |             header.stamp = std::chrono::steady_clock::now([01;31m[K)[m[K;
+[1.524s]       |                                                           [01;31m[K^[m[K
+[1.524s] In file included from [01m[K/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_event__struct.hpp:20[m[K,
+[1.524s]                  from [01m[K/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/parameter_event.hpp:7[m[K,
+[1.524s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:37[m[K,
+[1.525s]                  from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.hpp:37[m[K,
+[1.525s]                  from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:34[m[K,
+[1.525s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:7[m[K:
+[1.525s] [01m[K/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:32:8:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr builtin_interfaces::msg::Time_<std::allocator<void> >& builtin_interfaces::msg::Time_<std::allocator<void> >::operator=(const builtin_interfaces::msg::Time_<std::allocator<void> >&)[m[K’
+[1.525s]    32 | struct [01;36m[KTime_[m[K
+[1.525s]       |        [01;36m[K^~~~~[m[K
+[1.525s] [01m[K/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:32:8:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kstd::chrono::_V2::steady_clock::time_point[m[K’ {aka ‘[01m[Kstd::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> > >[m[K’} to ‘[01m[Kconst builtin_interfaces::msg::Time_<std::allocator<void> >&[m[K’
+[1.525s] [01m[K/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:32:8:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr builtin_interfaces::msg::Time_<std::allocator<void> >& builtin_interfaces::msg::Time_<std::allocator<void> >::operator=(builtin_interfaces::msg::Time_<std::allocator<void> >&&)[m[K’
+[1.525s] [01m[K/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:32:8:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kstd::chrono::_V2::steady_clock::time_point[m[K’ {aka ‘[01m[Kstd::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> > >[m[K’} to ‘[01m[Kbuiltin_interfaces::msg::Time_<std::allocator<void> >&&[m[K’
+[1.689s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:[m[K In member function ‘[01m[Kvoid FrameMangSub::topic_callback(const Image&)[m[K’:
+[1.689s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:31:85:[m[K [01;31m[Kerror: [m[K‘[01m[Ksensor_msgs::msg::image_encodings[m[K’ has not been declared
+[1.689s]    31 |                                 cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::msg::[01;31m[Kimage_encodings[m[K::BGR8);
+[1.689s]       |                                                                                     [01;31m[K^~~~~~~~~~~~~~~[m[K
+[1.692s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[1.692s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[1.692s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[1.692s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:40[m[K,
+[1.692s]                  from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.hpp:37[m[K,
+[1.692s]                  from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:34[m[K,
+[1.692s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:4[m[K:
+[1.692s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:43:58:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%s[m[K’ expects argument of type ‘[01m[Kchar*[m[K’, but argument 5 has type ‘[01m[Kcv::Mat[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat=-Wformat=]8;;[m[K]
+[1.692s]    43 |                         RCLCPP_DEBUG(this->get_logger(), [01;35m[K"%s"[m[K, cv_ptr->image);
+[1.692s]       |                                                          [01;35m[K^~~~[m[K
+[1.692s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:43:60:[m[K [01;36m[Knote: [m[Kformat string is defined here
+[1.692s]    43 |                         RCLCPP_DEBUG(this->get_logger(), "[01;36m[K%s[m[K", cv_ptr->image);
+[1.692s]       |                                                           [01;36m[K~^[m[K
+[1.692s]       |                                                            [01;36m[K|[m[K
+[1.692s]       |                                                            [01;36m[Kchar*[m[K
+[2.152s] gmake[2]: *** [CMakeFiles/publisher.dir/build.make:76: CMakeFiles/publisher.dir/src/camera_pub.cpp.o] Error 1
+[2.152s] gmake[1]: *** [CMakeFiles/Makefile2:165: CMakeFiles/publisher.dir/all] Error 2
+[2.152s] gmake[1]: *** Waiting for unfinished jobs....
+[2.727s] gmake[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/camera_simulator.cpp.o] Error 1
+[2.727s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/listener.dir/all] Error 2
+[2.727s] gmake: *** [Makefile:146: all] Error 2
+[2.728s] Invoked command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger -- -j4 -l4

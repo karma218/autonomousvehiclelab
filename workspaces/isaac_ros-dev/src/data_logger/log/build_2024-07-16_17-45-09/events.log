@@ -1,0 +1,176 @@
+[0.000000] (-) TimerEvent: {}
+[0.000726] (camera_mananger) JobQueued: {'identifier': 'camera_mananger', 'dependencies': OrderedDict()}
+[0.000749] (camera_mananger) JobStarted: {'identifier': 'camera_mananger'}
+[0.007532] (camera_mananger) JobProgress: {'identifier': 'camera_mananger', 'progress': 'cmake'}
+[0.039930] (camera_mananger) JobProgress: {'identifier': 'camera_mananger', 'progress': 'build'}
+[0.040462] (camera_mananger) Command: {'cmd': ['/usr/bin/cmake', '--build', '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger', '--', '-j4', '-l4'], 'cwd': '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'snow'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/snow'), ('OLDPWD', '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1979'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'snow'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'snow'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/muny:@/tmp/.ICE-unix/1955,unix/muny:/tmp/.ICE-unix/1955'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/ae74e0b4_1fe9_4aae_81ae_a4acb61e37f0'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.161AR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.96'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.104784] (-) TimerEvent: {}
+[0.206194] (-) TimerEvent: {}
+[0.307506] (-) TimerEvent: {}
+[0.412464] (-) TimerEvent: {}
+[0.517181] (-) TimerEvent: {}
+[0.698257] (-) TimerEvent: {}
+[0.799215] (-) TimerEvent: {}
+[0.899480] (-) TimerEvent: {}
+[0.916427] (camera_mananger) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target listener\x1b[0m\n'}
+[0.947744] (camera_mananger) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/listener.dir/src/camera_simulator.cpp.o\x1b[0m\n'}
+[0.947853] (camera_mananger) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/publisher.dir/src/camera_pub.cpp.o\x1b[0m\n'}
+[1.000744] (-) TimerEvent: {}
+[1.100983] (-) TimerEvent: {}
+[1.201255] (-) TimerEvent: {}
+[1.303075] (-) TimerEvent: {}
+[1.404832] (-) TimerEvent: {}
+[1.485378] (camera_mananger) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:7\x1b[m\x1b[K:\n'}
+[1.485519] (camera_mananger) StderrLine: {'line': b"\x1b[01m\x1b[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead\x1b[m\x1b[K\xe2\x80\x99\n"}
+[1.485568] (camera_mananger) StderrLine: {'line': b'   32 | #pragma message ("Warning: This header is deprecated. Use \'image_transport.hpp\' instead"\x1b[01;36m\x1b[K)\x1b[m\x1b[K\n'}
+[1.485596] (camera_mananger) StderrLine: {'line': b'      |                                                                                         \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[1.509401] (-) TimerEvent: {}
+[1.519983] (camera_mananger) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7\x1b[m\x1b[K:\n'}
+[1.520090] (camera_mananger) StderrLine: {'line': b"\x1b[01m\x1b[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead\x1b[m\x1b[K\xe2\x80\x99\n"}
+[1.520126] (camera_mananger) StderrLine: {'line': b'   32 | #pragma message ("Warning: This header is deprecated. Use \'image_transport.hpp\' instead"\x1b[01;36m\x1b[K)\x1b[m\x1b[K\n'}
+[1.520154] (camera_mananger) StderrLine: {'line': b'      |                                                                                         \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[1.611026] (-) TimerEvent: {}
+[1.712464] (-) TimerEvent: {}
+[1.814120] (-) TimerEvent: {}
+[1.918798] (-) TimerEvent: {}
+[2.023481] (-) TimerEvent: {}
+[2.128106] (-) TimerEvent: {}
+[2.232916] (-) TimerEvent: {}
+[2.335327] (-) TimerEvent: {}
+[2.435646] (-) TimerEvent: {}
+[2.535895] (-) TimerEvent: {}
+[2.636412] (-) TimerEvent: {}
+[2.738056] (-) TimerEvent: {}
+[2.839155] (-) TimerEvent: {}
+[2.938202] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:28:9:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstring\x1b[m\x1b[K\xe2\x80\x99 does not name a type; did you mean \xe2\x80\x98\x1b[01m\x1b[Kstdin\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[2.938336] (camera_mananger) StderrLine: {'line': b'   28 |         \x1b[01;31m\x1b[Kstring\x1b[m\x1b[K data_file = "data_file_";\n'}
+[2.938370] (camera_mananger) StderrLine: {'line': b'      |         \x1b[01;31m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[2.938398] (camera_mananger) StderrLine: {'line': b'      |         \x1b[32m\x1b[Kstdin\x1b[m\x1b[K\n'}
+[2.939234] (-) TimerEvent: {}
+[2.957563] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid MinimalPublisher::timer_callback()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[2.957678] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:39:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[KdeviceID\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable\x07-Wunused-variable\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[2.957718] (camera_mananger) StderrLine: {'line': b'   39 |             int \x1b[01;35m\x1b[KdeviceID\x1b[m\x1b[K = 0;\n'}
+[2.957755] (camera_mananger) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[2.957791] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:40:17:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[KapiID\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable\x07-Wunused-variable\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[2.957827] (camera_mananger) StderrLine: {'line': b'   40 |             int \x1b[01;35m\x1b[KapiID\x1b[m\x1b[K = cv::CAP_ANY;\n'}
+[2.957876] (camera_mananger) StderrLine: {'line': b'      |                 \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[3.039360] (-) TimerEvent: {}
+[3.140823] (-) TimerEvent: {}
+[3.156432] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:57:17:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstring\x1b[m\x1b[K\xe2\x80\x99 does not name a type; did you mean \xe2\x80\x98\x1b[01m\x1b[Kstdin\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[3.156537] (camera_mananger) StderrLine: {'line': b'   57 |                 \x1b[01;31m\x1b[Kstring\x1b[m\x1b[K logging_files = "log_file_";\n'}
+[3.156567] (camera_mananger) StderrLine: {'line': b'      |                 \x1b[01;31m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[3.156592] (camera_mananger) StderrLine: {'line': b'      |                 \x1b[32m\x1b[Kstdin\x1b[m\x1b[K\n'}
+[3.158193] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:58:17:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kifstream\x1b[m\x1b[K\xe2\x80\x99 does not name a type\n'}
+[3.158267] (camera_mananger) StderrLine: {'line': b'   58 |                 \x1b[01;31m\x1b[Kifstream\x1b[m\x1b[K current_file;\n'}
+[3.158293] (camera_mananger) StderrLine: {'line': b'      |                 \x1b[01;31m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[3.187081] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[KFrameMangSub::FrameMangSub()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[3.187183] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:34:73:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kpath\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope\n'}
+[3.187230] (camera_mananger) StderrLine: {'line': b'   34 |                         for (const auto &entry : fs::directory_iterator(\x1b[01;31m\x1b[Kpath\x1b[m\x1b[K)){\n'}
+[3.187262] (camera_mananger) StderrLine: {'line': b'      |                                                                         \x1b[01;31m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[3.188176] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:34:73:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Ksuggested alternatives:\n'}
+[3.188362] (camera_mananger) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/11/filesystem:45\x1b[m\x1b[K,\n'}
+[3.188431] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:4\x1b[m\x1b[K:\n'}
+[3.188462] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/bits/fs_path.h:248:9:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  \xe2\x80\x98\x1b[01m\x1b[Kstd::filesystem::__cxx11::path\x1b[m\x1b[K\xe2\x80\x99\n'}
+[3.188491] (camera_mananger) StderrLine: {'line': b'  248 |   class \x1b[01;36m\x1b[Kpath\x1b[m\x1b[K\n'}
+[3.188516] (camera_mananger) StderrLine: {'line': b'      |         \x1b[01;36m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[3.188540] (camera_mananger) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logger.hpp:25\x1b[m\x1b[K,\n'}
+[3.188565] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:23\x1b[m\x1b[K,\n'}
+[3.188589] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[3.188613] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[3.188637] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:40\x1b[m\x1b[K,\n'}
+[3.188662] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/image_transport/image_transport/image_transport.hpp:37\x1b[m\x1b[K,\n'}
+[3.188686] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:34\x1b[m\x1b[K,\n'}
+[3.188710] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7\x1b[m\x1b[K:\n'}
+[3.188734] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/opt/ros/humble/include/rcpputils/rcpputils/filesystem_helper.hpp:76:7:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  \xe2\x80\x98\x1b[01m\x1b[Krcpputils::fs::path\x1b[m\x1b[K\xe2\x80\x99\n'}
+[3.188760] (camera_mananger) StderrLine: {'line': b'   76 | class \x1b[01;36m\x1b[Kpath\x1b[m\x1b[K\n'}
+[3.188783] (camera_mananger) StderrLine: {'line': b'      |       \x1b[01;36m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[3.202743] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:39:25:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Klogging_files\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope\n'}
+[3.202828] (camera_mananger) StderrLine: {'line': b'   39 |                         \x1b[01;31m\x1b[Klogging_files\x1b[m\x1b[K = logging_files + file_count;\n'}
+[3.202854] (camera_mananger) StderrLine: {'line': b'      |                         \x1b[01;31m\x1b[K^~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[3.204674] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:51:25:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kifstream\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[Kstd::ifstream\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[3.204760] (camera_mananger) StderrLine: {'line': b'   51 |                         \x1b[01;31m\x1b[Kifstream\x1b[m\x1b[K current_file(logging_files);\n'}
+[3.204845] (camera_mananger) StderrLine: {'line': b'      |                         \x1b[01;31m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[3.204889] (camera_mananger) StderrLine: {'line': b'      |                         \x1b[32m\x1b[Kstd::ifstream\x1b[m\x1b[K\n'}
+[3.204920] (camera_mananger) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:52\x1b[m\x1b[K,\n'}
+[3.204969] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/memory:77\x1b[m\x1b[K,\n'}
+[3.204994] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:1\x1b[m\x1b[K:\n'}
+[3.205019] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/iosfwd:162:41:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstd::ifstream\x1b[m\x1b[K\xe2\x80\x99 declared here\n'}
+[3.205044] (camera_mananger) StderrLine: {'line': b'  162 |   typedef basic_ifstream<char>          \x1b[01;36m\x1b[Kifstream\x1b[m\x1b[K;\n'}
+[3.205068] (camera_mananger) StderrLine: {'line': b'      |                                         \x1b[01;36m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[3.223163] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid FrameMangSub::topic_callback(const Image&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[3.223287] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:80:62:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Klogging_file\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope\n'}
+[3.223321] (camera_mananger) StderrLine: {'line': b'   80 |                         int mb = fs::file_size(drive + "/" + \x1b[01;31m\x1b[Klogging_file\x1b[m\x1b[K) / 1024 / 1024;\n'}
+[3.223348] (camera_mananger) StderrLine: {'line': b'      |                                                              \x1b[01;31m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[3.237433] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:85:33:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kcurrent_file\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope\n'}
+[3.237721] (camera_mananger) StderrLine: {'line': b'   85 |                                 \x1b[01;31m\x1b[Kcurrent_file\x1b[m\x1b[K(logging_file);\n'}
+[3.237776] (camera_mananger) StderrLine: {'line': b'      |                                 \x1b[01;31m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[3.241634] (-) TimerEvent: {}
+[3.252015] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:89:25:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kcurrent_file\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope\n'}
+[3.252153] (camera_mananger) StderrLine: {'line': b'   89 |                         \x1b[01;31m\x1b[Kcurrent_file\x1b[m\x1b[K << std::ctime(&time) << ": " << result << endl;\n'}
+[3.252200] (camera_mananger) StderrLine: {'line': b'      |                         \x1b[01;31m\x1b[K^~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[3.252311] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:89:52:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kcannot convert \xe2\x80\x98\x1b[01m\x1b[Kstd::chrono::time_point<std::chrono::_V2::system_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> > >*\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kconst time_t*\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kconst long int*\x1b[m\x1b[K\xe2\x80\x99}\n'}
+[3.252389] (camera_mananger) StderrLine: {'line': b'   89 |                         current_file << std::ctime(\x1b[01;31m\x1b[K&time\x1b[m\x1b[K) << ": " << result << endl;\n'}
+[3.252419] (camera_mananger) StderrLine: {'line': b'      |                                                    \x1b[01;31m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[3.252448] (camera_mananger) StderrLine: {'line': b'      |                                                    \x1b[01;31m\x1b[K|\x1b[m\x1b[K\n'}
+[3.252480] (camera_mananger) StderrLine: {'line': b'      |                                                    \x1b[01;31m\x1b[Kstd::chrono::time_point<std::chrono::_V2::system_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> > >*\x1b[m\x1b[K\n'}
+[3.252528] (camera_mananger) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/pthread.h:23\x1b[m\x1b[K,\n'}
+[3.252553] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/aarch64-linux-gnu/c++/11/bits/gthr-default.h:35\x1b[m\x1b[K,\n'}
+[3.252578] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/aarch64-linux-gnu/c++/11/bits/gthr.h:148\x1b[m\x1b[K,\n'}
+[3.252603] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/ext/atomicity.h:35\x1b[m\x1b[K,\n'}
+[3.252627] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr_base.h:61\x1b[m\x1b[K,\n'}
+[3.252651] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/bits/shared_ptr.h:53\x1b[m\x1b[K,\n'}
+[3.252675] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/memory:77\x1b[m\x1b[K,\n'}
+[3.252698] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:1\x1b[m\x1b[K:\n'}
+[3.252724] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/time.h:183:35:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  initializing argument 1 of \xe2\x80\x98\x1b[01m\x1b[Kchar* ctime(const time_t*)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[3.252750] (camera_mananger) StderrLine: {'line': b'  183 | extern char *ctime (\x1b[01;36m\x1b[Kconst time_t *__timer\x1b[m\x1b[K) __THROW;\n'}
+[3.252774] (camera_mananger) StderrLine: {'line': b'      |                     \x1b[01;36m\x1b[K~~~~~~~~~~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[3.254465] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:89:80:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kendl\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[Kstd::endl\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[3.254529] (camera_mananger) StderrLine: {'line': b'   89 |                         current_file << std::ctime(&time) << ": " << result << \x1b[01;31m\x1b[Kendl\x1b[m\x1b[K;\n'}
+[3.254584] (camera_mananger) StderrLine: {'line': b'      |                                                                                \x1b[01;31m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[3.254611] (camera_mananger) StderrLine: {'line': b'      |                                                                                \x1b[32m\x1b[Kstd::endl\x1b[m\x1b[K\n'}
+[3.254648] (camera_mananger) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/usr/include/c++/11/istream:39\x1b[m\x1b[K,\n'}
+[3.254680] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/usr/include/c++/11/fstream:38\x1b[m\x1b[K,\n'}
+[3.254705] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:3\x1b[m\x1b[K:\n'}
+[3.254730] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/usr/include/c++/11/ostream:684:5:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstd::endl\x1b[m\x1b[K\xe2\x80\x99 declared here\n'}
+[3.254755] (camera_mananger) StderrLine: {'line': b'  684 |     \x1b[01;36m\x1b[Kendl\x1b[m\x1b[K(basic_ostream<_CharT, _Traits>& __os)\n'}
+[3.254779] (camera_mananger) StderrLine: {'line': b'      |     \x1b[01;36m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[3.255002] (camera_mananger) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[3.255049] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[3.255076] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[3.255138] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:40\x1b[m\x1b[K,\n'}
+[3.255167] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/image_transport/image_transport/image_transport.hpp:37\x1b[m\x1b[K,\n'}
+[3.255192] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:34\x1b[m\x1b[K,\n'}
+[3.255217] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7\x1b[m\x1b[K:\n'}
+[3.255243] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:93:58:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kformat \xe2\x80\x98\x1b[01m\x1b[K%s\x1b[m\x1b[K\xe2\x80\x99 expects argument of type \xe2\x80\x98\x1b[01m\x1b[Kchar*\x1b[m\x1b[K\xe2\x80\x99, but argument 5 has type \xe2\x80\x98\x1b[01m\x1b[Kstd::string\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<char>\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat=\x07-Wformat=\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[3.255278] (camera_mananger) StderrLine: {'line': b'   93 |                         RCLCPP_DEBUG(this->get_logger(), \x1b[01;35m\x1b[K"%s"\x1b[m\x1b[K, result);\n'}
+[3.255320] (camera_mananger) StderrLine: {'line': b'      |                                                          \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[3.255364] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:93:60:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kformat string is defined here\n'}
+[3.255395] (camera_mananger) StderrLine: {'line': b'   93 |                         RCLCPP_DEBUG(this->get_logger(), "\x1b[01;36m\x1b[K%s\x1b[m\x1b[K", result);\n'}
+[3.255419] (camera_mananger) StderrLine: {'line': b'      |                                                           \x1b[01;36m\x1b[K~^\x1b[m\x1b[K\n'}
+[3.255447] (camera_mananger) StderrLine: {'line': b'      |                                                            \x1b[01;36m\x1b[K|\x1b[m\x1b[K\n'}
+[3.255471] (camera_mananger) StderrLine: {'line': b'      |                                                            \x1b[01;36m\x1b[Kchar*\x1b[m\x1b[K\n'}
+[3.341739] (-) TimerEvent: {}
+[3.446392] (-) TimerEvent: {}
+[3.547537] (-) TimerEvent: {}
+[3.647794] (-) TimerEvent: {}
+[3.658449] (camera_mananger) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/publisher.dir/build.make:76: CMakeFiles/publisher.dir/src/camera_pub.cpp.o] Error 1\n'}
+[3.658641] (camera_mananger) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:165: CMakeFiles/publisher.dir/all] Error 2\n'}
+[3.658699] (camera_mananger) StderrLine: {'line': b'gmake[1]: *** Waiting for unfinished jobs....\n'}
+[3.749092] (-) TimerEvent: {}
+[3.851752] (-) TimerEvent: {}
+[3.955504] (-) TimerEvent: {}
+[4.055732] (-) TimerEvent: {}
+[4.159111] (-) TimerEvent: {}
+[4.259824] (-) TimerEvent: {}
+[4.353762] (camera_mananger) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/camera_simulator.cpp.o] Error 1\n'}
+[4.353928] (camera_mananger) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/listener.dir/all] Error 2\n'}
+[4.354151] (camera_mananger) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[4.355878] (camera_mananger) CommandEnded: {'returncode': 2}
+[4.359893] (-) TimerEvent: {}
+[4.460413] (-) TimerEvent: {}
+[4.562042] (-) TimerEvent: {}
+[4.662318] (-) TimerEvent: {}
+[4.763421] (-) TimerEvent: {}
+[4.856038] (camera_mananger) JobEnded: {'identifier': 'camera_mananger', 'rc': 2}
+[4.863556] (-) TimerEvent: {}
+[4.867250] (-) EventReactorShutdown: {}

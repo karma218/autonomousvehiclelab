@@ -1,0 +1,41 @@
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:4:10:[m[K [01;31m[Kfatal error: [m[Ksensor_msgs/msg/image_encodings.h: No such file or directory
+    4 | #include [01;31m[K<sensor_msgs/msg/image_encodings.h>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+gmake[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/camera_simulator.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/listener.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+In file included from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:7[m[K:
+[01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+   32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+      |                                                                                         [01;36m[K^[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:[m[K In constructor ‘[01m[KMinimalPublisher::MinimalPublisher()[m[K’:
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:20:57:[m[K [01;31m[Kerror: [m[Kclass ‘[01m[KMinimalPublisher[m[K’ does not have any field named ‘[01m[Kcount_[m[K’
+   20 |         MinimalPublisher() : Node("minimal_publisher"), [01;31m[Kcount_[m[K(0) {
+      |                                                         [01;31m[K^~~~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:[m[K In member function ‘[01m[Kvoid MinimalPublisher::timer_callback()[m[K’:
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:36:26:[m[K [01;31m[Kerror: [m[K‘[01m[KImageConstPtr[m[K’ is not a member of ‘[01m[Ksensor_msgs[m[K’
+   36 |             sensor_msgs::[01;31m[KImageConstPtr[m[K img_msg;
+      |                          [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:44:17:[m[K [01;31m[Kerror: [m[K‘[01m[KROS_ERROR[m[K’ was not declared in this scope; did you mean ‘[01m[KCV_ERROR[m[K’?
+   44 |                 [01;31m[KROS_ERROR[m[K("Camera failed to open.");
+      |                 [01;31m[K^~~~~~~~~[m[K
+      |                 [32m[KCV_ERROR[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:50:23:[m[K [01;31m[Kerror: [m[K‘[01m[KHeader[m[K’ is not a member of ‘[01m[Kstd_msgs[m[K’; did you mean ‘[01m[Kstd_msgs::msg::Header[m[K’?
+   50 |             std_msgs::[01;31m[KHeader[m[K header;
+      |                       [01;31m[K^~~~~~[m[K
+In file included from [01m[K/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/image__struct.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/image.hpp:7[m[K,
+                 from [01m[K/opt/ros/humble/include/image_transport/image_transport/camera_publisher.hpp:38[m[K,
+                 from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.hpp:39[m[K,
+                 from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:34[m[K,
+                 from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:7[m[K:
+[01m[K/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp:140:7:[m[K [01;36m[Knote: [m[K‘[01m[Kstd_msgs::msg::Header[m[K’ declared here
+  140 | using [01;36m[KHeader[m[K =
+      |       [01;36m[K^~~~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:51:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kheader[m[K’ was not declared in this scope
+   51 |             [01;31m[Kheader[m[K.seq = counter;
+      |             [01;31m[K^~~~~~[m[K
+gmake[2]: *** [CMakeFiles/publisher.dir/build.make:76: CMakeFiles/publisher.dir/src/camera_pub.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:165: CMakeFiles/publisher.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

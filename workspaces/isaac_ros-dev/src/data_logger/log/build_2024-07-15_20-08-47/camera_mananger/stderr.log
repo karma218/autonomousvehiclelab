@@ -1,0 +1,60 @@
+In file included from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:4[m[K:
+[01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+   32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+      |                                                                                         [01;36m[K^[m[K
+In file included from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:7[m[K:
+[01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+   32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+      |                                                                                         [01;36m[K^[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:[m[K In member function ‘[01m[Kvoid MinimalPublisher::timer_callback()[m[K’:
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:36:26:[m[K [01;31m[Kerror: [m[K‘[01m[KImageConstPtr[m[K’ is not a member of ‘[01m[Ksensor_msgs[m[K’
+   36 |             sensor_msgs::[01;31m[KImageConstPtr[m[K img_msg;
+      |                          [01;31m[K^~~~~~~~~~~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:44:17:[m[K [01;31m[Kerror: [m[K‘[01m[KROS_ERROR[m[K’ was not declared in this scope; did you mean ‘[01m[KCV_ERROR[m[K’?
+   44 |                 [01;31m[KROS_ERROR[m[K("Camera failed to open.");
+      |                 [01;31m[K^~~~~~~~~[m[K
+      |                 [32m[KCV_ERROR[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:51:20:[m[K [01;31m[Kerror: [m[K‘[01m[Kusing Header = struct std_msgs::msg::Header_<std::allocator<void> >[m[K’ {aka ‘[01m[Kstruct std_msgs::msg::Header_<std::allocator<void> >[m[K’} has no member named ‘[01m[Kseq[m[K’
+   51 |             header.[01;31m[Kseq[m[K = counter;
+      |                    [01;31m[K^~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:52:59:[m[K [01;31m[Kerror: [m[Kno match for ‘[01m[Koperator=[m[K’ (operand types are ‘[01m[Kstd_msgs::msg::Header_<std::allocator<void> >::_stamp_type[m[K’ {aka ‘[01m[Kbuiltin_interfaces::msg::Time_<std::allocator<void> >[m[K’} and ‘[01m[Kstd::chrono::_V2::steady_clock::time_point[m[K’ {aka ‘[01m[Kstd::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> > >[m[K’})
+   52 |             header.stamp = std::chrono::steady_clock::now([01;31m[K)[m[K;
+      |                                                           [01;31m[K^[m[K
+In file included from [01m[K/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/detail/parameter_event__struct.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rcl_interfaces/rcl_interfaces/msg/parameter_event.hpp:7[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:34[m[K,
+                 from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:7[m[K:
+[01m[K/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:32:8:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr builtin_interfaces::msg::Time_<std::allocator<void> >& builtin_interfaces::msg::Time_<std::allocator<void> >::operator=(const builtin_interfaces::msg::Time_<std::allocator<void> >&)[m[K’
+   32 | struct [01;36m[KTime_[m[K
+      |        [01;36m[K^~~~~[m[K
+[01m[K/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:32:8:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kstd::chrono::_V2::steady_clock::time_point[m[K’ {aka ‘[01m[Kstd::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> > >[m[K’} to ‘[01m[Kconst builtin_interfaces::msg::Time_<std::allocator<void> >&[m[K’
+[01m[K/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:32:8:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kconstexpr builtin_interfaces::msg::Time_<std::allocator<void> >& builtin_interfaces::msg::Time_<std::allocator<void> >::operator=(builtin_interfaces::msg::Time_<std::allocator<void> >&&)[m[K’
+[01m[K/opt/ros/humble/include/builtin_interfaces/builtin_interfaces/msg/detail/time__struct.hpp:32:8:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kstd::chrono::_V2::steady_clock::time_point[m[K’ {aka ‘[01m[Kstd::chrono::time_point<std::chrono::_V2::steady_clock, std::chrono::duration<long int, std::ratio<1, 1000000000> > >[m[K’} to ‘[01m[Kbuiltin_interfaces::msg::Time_<std::allocator<void> >&&[m[K’
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:[m[K In member function ‘[01m[Kvoid FrameMangSub::topic_callback(const Image&)[m[K’:
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:31:67:[m[K [01;31m[Kerror: [m[K‘[01m[Ksensor[m[K’ has not been declared
+   31 |                                 cv_ptr = cv_bridge::toCvCopy(msg, [01;31m[Ksensor[m[K::msgs::image_encodings::BGR8);
+      |                                                                   [01;31m[K^~~~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:33:33:[m[K [01;31m[Kerror: [m[K‘[01m[KROS_ERROR[m[K’ was not declared in this scope; did you mean ‘[01m[KCV_ERROR[m[K’?
+   33 |                                 [01;31m[KROS_ERROR[m[K("cv_bridge execption: %s", e.what());
+      |                                 [01;31m[K^~~~~~~~~[m[K
+      |                                 [32m[KCV_ERROR[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:42:45:[m[K [01;31m[Kerror: [m[Kinvalid initialization of reference of type ‘[01m[Kconst String&[m[K’ {aka ‘[01m[Kconst std::__cxx11::basic_string<char>&[m[K’} from expression of type ‘[01m[Kcv::Mat[m[K’
+   42 |                         cv::imwrite([01;31m[Kcv_ptr->image[m[K, result);
+      |                                     [01;31m[K~~~~~~~~^~~~~[m[K
+In file included from [01m[K/usr/include/opencv4/opencv2/highgui.hpp:48[m[K,
+                 from [01m[K/usr/include/opencv4/opencv2/highgui/highgui.hpp:48[m[K,
+                 from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7[m[K:
+[01m[K/usr/include/opencv4/opencv2/imgcodecs.hpp:267:42:[m[K [01;36m[Knote: [m[Kin passing argument 1 of ‘[01m[Kbool cv::imwrite(const String&, cv::InputArray, const std::vector<int>&)[m[K’
+  267 | CV_EXPORTS_W bool imwrite( [01;36m[Kconst String& filename[m[K, InputArray img,
+      |                            [01;36m[K~~~~~~~~~~~~~~^~~~~~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:43:25:[m[K [01;31m[Kerror: [m[K‘[01m[KROS_DEBUG[m[K’ was not declared in this scope
+   43 |                         [01;31m[KROS_DEBUG[m[K("%s has been saved.", result);
+      |                         [01;31m[K^~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/publisher.dir/build.make:76: CMakeFiles/publisher.dir/src/camera_pub.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:165: CMakeFiles/publisher.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+gmake[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/camera_simulator.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/listener.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

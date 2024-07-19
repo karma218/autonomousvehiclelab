@@ -1,0 +1,48 @@
+[35m[1mConsolidate compiler generated dependencies of target publisher[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/listener.dir/src/camera_simulator.cpp.o[0m
+[ 75%] Built target publisher
+In file included from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7[m[K:
+[01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+   32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+      |                                                                                         [01;36m[K^[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:[m[K In constructor ‘[01m[KFrameMangSub::FrameMangSub()[m[K’:
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:34:42:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kentry[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   34 |                         for (const auto &[01;35m[Kentry[m[K : fs::directory_iterator(drive)){
+      |                                          [01;35m[K^~~~~[m[K
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:40[m[K,
+                 from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:34[m[K,
+                 from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7[m[K:
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:[m[K In member function ‘[01m[Kvoid FrameMangSub::topic_callback(const Image&)[m[K’:
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:95:58:[m[K [01;35m[Kwarning: [m[Kformat ‘[01m[K%s[m[K’ expects argument of type ‘[01m[Kchar*[m[K’, but argument 5 has type ‘[01m[Kstd::string[m[K’ {aka ‘[01m[Kstd::__cxx11::basic_string<char>[m[K’} [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat=-Wformat=]8;;[m[K]
+   95 |                         RCLCPP_DEBUG(this->get_logger(), [01;35m[K"%s"[m[K, result);
+      |                                                          [01;35m[K^~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:95:60:[m[K [01;36m[Knote: [m[Kformat string is defined here
+   95 |                         RCLCPP_DEBUG(this->get_logger(), "[01;36m[K%s[m[K", result);
+      |                                                           [01;36m[K~^[m[K
+      |                                                            [01;36m[K|[m[K
+      |                                                            [01;36m[Kchar*[m[K
+[100%] [32m[1mLinking CXX executable listener[0m
+[100%] Built target listener
+-- Install configuration: ""
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/lib/publisher
+-- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/lib/listener
+-- Set runtime path of "/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/lib/listener" to ""
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/ament_index/resource_index/package_run_dependencies/camera_mananger
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/ament_index/resource_index/parent_prefix_path/camera_mananger
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/ament_prefix_path.sh
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/ament_prefix_path.dsv
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/path.sh
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/path.dsv
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.bash
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.sh
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.zsh
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.dsv
+-- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/package.dsv
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/ament_index/resource_index/packages/camera_mananger
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/cmake/camera_manangerConfig.cmake
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/cmake/camera_manangerConfig-version.cmake
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/package.xml

@@ -1,0 +1,24 @@
+[35m[1mConsolidate compiler generated dependencies of target listener[0m
+[ 75%] Built target publisher
+[ 75%] [32mBuilding CXX object CMakeFiles/listener.dir/src/camera_simulator.cpp.o[0m
+[100%] [32m[1mLinking CXX executable listener[0m
+[100%] Built target listener
+-- Install configuration: ""
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/lib/publisher
+-- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/lib/listener
+-- Set runtime path of "/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/lib/listener" to ""
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/ament_index/resource_index/package_run_dependencies/camera_mananger
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/ament_index/resource_index/parent_prefix_path/camera_mananger
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/ament_prefix_path.sh
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/ament_prefix_path.dsv
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/path.sh
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/path.dsv
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.bash
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.sh
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.zsh
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.dsv
+-- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/package.dsv
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/ament_index/resource_index/packages/camera_mananger
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/cmake/camera_manangerConfig.cmake
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/cmake/camera_manangerConfig-version.cmake
+-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/package.xml

@@ -1,0 +1,24 @@
+[0.005s] Invoking command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger -- -j4 -l4
+[0.028s] [35m[1mConsolidate compiler generated dependencies of target listener[0m
+[0.039s] [ 25%] [32mBuilding CXX object CMakeFiles/listener.dir/src/camera_simulator.cpp.o[0m
+[0.040s] [ 75%] Built target publisher
+[0.370s] In file included from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7[m[K:
+[0.370s] [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+[0.370s]    32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+[0.370s]       |                                                                                         [01;36m[K^[m[K
+[1.593s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:[m[K In constructor ‘[01m[KFrameMangSub::FrameMangSub()[m[K’:
+[1.593s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:34:42:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kentry[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+[1.593s]    34 |                         for (const auto &[01;35m[Kentry[m[K : fs::directory_iterator(drive)){
+[1.593s]       |                                          [01;35m[K^~~~~[m[K
+[1.607s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:[m[K In member function ‘[01m[Kvoid FrameMangSub::topic_callback(const Image&)[m[K’:
+[1.607s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:115:62:[m[K [01;31m[Kerror: [m[K‘[01m[Kt[m[K’ was not declared in this scope; did you mean ‘[01m[Ktm[m[K’?
+[1.607s]   115 |                         std::string time_format( std::ctime(&[01;31m[Kt[m[K) )
+[1.607s]       |                                                              [01;31m[K^[m[K
+[1.607s]       |                                                              [32m[Ktm[m[K
+[1.607s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:116:25:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K,[m[K’ or ‘[01m[K;[m[K’ before ‘[01m[Kcurrent_file[m[K’
+[1.607s]   116 |                         [01;31m[Kcurrent_file[m[K << time_format.substr(0, time_format.length() - 1) << ": " << result << std::endl;
+[1.607s]       |                         [01;31m[K^~~~~~~~~~~~[m[K
+[2.617s] gmake[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/camera_simulator.cpp.o] Error 1
+[2.617s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/listener.dir/all] Error 2
+[2.617s] gmake: *** [Makefile:146: all] Error 2
+[2.618s] Invoked command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger -- -j4 -l4
