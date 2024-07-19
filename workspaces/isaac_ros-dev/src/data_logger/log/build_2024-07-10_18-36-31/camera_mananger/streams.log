@@ -1,0 +1,26 @@
+[0.005s] Invoking command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger -- -j4 -l4
+[0.032s] [35m[1mConsolidate compiler generated dependencies of target listener[0m
+[0.038s] [ 50%] [32mBuilding CXX object CMakeFiles/listener.dir/src/camera_simulator.cpp.o[0m
+[4.411s] [100%] [32m[1mLinking CXX executable listener[0m
+[4.632s] [100%] Built target listener
+[4.637s] Invoked command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger -- -j4 -l4
+[4.654s] Invoking command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger
+[4.657s] -- Install configuration: ""
+[4.657s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/lib/listener
+[4.659s] -- Set runtime path of "/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/lib/listener" to ""
+[4.660s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/ament_index/resource_index/package_run_dependencies/camera_mananger
+[4.660s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/ament_index/resource_index/parent_prefix_path/camera_mananger
+[4.660s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/ament_prefix_path.sh
+[4.660s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/ament_prefix_path.dsv
+[4.660s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/path.sh
+[4.660s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/path.dsv
+[4.660s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.bash
+[4.660s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.sh
+[4.661s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.zsh
+[4.661s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.dsv
+[4.661s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/package.dsv
+[4.661s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/ament_index/resource_index/packages/camera_mananger
+[4.661s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/cmake/camera_manangerConfig.cmake
+[4.661s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/cmake/camera_manangerConfig-version.cmake
+[4.661s] -- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/package.xml
+[4.663s] Invoked command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger

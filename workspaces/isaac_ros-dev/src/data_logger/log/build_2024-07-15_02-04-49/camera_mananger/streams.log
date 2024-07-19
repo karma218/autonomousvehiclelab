@@ -1,0 +1,18 @@
+[0.006s] Invoking command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger -- -j4 -l4
+[0.039s] [ 25%] [32mBuilding CXX object CMakeFiles/publisher.dir/src/camera_pub.cpp.o[0m
+[0.041s] [ 50%] [32mBuilding CXX object CMakeFiles/listener.dir/src/camera_simulator.cpp.o[0m
+[0.093s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:3:10:[m[K [01;31m[Kfatal error: [m[Kros/ros.h: No such file or directory
+[0.093s]     3 | #include [01;31m[K<ros/ros.h>[m[K
+[0.093s]       |          [01;31m[K^~~~~~~~~~~[m[K
+[0.093s] compilation terminated.
+[0.094s] gmake[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/camera_simulator.cpp.o] Error 1
+[0.095s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/listener.dir/all] Error 2
+[0.095s] gmake[1]: *** Waiting for unfinished jobs....
+[0.196s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:11:10:[m[K [01;31m[Kfatal error: [m[Kpublisher.h: No such file or directory
+[0.196s]    11 | #include [01;31m[K<publisher.h>[m[K
+[0.196s]       |          [01;31m[K^~~~~~~~~~~~~[m[K
+[0.196s] compilation terminated.
+[0.198s] gmake[2]: *** [CMakeFiles/publisher.dir/build.make:76: CMakeFiles/publisher.dir/src/camera_pub.cpp.o] Error 1
+[0.198s] gmake[1]: *** [CMakeFiles/Makefile2:165: CMakeFiles/publisher.dir/all] Error 2
+[0.198s] gmake: *** [Makefile:146: all] Error 2
+[0.201s] Invoked command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger -- -j4 -l4

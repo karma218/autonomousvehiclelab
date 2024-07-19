@@ -1,0 +1,33 @@
+In file included from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:7[m[K:
+[01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+   32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+      |                                                                                         [01;36m[K^[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:[m[K In member function ‘[01m[Kvoid MinimalPublisher::timer_callback()[m[K’:
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:49:35:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kcv::Mat::zeros(int, int, int, cv::Scalar)[m[K’
+   49 |             frame = [01;31m[Kcv::Mat::zeros(320, 240, CV_8UC3, cv::Scalar(0, 0, 0))[m[K;
+      |                     [01;31m[K~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+In file included from [01m[K/usr/include/opencv4/opencv2/core.hpp:58[m[K,
+                 from [01m[K/usr/include/opencv4/opencv2/imgproc.hpp:46[m[K,
+                 from [01m[K/usr/include/opencv4/opencv2/imgproc/imgproc.hpp:48[m[K,
+                 from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:8[m[K:
+[01m[K/usr/include/opencv4/opencv2/core/mat.hpp:1362:37:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstatic cv::MatExpr cv::Mat::zeros(int, int, int)[m[K’
+ 1362 |     CV_NODISCARD_STD static MatExpr [01;36m[Kzeros[m[K(int rows, int cols, int type);
+      |                                     [01;36m[K^~~~~[m[K
+[01m[K/usr/include/opencv4/opencv2/core/mat.hpp:1362:37:[m[K [01;36m[Knote: [m[K  candidate expects 3 arguments, 4 provided
+[01m[K/usr/include/opencv4/opencv2/core/mat.hpp:1368:37:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstatic cv::MatExpr cv::Mat::zeros(cv::Size, int)[m[K’
+ 1368 |     CV_NODISCARD_STD static MatExpr [01;36m[Kzeros[m[K(Size size, int type);
+      |                                     [01;36m[K^~~~~[m[K
+[01m[K/usr/include/opencv4/opencv2/core/mat.hpp:1368:37:[m[K [01;36m[Knote: [m[K  candidate expects 2 arguments, 4 provided
+[01m[K/usr/include/opencv4/opencv2/core/mat.hpp:1375:37:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kstatic cv::MatExpr cv::Mat::zeros(int, const int*, int)[m[K’
+ 1375 |     CV_NODISCARD_STD static MatExpr [01;36m[Kzeros[m[K(int ndims, const int* sz, int type);
+      |                                     [01;36m[K^~~~~[m[K
+[01m[K/usr/include/opencv4/opencv2/core/mat.hpp:1375:37:[m[K [01;36m[Knote: [m[K  candidate expects 3 arguments, 4 provided
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:38:17:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KdeviceID[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   38 |             int [01;35m[KdeviceID[m[K = 0;
+      |                 [01;35m[K^~~~~~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:39:17:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KapiID[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   39 |             int [01;35m[KapiID[m[K = cv::CAP_ANY;
+      |                 [01;35m[K^~~~~[m[K
+gmake[2]: *** [CMakeFiles/publisher.dir/build.make:76: CMakeFiles/publisher.dir/src/camera_pub.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:165: CMakeFiles/publisher.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

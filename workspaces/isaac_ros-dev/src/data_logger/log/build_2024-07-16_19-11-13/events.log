@@ -1,0 +1,114 @@
+[0.000000] (-) TimerEvent: {}
+[0.000317] (camera_mananger) JobQueued: {'identifier': 'camera_mananger', 'dependencies': OrderedDict()}
+[0.000332] (camera_mananger) JobStarted: {'identifier': 'camera_mananger'}
+[0.004935] (camera_mananger) JobProgress: {'identifier': 'camera_mananger', 'progress': 'cmake'}
+[0.005815] (camera_mananger) JobProgress: {'identifier': 'camera_mananger', 'progress': 'build'}
+[0.005837] (camera_mananger) Command: {'cmd': ['/usr/bin/cmake', '--build', '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger', '--', '-j4', '-l4'], 'cwd': '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'snow'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/snow'), ('OLDPWD', '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1979'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'snow'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'snow'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/muny:@/tmp/.ICE-unix/1955,unix/muny:/tmp/.ICE-unix/1955'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/ae74e0b4_1fe9_4aae_81ae_a4acb61e37f0'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.161AR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.96'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.040469] (camera_mananger) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target listener\x1b[0m\n'}
+[0.054849] (camera_mananger) StdoutLine: {'line': b'[ 50%] Built target publisher\n'}
+[0.055598] (camera_mananger) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/listener.dir/src/camera_simulator.cpp.o\x1b[0m\n'}
+[0.099497] (-) TimerEvent: {}
+[0.204244] (-) TimerEvent: {}
+[0.308526] (-) TimerEvent: {}
+[0.410352] (-) TimerEvent: {}
+[0.432031] (camera_mananger) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7\x1b[m\x1b[K:\n'}
+[0.432155] (camera_mananger) StderrLine: {'line': b"\x1b[01m\x1b[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead\x1b[m\x1b[K\xe2\x80\x99\n"}
+[0.432196] (camera_mananger) StderrLine: {'line': b'   32 | #pragma message ("Warning: This header is deprecated. Use \'image_transport.hpp\' instead"\x1b[01;36m\x1b[K)\x1b[m\x1b[K\n'}
+[0.432229] (camera_mananger) StderrLine: {'line': b'      |                                                                                         \x1b[01;36m\x1b[K^\x1b[m\x1b[K\n'}
+[0.514820] (-) TimerEvent: {}
+[0.618605] (-) TimerEvent: {}
+[0.723303] (-) TimerEvent: {}
+[0.827950] (-) TimerEvent: {}
+[0.929436] (-) TimerEvent: {}
+[1.030205] (-) TimerEvent: {}
+[1.130444] (-) TimerEvent: {}
+[1.232305] (-) TimerEvent: {}
+[1.335053] (-) TimerEvent: {}
+[1.436642] (-) TimerEvent: {}
+[1.540398] (-) TimerEvent: {}
+[1.645401] (-) TimerEvent: {}
+[1.745655] (-) TimerEvent: {}
+[1.769629] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[KFrameMangSub::FrameMangSub()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[1.769732] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:34:42:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kentry\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable\x07-Wunused-variable\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[1.769765] (camera_mananger) StderrLine: {'line': b'   34 |                         for (const auto &\x1b[01;35m\x1b[Kentry\x1b[m\x1b[K : fs::directory_iterator(drive)){\n'}
+[1.769790] (camera_mananger) StderrLine: {'line': b'      |                                          \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.774917] (camera_mananger) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[1.774986] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[1.775012] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[1.775037] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:40\x1b[m\x1b[K,\n'}
+[1.775061] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/image_transport/image_transport/image_transport.hpp:37\x1b[m\x1b[K,\n'}
+[1.775086] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:34\x1b[m\x1b[K,\n'}
+[1.775119] (camera_mananger) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7\x1b[m\x1b[K:\n'}
+[1.775143] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid FrameMangSub::topic_callback(const Image&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[1.775168] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:102:58:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kformat \xe2\x80\x98\x1b[01m\x1b[K%s\x1b[m\x1b[K\xe2\x80\x99 expects argument of type \xe2\x80\x98\x1b[01m\x1b[Kchar*\x1b[m\x1b[K\xe2\x80\x99, but argument 5 has type \xe2\x80\x98\x1b[01m\x1b[Kstd::string\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kstd::__cxx11::basic_string<char>\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat=\x07-Wformat=\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[1.775196] (camera_mananger) StderrLine: {'line': b'  102 |                         RCLCPP_DEBUG(this->get_logger(), \x1b[01;35m\x1b[K"%s"\x1b[m\x1b[K, result);\n'}
+[1.775220] (camera_mananger) StderrLine: {'line': b'      |                                                          \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[1.775243] (camera_mananger) StderrLine: {'line': b'\x1b[01m\x1b[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:102:60:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kformat string is defined here\n'}
+[1.775267] (camera_mananger) StderrLine: {'line': b'  102 |                         RCLCPP_DEBUG(this->get_logger(), "\x1b[01;36m\x1b[K%s\x1b[m\x1b[K", result);\n'}
+[1.775291] (camera_mananger) StderrLine: {'line': b'      |                                                           \x1b[01;36m\x1b[K~^\x1b[m\x1b[K\n'}
+[1.775315] (camera_mananger) StderrLine: {'line': b'      |                                                            \x1b[01;36m\x1b[K|\x1b[m\x1b[K\n'}
+[1.775338] (camera_mananger) StderrLine: {'line': b'      |                                                            \x1b[01;36m\x1b[Kchar*\x1b[m\x1b[K\n'}
+[1.846098] (-) TimerEvent: {}
+[1.950612] (-) TimerEvent: {}
+[2.055154] (-) TimerEvent: {}
+[2.159982] (-) TimerEvent: {}
+[2.264257] (-) TimerEvent: {}
+[2.365400] (-) TimerEvent: {}
+[2.469994] (-) TimerEvent: {}
+[2.574421] (-) TimerEvent: {}
+[2.679110] (-) TimerEvent: {}
+[2.780331] (-) TimerEvent: {}
+[2.885114] (-) TimerEvent: {}
+[2.985356] (-) TimerEvent: {}
+[3.085733] (-) TimerEvent: {}
+[3.186995] (-) TimerEvent: {}
+[3.288106] (-) TimerEvent: {}
+[3.392435] (-) TimerEvent: {}
+[3.495275] (-) TimerEvent: {}
+[3.595508] (-) TimerEvent: {}
+[3.696125] (-) TimerEvent: {}
+[3.797904] (-) TimerEvent: {}
+[3.898797] (-) TimerEvent: {}
+[4.000243] (-) TimerEvent: {}
+[4.100493] (-) TimerEvent: {}
+[4.200724] (-) TimerEvent: {}
+[4.301646] (-) TimerEvent: {}
+[4.406253] (-) TimerEvent: {}
+[4.510875] (-) TimerEvent: {}
+[4.611127] (-) TimerEvent: {}
+[4.715770] (-) TimerEvent: {}
+[4.728600] (camera_mananger) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable listener\x1b[0m\n'}
+[4.815875] (-) TimerEvent: {}
+[4.918719] (-) TimerEvent: {}
+[5.020283] (-) TimerEvent: {}
+[5.123363] (-) TimerEvent: {}
+[5.227779] (-) TimerEvent: {}
+[5.332536] (-) TimerEvent: {}
+[5.437431] (-) TimerEvent: {}
+[5.478409] (camera_mananger) StdoutLine: {'line': b'[100%] Built target listener\n'}
+[5.488733] (camera_mananger) CommandEnded: {'returncode': 0}
+[5.506037] (camera_mananger) JobProgress: {'identifier': 'camera_mananger', 'progress': 'install'}
+[5.511456] (camera_mananger) Command: {'cmd': ['/usr/bin/cmake', '--install', '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger'], 'cwd': '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'snow'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/snow'), ('OLDPWD', '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1979'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'snow'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'snow'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/muny:@/tmp/.ICE-unix/1955,unix/muny:/tmp/.ICE-unix/1955'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/ae74e0b4_1fe9_4aae_81ae_a4acb61e37f0'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.161AR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.96'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[5.531781] (camera_mananger) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[5.531942] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/lib/publisher\n'}
+[5.532316] (camera_mananger) StdoutLine: {'line': b'-- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/lib/listener\n'}
+[5.535931] (camera_mananger) StdoutLine: {'line': b'-- Set runtime path of "/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/lib/listener" to ""\n'}
+[5.536013] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/ament_index/resource_index/package_run_dependencies/camera_mananger\n'}
+[5.536200] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/ament_index/resource_index/parent_prefix_path/camera_mananger\n'}
+[5.536319] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/ament_prefix_path.sh\n'}
+[5.536375] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/ament_prefix_path.dsv\n'}
+[5.536422] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/path.sh\n'}
+[5.536544] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/environment/path.dsv\n'}
+[5.536580] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.bash\n'}
+[5.536610] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.sh\n'}
+[5.536640] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.zsh\n'}
+[5.536669] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/local_setup.dsv\n'}
+[5.536698] (camera_mananger) StdoutLine: {'line': b'-- Installing: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/package.dsv\n'}
+[5.536882] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/ament_index/resource_index/packages/camera_mananger\n'}
+[5.536925] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/cmake/camera_manangerConfig.cmake\n'}
+[5.536954] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/cmake/camera_manangerConfig-version.cmake\n'}
+[5.536984] (camera_mananger) StdoutLine: {'line': b'-- Up-to-date: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/install/camera_mananger/share/camera_mananger/package.xml\n'}
+[5.537503] (-) TimerEvent: {}
+[5.538435] (camera_mananger) CommandEnded: {'returncode': 0}
+[5.558945] (camera_mananger) JobEnded: {'identifier': 'camera_mananger', 'rc': 0}
+[5.559371] (-) EventReactorShutdown: {}

@@ -1,0 +1,40 @@
+[35m[1mConsolidate compiler generated dependencies of target listener[0m
+[ 75%] Built target publisher
+[ 75%] [32mBuilding CXX object CMakeFiles/listener.dir/src/camera_simulator.cpp.o[0m
+In file included from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:7[m[K:
+[01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+   32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+      |                                                                                         [01;36m[K^[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:[m[K In constructor ‘[01m[KFrameMangSub::FrameMangSub()[m[K’:
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:34:42:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kentry[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+   34 |                         for (const auto &[01;35m[Kentry[m[K : fs::directory_iterator(drive)){
+      |                                          [01;35m[K^~~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:[m[K In member function ‘[01m[Kvoid FrameMangSub::topic_callback(const Image&)[m[K’:
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:115:63:[m[K [01;35m[Kwarning: [m[Ktaking the address of a label is non-standard [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wpedantic-Wpedantic]8;;[m[K]
+  115 |                         std::string time_format( std::ctime(&&[01;35m[Kt[m[K) )
+      |                                                               [01;35m[K^[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:115:61:[m[K [01;31m[Kerror: [m[Kinvalid conversion from ‘[01m[Kvoid*[m[K’ to ‘[01m[Kconst time_t*[m[K’ {aka ‘[01m[Kconst long int*[m[K’} [[01;31m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-fpermissive-fpermissive]8;;[m[K]
+  115 |                         std::string time_format( std::ctime([01;31m[K&&t[m[K) )
+      |                                                             [01;31m[K^~~[m[K
+      |                                                             [01;31m[K|[m[K
+      |                                                             [01;31m[Kvoid*[m[K
+In file included from [01m[K/usr/include/pthread.h:23[m[K,
+                 from [01m[K/usr/include/aarch64-linux-gnu/c++/11/bits/gthr-default.h:35[m[K,
+                 from [01m[K/usr/include/aarch64-linux-gnu/c++/11/bits/gthr.h:148[m[K,
+                 from [01m[K/usr/include/c++/11/ext/atomicity.h:35[m[K,
+                 from [01m[K/usr/include/c++/11/bits/shared_ptr_base.h:61[m[K,
+                 from [01m[K/usr/include/c++/11/bits/shared_ptr.h:53[m[K,
+                 from [01m[K/usr/include/c++/11/memory:77[m[K,
+                 from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:1[m[K:
+[01m[K/usr/include/time.h:183:35:[m[K [01;36m[Knote: [m[K  initializing argument 1 of ‘[01m[Kchar* ctime(const time_t*)[m[K’
+  183 | extern char *ctime ([01;36m[Kconst time_t *__timer[m[K) __THROW;
+      |                     [01;36m[K~~~~~~~~~~~~~~^~~~~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:116:25:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K,[m[K’ or ‘[01m[K;[m[K’ before ‘[01m[Kcurrent_file[m[K’
+  116 |                         [01;31m[Kcurrent_file[m[K << time_format.substr(0, time_format.length() - 1) << ": " << result << std::endl;
+      |                         [01;31m[K^~~~~~~~~~~~[m[K
+[01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:115:63:[m[K [01;31m[Kerror: [m[Klabel ‘[01m[Kt[m[K’ used but not defined
+  115 |                         std::string time_format( std::ctime(&&[01;31m[Kt[m[K) )
+      |                                                               [01;31m[K^[m[K
+gmake[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/camera_simulator.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/listener.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

@@ -1,0 +1,75 @@
+[0.006s] Invoking command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger -- -j4 -l4
+[0.018s] -- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.086s] -- Found rclcpp: 16.0.9 (/opt/ros/humble/share/rclcpp/cmake)
+[0.105s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.106s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.110s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.117s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.128s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.170s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.171s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.242s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.361s] -- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)
+[0.463s] -- Found image_transport: 3.1.9 (/opt/ros/humble/share/image_transport/cmake)
+[0.490s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[1.688s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.689s] -- Configured cppcheck include dirs: 
+[1.689s] -- Configured cppcheck exclude dirs and/or files: 
+[1.692s] -- Added test 'flake8' to check Python code syntax and style conventions
+[1.699s] -- Added test 'lint_cmake' to check CMake code style
+[1.703s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[1.729s] -- Added test 'uncrustify' to check C / C++ code style
+[1.729s] -- Configured uncrustify additional arguments: 
+[1.732s] -- Added test 'xmllint' to check XML markup files
+[1.745s] -- Configuring done
+[1.801s] -- Generating done
+[1.802s] -- Build files have been written to: /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger
+[1.817s] [35m[1mConsolidate compiler generated dependencies of target publisher[0m
+[1.827s] [ 25%] [32mBuilding CXX object CMakeFiles/publisher.dir/src/camera_pub.cpp.o[0m
+[1.830s] [35m[1mConsolidate compiler generated dependencies of target listener[0m
+[1.839s] [ 50%] [32mBuilding CXX object CMakeFiles/listener.dir/src/camera_simulator.cpp.o[0m
+[1.885s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_simulator.cpp:3:10:[m[K [01;31m[Kfatal error: [m[Kros/ros.h: No such file or directory
+[1.885s]     3 | #include [01;31m[K<ros/ros.h>[m[K
+[1.885s]       |          [01;31m[K^~~~~~~~~~~[m[K
+[1.885s] compilation terminated.
+[1.886s] gmake[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/camera_simulator.cpp.o] Error 1
+[1.886s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/listener.dir/all] Error 2
+[1.886s] gmake[1]: *** Waiting for unfinished jobs....
+[2.139s] In file included from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:7[m[K:
+[2.139s] [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:32:89:[m[K [01;36m[Knote: [m[K‘[01m[K#pragma message: Warning: This header is deprecated. Use 'image_transport.hpp' instead[m[K’
+[2.139s]    32 | #pragma message ("Warning: This header is deprecated. Use 'image_transport.hpp' instead"[01;36m[K)[m[K
+[2.139s]       |                                                                                         [01;36m[K^[m[K
+[3.228s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:[m[K In constructor ‘[01m[KMinimalPublisher::MinimalPublisher()[m[K’:
+[3.228s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:20:57:[m[K [01;31m[Kerror: [m[Kclass ‘[01m[KMinimalPublisher[m[K’ does not have any field named ‘[01m[Kcount_[m[K’
+[3.228s]    20 |         MinimalPublisher() : Node("minimal_publisher"), [01;31m[Kcount_[m[K(0) {
+[3.228s]       |                                                         [01;31m[K^~~~~~[m[K
+[3.235s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:[m[K In member function ‘[01m[Kvoid MinimalPublisher::timer_callback()[m[K’:
+[3.235s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:36:26:[m[K [01;31m[Kerror: [m[K‘[01m[KImageConstPtr[m[K’ is not a member of ‘[01m[Ksensor_msgs[m[K’
+[3.235s]    36 |             sensor_msgs::[01;31m[KImageConstPtr[m[K img_msg;
+[3.235s]       |                          [01;31m[K^~~~~~~~~~~~~[m[K
+[3.244s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:44:17:[m[K [01;31m[Kerror: [m[K‘[01m[KROS_ERROR[m[K’ was not declared in this scope; did you mean ‘[01m[KCV_ERROR[m[K’?
+[3.244s]    44 |                 [01;31m[KROS_ERROR[m[K("Camera failed to open.");
+[3.244s]       |                 [01;31m[K^~~~~~~~~[m[K
+[3.244s]       |                 [32m[KCV_ERROR[m[K
+[3.245s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:50:23:[m[K [01;31m[Kerror: [m[K‘[01m[KHeader[m[K’ is not a member of ‘[01m[Kstd_msgs[m[K’; did you mean ‘[01m[Kstd_msgs::msg::Header[m[K’?
+[3.245s]    50 |             std_msgs::[01;31m[KHeader[m[K header;
+[3.245s]       |                       [01;31m[K^~~~~~[m[K
+[3.245s] In file included from [01m[K/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/image__struct.hpp:20[m[K,
+[3.245s]                  from [01m[K/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/image.hpp:7[m[K,
+[3.245s]                  from [01m[K/opt/ros/humble/include/image_transport/image_transport/camera_publisher.hpp:38[m[K,
+[3.245s]                  from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.hpp:39[m[K,
+[3.245s]                  from [01m[K/opt/ros/humble/include/image_transport/image_transport/image_transport.h:34[m[K,
+[3.245s]                  from [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:7[m[K:
+[3.245s] [01m[K/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp:140:7:[m[K [01;36m[Knote: [m[K‘[01m[Kstd_msgs::msg::Header[m[K’ declared here
+[3.245s]   140 | using [01;36m[KHeader[m[K =
+[3.245s]       |       [01;36m[K^~~~~~[m[K
+[3.253s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:51:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kheader[m[K’ was not declared in this scope
+[3.253s]    51 |             [01;31m[Kheader[m[K.seq = counter;
+[3.253s]       |             [01;31m[K^~~~~~[m[K
+[3.253s] [01m[K/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/src/camera_pub.cpp:52:28:[m[K [01;31m[Kerror: [m[K‘[01m[Kcrlcpp[m[K’ has not been declared
+[3.253s]    52 |             header.stamp = [01;31m[Kcrlcpp[m[K::Time::now();
+[3.253s]       |                            [01;31m[K^~~~~~[m[K
+[3.824s] gmake[2]: *** [CMakeFiles/publisher.dir/build.make:76: CMakeFiles/publisher.dir/src/camera_pub.cpp.o] Error 1
+[3.824s] gmake[1]: *** [CMakeFiles/Makefile2:165: CMakeFiles/publisher.dir/all] Error 2
+[3.825s] gmake: *** [Makefile:146: all] Error 2
+[3.826s] Invoked command in '/media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /media/snow/Heavy_Duty/ros2_package/src/camera_mananger/build/camera_mananger -- -j4 -l4
