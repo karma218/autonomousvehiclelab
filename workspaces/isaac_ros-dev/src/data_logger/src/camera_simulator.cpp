@@ -16,6 +16,9 @@
 #include "rclcpp/rclcpp.hpp" 
 #include "std_msgs/msg/string.hpp" 
 
+#define FRAME_WIDTH = 640
+#define FRAME_HEIGHT = 480
+
 using std::placeholders::_1; 
 namespace fs = std::filesystem;
 
@@ -29,6 +32,10 @@ class FrameMangSub : public rclcpp::Node {
 
 			/* Read from left camera and check if it's open */
 			left_cam.open(left_cam_id, cv::CAP_V4L2);
+
+			left_cam.set(cv::CAP_PROP_FRAME_WIDTH, FRAME_WIDTH); 
+			left_cam.set(cv::CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
+
 			if (!left_cam.isOpened()){
 				RCLCPP_ERROR(this->get_logger(), "Left Camera is not open"); 
 				return; 
@@ -36,6 +43,10 @@ class FrameMangSub : public rclcpp::Node {
 
 			/* Read from right camera and check if it's open */
 			right_cam.open(right_cam_id, cv::CAP_V4L2);
+
+			right_cam.set(cv::CAP_PROP_FRAME_WIDTH, FRAME_WIDTH); 
+			right_cam.set(cv::CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
+
 			if (!right_cam.isOpened()){
 				RCLCPP_ERROR(this->get_logger(), "Right Camera is not open"); 
 				return; 
