@@ -43,6 +43,12 @@ def generate_launch_description():
         
     )
 
+    logging = Node(
+        package='data_logging', 
+        namespace='data_logging', 
+        executable='data_logging'
+    )
+
     # road_segmentation_node = Node(
 	# package='road_segmentation',
     #	 namespace='road_segmentation',
@@ -114,6 +120,7 @@ def generate_launch_description():
         # ),
         # right_fisheye_node,
         gps_node,
+        data_logging,
         # simulator_control_node,
         # realsense_obj_det_node,
         web_video_server_node,
