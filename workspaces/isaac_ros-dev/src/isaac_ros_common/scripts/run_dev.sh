@@ -16,6 +16,8 @@ function usage() {
     print_info "Copyright (c) 2021-2022, NVIDIA CORPORATION."
 }
 
+ISSAC_ROS_PATH=$(echo $(pwd) | awk -F $HOME '{print $2}')
+
 # Read and parse config file if exists
 #
 # CONFIG_IMAGE_KEY (string, can be empty)
@@ -26,7 +28,7 @@ fi
 
 ISAAC_ROS_DEV_DIR="$1"
 if [[ -z "$ISAAC_ROS_DEV_DIR" ]]; then
-    ISAAC_ROS_DEV_DIR="$HOME/workspaces/isaac_ros-dev"
+    ISAAC_ROS_DEV_DIR="$HOME$ISSAC_ROS_PATH"
     if [[ ! -d "$ISAAC_ROS_DEV_DIR" ]]; then
         ISAAC_ROS_DEV_DIR=$(pwd)
     fi
@@ -103,7 +105,7 @@ fi
 # Re-use existing container.
 if [ "$(docker ps -a --quiet --filter status=running --filter name=$CONTAINER_NAME)" ]; then
     print_info "Attaching to running container: $CONTAINER_NAME"
-    docker exec -i -t -u admin --workdir /workspaces/isaac_ros-dev $CONTAINER_NAME /bin/bash $@
+    docker exec -i -t -u admin --workdir $ISSAC_ROS_PATH $CONTAINER_NAME /bin/bash $@
     exit 0
 fi
 
@@ -171,6 +173,7 @@ if [[ -f "$DOCKER_ARGS_FILE" ]]; then
     readarray -t DOCKER_ARGS_FILE_LINES < $DOCKER_ARGS_FILE
     for arg in "${DOCKER_ARGS_FILE_LINES[@]}"; do
         DOCKER_ARGS+=($(eval "echo $arg | envsubst"))
+
     done
 fi
 
@@ -180,7 +183,7 @@ docker run -it --rm \
     --privileged \
     --network host \
     ${DOCKER_ARGS[@]} \
-    -v $ISAAC_ROS_DEV_DIR:/workspaces/isaac_ros-dev \
+    -v $ISAAC_ROS_DEV_DIR:$ISSAC_ROS_PATH \
     -v /dev/*:/dev/* \
     -v /dev/steeringSerial:/dev/steeringSerial \
     -v /dev/velocitySerial:/dev/velocitySerial \
@@ -192,8 +195,7 @@ docker run -it --rm \
     --runtime nvidia \
     --user="admin" \
     --group-add=dialout \
-    --entrypoint /usr/local/bin/scripts/workspace-entrypoint.sh \
-    --workdir /workspaces/isaac_ros-dev \
+    --workdir /avlcode/workspaces/isaac_ros-dev \
+    --entrypoint ./src/isaac_ros_common/scripts/start_ros.sh \
     $@ \
-    $BASE_NAME \
-    /bin/bash
+    $BASE_NAME 
