@@ -18,7 +18,7 @@ find_package(sensor_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
-add_executable(data_logger_node src/camera_simulator.cpp) 
+add_executable(data_logger_node src/data_logger_node.cpp) 
 # add_executable(publisher src/camera_pub.cpp)
 
 # ament_target_dependencies(publisher rclcpp std_msgs OpenCV cv_bridge image_transport sensor_msgs)
