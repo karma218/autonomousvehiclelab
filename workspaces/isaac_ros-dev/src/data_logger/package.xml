@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>camera_mananger</name>
+  <name>data_logger</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
   <maintainer email="snow@todo.todo">snow</maintainer>
   <license>TODO: License declaration</license>
+
+  <exec_depend>rclcpp</exec_depend>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>rclcpp</buildtool_depend> 
