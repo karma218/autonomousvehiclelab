@@ -13,8 +13,9 @@
   <buildtool_depend>rclcpp</buildtool_depend> 
   <buildtool_depend>std_msgs</buildtool_depend>
   <buildtool_depend>opencv2</buildtool_depend>
-
-  <buildtool_depend>sensor_msgs</buildtool_dependdepend>
+  <buildtool_depend>sensor_msgs</buildtool_depend>
+  <buildtool_depend>cv_bridge</buildtool_depend>
+  <buildtool_depend>image_transport</buildtool_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
