@@ -24,7 +24,7 @@ namespace fs = std::filesystem;
 
 class FrameMangSub : public rclcpp::Node {
 	public: 
-		FrameMangSub() : Node("data_logging") : log_count(0), image_count(0){
+		FrameMangSub() : Node("data_logger_node") : log_count(0), image_count(0){
 
 			/* Subscribe to the front facing camera */
 			subscription_front_camera = this->create_subscription<sensor_msgs::msg::Image>(
@@ -192,7 +192,7 @@ class FrameMangSub : public rclcpp::Node {
 
 int main(int argc, char *argv[]){
 	rclcpp::init(argc, argv); 
-       	rclcpp::spin(std::make_shared<FrameMangSub>()); 
+    rclcpp::spin(std::make_shared<FrameMangSub>()); 
 	rclcpp::shutdown(); 
 
 	return 0; 
