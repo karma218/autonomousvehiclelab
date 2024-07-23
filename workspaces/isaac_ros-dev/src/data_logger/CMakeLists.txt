@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(camera_mananger)
+project(data_logger)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -26,7 +26,7 @@ add_executable(data_logger_node src/data_logger_node.cpp)
 #   publisher 
 #   DESTINATION lib/${camera_mananger})
 
-ament_target_dependencies(listener rclcpp std_msgs OpenCV cv_bridge image_transport sensor_msgs) 
+ament_target_dependencies(data_logger_node rclcpp std_msgs OpenCV cv_bridge image_transport sensor_msgs) 
 INSTALL(TARGETS 
   data_logger_node
 	DESTINATION lib/${data_logger}
