@@ -6,7 +6,7 @@ project(data_logger)
 # endif()
 
 # find dependencies
-find_package(ament_cmake_ros REQUIRED)
+find_package(ament_cmakeREQUIRED)
 find_package(rclcpp REQUIRED) 
 find_package(std_msgs REQUIRED) 
 find_package(OpenCV REQUIRED)
