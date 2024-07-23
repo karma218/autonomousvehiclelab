@@ -43,7 +43,7 @@ def generate_launch_description():
         
     )
 
-    logging = Node(
+    data_logging = Node(
         package='data_logger', 
         namespace='data_logger', 
         executable='data_logger_node'
