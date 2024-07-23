@@ -8,8 +8,6 @@
   <license>TODO: License declaration</license>
 
 
-  <buildtool_depend>ament_cmake_ros</buildtool_depend>
-  
   <buildtool_depend>rclcpp</buildtool_depend> 
   <buildtool_depend>std_msgs</buildtool_depend>
   <buildtool_depend>opencv2</buildtool_depend>
