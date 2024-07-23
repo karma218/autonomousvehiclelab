@@ -44,9 +44,9 @@ def generate_launch_description():
     )
 
     logging = Node(
-        package='data_logging', 
-        namespace='data_logging', 
-        executable='data_logging'
+        package='data_logger', 
+        namespace='data_logger', 
+        executable='data_logger_node'
     )
 
     # road_segmentation_node = Node(
