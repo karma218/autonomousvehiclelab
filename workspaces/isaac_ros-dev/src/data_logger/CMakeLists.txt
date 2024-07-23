@@ -22,7 +22,7 @@ find_package(sensor_msgs REQUIRED)
 add_executable(data_logger 
   src/data_logger_node.cpp
 )
- 
+
 # add_executable(publisher src/camera_pub.cpp)
 
 # ament_target_dependencies(publisher rclcpp std_msgs OpenCV cv_bridge image_transport sensor_msgs)
@@ -34,6 +34,10 @@ ament_target_dependencies(data_logger rclcpp std_msgs OpenCV cv_bridge image_tra
 INSTALL(TARGETS 
   data_logger
 	DESTINATION lib/${data_logger}
+)
+
+install(TARGETS data_logger
+  DESTINATION lib/${data_logger}
 )
 
 if(BUILD_TESTING)
