@@ -7,12 +7,14 @@
   <maintainer email="snow@todo.todo">snow</maintainer>
   <license>TODO: License declaration</license>
 
+  <exec_depend>rclcpp</exec_depend>
+
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>rclcpp</buildtool_depend> 
   <buildtool_depend>std_msgs</buildtool_depend>
   <buildtool_depend>opencv2</buildtool_depend>
 
-  <depend>sensor_msgs</depend>
+  <buildtool_depend>sensor_msgs</buildtool_dependdepend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
