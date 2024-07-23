@@ -14,6 +14,10 @@ find_package(cv_bridge REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
+pkg_check_modules(avcodec libavcodec REQUIRED)
+pkg_check_modules(avformat libavformat REQUIRED)
+pkg_check_modules(avutil libavutil REQUIRED)
+pkg_check_modules(swscale libswscale REQUIRED)
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
