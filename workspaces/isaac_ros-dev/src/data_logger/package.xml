@@ -7,8 +7,6 @@
   <maintainer email="snow@todo.todo">snow</maintainer>
   <license>TODO: License declaration</license>
 
-  <exec_depend>rclcpp</exec_depend>
-
   <buildtool_depend>ament_cmake</buildtool_depend>
   <buildtool_depend>rclcpp</buildtool_depend> 
   <buildtool_depend>std_msgs</buildtool_depend>
