@@ -31,13 +31,8 @@ add_executable(data_logger
 #   DESTINATION lib/${camera_mananger})
 
 ament_target_dependencies(data_logger rclcpp std_msgs OpenCV cv_bridge image_transport sensor_msgs) 
-INSTALL(TARGETS 
-  data_logger
+INSTALL(TARGETS data_logger
 	DESTINATION lib/${data_logger}
-)
-
-install(TARGETS data_logger
-  DESTINATION lib/${data_logger}
 )
 
 if(BUILD_TESTING)
