@@ -4,27 +4,30 @@
 #include <filesystem>
 #include <ctime> 
 
-#include <image_transport/image_transport.h> 
-#include <sensor_msgs/image_encodings.hpp> 
-#include <opencv2/imgproc/imgproc.hpp> 
-#include <opencv2/highgui/highgui.hpp>
-#include <cv_bridge/cv_bridge.h>
+// #include <image_transport/image_transport.h> 
+// #include <sensor_msgs/image_encodings.hpp> 
+//#include <opencv2/imgproc/imgproc.hpp> 
+#include <opencv2/opencv.hpp>
+//#include <opencv2/highgui/highgui.hpp>
+#include <cv_bridge/cv_bridge.hpp>
 #include <sys/types.h> 
 #include <sys/stat.h>
 
+#include "sensor_msgs/image_encodings.hpp" 
+#include "image_transport/image_transport.hpp" 
 #include "sensor_msgs/msg/image.hpp"
 #include "rclcpp/rclcpp.hpp" 
 #include "std_msgs/msg/string.hpp" 
 
-#define FRAME_WIDTH = 640
-#define FRAME_HEIGHT = 480
+#define FRAME_WIDTH 640
+#define FRAME_HEIGHT 480
 
 using std::placeholders::_1; 
 namespace fs = std::filesystem;
 
 class FrameMangSub : public rclcpp::Node {
 	public: 
-		FrameMangSub() : Node("data_logger_node") : log_count(0), image_count(0){
+		FrameMangSub() : Node("data_logger_node"),  log_count(0), image_count(0){
 
 			/* Subscribe to the front facing camera */
 			subscription_front_camera = this->create_subscription<sensor_msgs::msg::Image>(
@@ -51,10 +54,11 @@ class FrameMangSub : public rclcpp::Node {
 				RCLCPP_ERROR(this->get_logger(), "Right Camera is not open"); 
 				return; 
 			}
+			std::cout<< std::filesystem::current_path() << std::endl;
 
 			/* Create logging file if not existent */
-			if (!fs::is_directory("~/logging")){
-				fs::create_directory("~/logging"); 
+			if (!fs::is_directory("/home/admin/logging")){
+				fs::create_directory("/home/admin/logging"); 
 			}
 
 			/* Check whether directory exists or not */
@@ -109,14 +113,14 @@ class FrameMangSub : public rclcpp::Node {
 		cv::VideoCapture left_cam; 
 		cv::VideoCapture right_cam; 
 
-		const int left_cam_id = 6; 
-		const int right_cam_id = 10;
+		const int left_cam_id = 0; 
+		const int right_cam_id = 4;
 
 		std::ofstream current_file; 
 
 		/* '/logging' should contain logging folder */
-		const std::string drive = "/logging/logging_data"; // '/' is the location of 1tb drive  
-		const std::string image_drive = "/logging/image_data"; // 
+		const std::string drive = "/home/admin/logging/logging_data"; // '/' is the location of 1tb drive  
+		const std::string image_drive = "/home/admin/logging/image_data"; // 
 		const std::string type_file = ".txt"; 
 
 		std::string logging_files = "log_file_"; 

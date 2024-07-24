@@ -195,7 +195,7 @@ docker run -it --rm \
     --runtime nvidia \
     --user="admin" \
     --group-add=dialout \
-    --entrypoint ./src/isaac_ros_common/scripts/start_ros.sh \
     --workdir "/avlcode/workspaces/isaac_ros-dev" \
     $@ \
     $BASE_NAME \
+    /bin/bash
