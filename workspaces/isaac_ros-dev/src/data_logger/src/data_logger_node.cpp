@@ -26,7 +26,7 @@ class DataLogger: public rclcpp::Node {
 		DataLogger() : Node("data_logger_node"),  m_log_count(0), m_image_count(0){
 
 			/* Subscribe to the front facing camera */
-			subscription_front_camera = this->create_subscription<sensor_msgs::msg::Image>(
+			m_subscription_front_camera = this->create_subscription<sensor_msgs::msg::Image>(
 			"/video/front_camera", 10, std::bind(&FrameMangSub::topic_callback, this, _1)); 
 
 			/* Read from left camera and check if it's open */
@@ -60,6 +60,7 @@ class DataLogger: public rclcpp::Node {
 			if (!fs::is_directory(m_drive)){
 				fs::create_directory(m_drive);
 			} else {
+				/* TODO: Use std::distance or std::count_if */
 				/* Count the number of log files in the directory */ 
 				for (const auto &entry : fs::directory_iterator(m_drive)) {
 					m_log_count++; 
@@ -70,6 +71,7 @@ class DataLogger: public rclcpp::Node {
 			if (!fs::is_directory(m_image_drive)){
 				fs::create_directory(m_image_drive); 
 			} else {
+				/* TODO: Use std::distance or std::count_if */
 				/* Count the number of images in the directory */ 
 				for (const auto &entry : fs::directory_iterator(m_image_drive)) {
 					m_image_count++; 
@@ -100,18 +102,23 @@ class DataLogger: public rclcpp::Node {
 		} 
 
 		~DataLogger() {
+			m_left_cam.release(); 
+			m_right_cam.release();
+
 			m_current_file.close(); 
 		}
 
 
 	private:
+		rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr m_subscription_front_camera; 
+
 		cv::VideoCapture m_left_cam; 
 		cv::VideoCapture m_right_cam; 
 
 		const int m_left_cam_id = 0; 
 		const int m_right_cam_id = 4;
 
-		std::ofstream m_m_current_file; 
+		std::ofstream m_current_file; 
 
 		/* '/logging' should contain logging folder */
 		const std::string m_drive = "/home/admin/logging/logging_data"; // '/' is the location of 1tb drive  
@@ -156,7 +163,6 @@ class DataLogger: public rclcpp::Node {
 			m_left_cam_result = image_drive + "/" + "image_left_" + std::to_string(m_image_count) + ".jpg"; 
 			m_right_cam_result = image_drive + "/" + "image_right_" + std::to_string(m_image_count) + ".jpg";
 
-
 			double mb = fs::file_size(m_drive + "/" + m_logging_files + m_type_file) / 1024 / 1024; 
 		    if (mb >= 500) {
 				m_logging_files.pop_back(); 
@@ -185,7 +191,6 @@ class DataLogger: public rclcpp::Node {
 			RCLCPP_INFO(this->get_logger(), "%s", front_cam_result.c_str()); 
 		} 
 		 
-		rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr subscription_front_camera; 
 }; 
 
 int main(int argc, char *argv[]){
