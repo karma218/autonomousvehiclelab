@@ -4,11 +4,7 @@
 #include <filesystem>
 #include <ctime> 
 
-// #include <image_transport/image_transport.h> 
-// #include <sensor_msgs/image_encodings.hpp> 
-//#include <opencv2/imgproc/imgproc.hpp> 
 #include <opencv2/opencv.hpp>
-//#include <opencv2/highgui/highgui.hpp>
 #include <cv_bridge/cv_bridge.hpp>
 #include <sys/types.h> 
 #include <sys/stat.h>
@@ -25,36 +21,35 @@
 using std::placeholders::_1; 
 namespace fs = std::filesystem;
 
-class FrameMangSub : public rclcpp::Node {
+class DataLogger: public rclcpp::Node {
 	public: 
-		FrameMangSub() : Node("data_logger_node"),  log_count(0), image_count(0){
+		DataLogger() : Node("data_logger_node"),  m_log_count(0), m_image_count(0){
 
 			/* Subscribe to the front facing camera */
 			subscription_front_camera = this->create_subscription<sensor_msgs::msg::Image>(
 			"/video/front_camera", 10, std::bind(&FrameMangSub::topic_callback, this, _1)); 
 
 			/* Read from left camera and check if it's open */
-			left_cam.open(left_cam_id, cv::CAP_V4L2);
+			m_left_cam.open(m_left_cam_id, cv::CAP_V4L2);
 
-			left_cam.set(cv::CAP_PROP_FRAME_WIDTH, FRAME_WIDTH); 
-			left_cam.set(cv::CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
+			m_left_cam.set(cv::CAP_PROP_FRAME_WIDTH, FRAME_WIDTH); 
+			m_left_cam.set(cv::CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
 
-			if (!left_cam.isOpened()){
+			if (!m_left_cam.isOpened()){
 				RCLCPP_ERROR(this->get_logger(), "Left Camera is not open"); 
 				return; 
 			}
 
 			/* Read from right camera and check if it's open */
-			right_cam.open(right_cam_id, cv::CAP_V4L2);
+			m_right_cam.open(m_right_cam_id, cv::CAP_V4L2);
 
-			right_cam.set(cv::CAP_PROP_FRAME_WIDTH, FRAME_WIDTH); 
-			right_cam.set(cv::CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
+			m_right_cam.set(cv::CAP_PROP_FRAME_WIDTH, FRAME_WIDTH); 
+			m_right_cam.set(cv::CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
 
-			if (!right_cam.isOpened()){
+			if (!m_right_cam.isOpened()){
 				RCLCPP_ERROR(this->get_logger(), "Right Camera is not open"); 
 				return; 
 			}
-			std::cout<< std::filesystem::current_path() << std::endl;
 
 			/* Create logging file if not existent */
 			if (!fs::is_directory("/home/admin/logging")){
@@ -62,71 +57,71 @@ class FrameMangSub : public rclcpp::Node {
 			}
 
 			/* Check whether directory exists or not */
-			if (!fs::is_directory(drive)){
-				fs::create_directory(drive);
+			if (!fs::is_directory(m_drive)){
+				fs::create_directory(m_drive);
 			} else {
 				/* Count the number of log files in the directory */ 
-				for (const auto &entry : fs::directory_iterator(drive)) {
-					log_count++; 
+				for (const auto &entry : fs::directory_iterator(m_drive)) {
+					m_log_count++; 
 				} 
 			} 
 
 			/* Determine whether Image directory has been created or not */ 
-			if (!fs::is_directory(image_drive)){
-				fs::create_directory(image_drive); 
+			if (!fs::is_directory(m_image_drive)){
+				fs::create_directory(m_image_drive); 
 			} else {
 				/* Count the number of images in the directory */ 
-				for (const auto &entry : fs::directory_iterator(image_drive)) {
-					image_count++; 
+				for (const auto &entry : fs::directory_iterator(m_image_drive)) {
+					m_image_count++; 
 				}
 			}
 
 
 			/* Name the current logging file */
-			logging_files = logging_files + std::to_string(log_count); 
-			current_file.open(drive + "/" + logging_files + type_file); 
+			m_logging_files = m_logging_files + std::to_string(m_log_count); 
+			m_current_file.open(m_drive + "/" + logging_files + m_type_file); 
 
 			/* Append the headers for file */
-			current_file << "Time\t\tImage Name" << std::endl;
+			m_current_file << "Time\t\tImage Name" << std::endl;
 
 			/* Get current size of filesize */
-			double mb = fs::file_size(drive + "/" + logging_files + type_file) / 1024 / 1024; 
+			double mb = fs::file_size(m_drive + "/" + m_logging_files + m_type_file) / 1024 / 1024; 
 
 			/* Check size of the tx file */
 			if (mb >= 500){
-				logging_files.pop_back();
-				log_count++; 
-				logging_files = logging_files + std::to_string(log_count);
+				m_logging_files.pop_back();
+				m_log_count++; 
+				m_logging_files = m_logging_files + std::to_string(m_log_count);
 
-				current_file.close(); 
-				current_file.open(drive + "/" + logging_files + type_file); 
+				m_current_file.close(); 
+				m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
 			}
 			RCLCPP_DEBUG(this->get_logger(), "Finish Init"); 
 		} 
 
-		~FrameMangSub() {
-			current_file.close(); 
+		~DataLogger() {
+			m_current_file.close(); 
 		}
 
 
 	private:
-		cv::VideoCapture left_cam; 
-		cv::VideoCapture right_cam; 
+		cv::VideoCapture m_left_cam; 
+		cv::VideoCapture m_right_cam; 
 
-		const int left_cam_id = 0; 
-		const int right_cam_id = 4;
+		const int m_left_cam_id = 0; 
+		const int m_right_cam_id = 4;
 
-		std::ofstream current_file; 
+		std::ofstream m_m_current_file; 
 
 		/* '/logging' should contain logging folder */
-		const std::string drive = "/home/admin/logging/logging_data"; // '/' is the location of 1tb drive  
-		const std::string image_drive = "/home/admin/logging/image_data"; // 
-		const std::string type_file = ".txt"; 
+		const std::string m_drive = "/home/admin/logging/logging_data"; // '/' is the location of 1tb drive  
+		const std::string m_image_drive = "/home/admin/logging/image_data"; // 
+		const std::string m_type_file = ".txt"; 
 
-		std::string logging_files = "log_file_"; 
+		std::string m_logging_files = "log_file_"; 
 
-		int log_count;
-		int image_count; 
+		int m_log_count;
+		int m_image_count; 
 
 		void topic_callback (const sensor_msgs::msg::Image &msg) {
 			cv_bridge::CvImagePtr cv_ptr; 
@@ -140,7 +135,7 @@ class FrameMangSub : public rclcpp::Node {
 				return; 
 			}
 
-			if (!current_file.is_open()){
+			if (!m_current_file.is_open()){
 				RCLCPP_ERROR(this->get_logger(), "File is not open"); 
 				return; 
 			}
@@ -148,30 +143,30 @@ class FrameMangSub : public rclcpp::Node {
 			cv::Mat left_frame_cam; 
 			cv::Mat right_frame_cam; 
 
-			left_cam.read(left_frame_cam); 
-			right_cam.read(right_frame_cam);
+			m_left_cam.read(left_frame_cam); 
+			m_right_cam.read(right_frame_cam);
 
-			image_count++;
+			m_image_count++;
 
-			std::string front_cam_result; 
-			std::string left_cam_result; 
-			std::string right_cam_result;
+			std::string m_front_cam_result; 
+			std::string m_left_cam_result; 
+			std::string m_right_cam_result;
 
-			front_cam_result = image_drive + "/" + "image_front_" + std::to_string(image_count) + ".jpg"; 
-			left_cam_result = image_drive + "/" + "image_left_" + std::to_string(image_count) + ".jpg"; 
-			right_cam_result = image_drive + "/" + "image_right_" + std::to_string(image_count) + ".jpg";
+			m_front_cam_result = image_drive + "/" + "image_front_" + std::to_string(m_image_count) + ".jpg"; 
+			m_left_cam_result = image_drive + "/" + "image_left_" + std::to_string(m_image_count) + ".jpg"; 
+			m_right_cam_result = image_drive + "/" + "image_right_" + std::to_string(m_image_count) + ".jpg";
 
 
-			double mb = fs::file_size(drive + "/" + logging_files + type_file) / 1024 / 1024; 
+			double mb = fs::file_size(m_drive + "/" + m_logging_files + m_type_file) / 1024 / 1024; 
 		    if (mb >= 500) {
-				logging_files.pop_back(); 
-				log_count++; 
-				logging_files = logging_files + std::to_string(log_count); 
+				m_logging_files.pop_back(); 
+				m_log_count++; 
+				m_logging_files = m_logging_files + std::to_string(m_log_count); 
 
-				current_file.close(); 
-				current_file.open(drive + "/" + logging_files + type_file); 	
+				m_current_file.close(); 
+				m_current_file.open(drive + "/" + m_logging_files + m_type_file); 	
 
-				current_file << "Time\t\tImage Name" << std::endl;
+				m_current_file << "Time\t\tImage Name" << std::endl;
 			} 	
 
 			/* Get the time currently */
@@ -180,7 +175,7 @@ class FrameMangSub : public rclcpp::Node {
 			tt = std::chrono::system_clock::to_time_t ( now_time ); 
 			
 			/* Input seconds and reult to current logging file */ 
-			current_file << tt << ": " << front_cam_result << " " << left_cam_result << " " << right_cam_result << std::endl; 
+			m_current_file << tt << ": " << front_cam_result << " " << left_cam_result << " " << right_cam_result << std::endl; 
 
 			/* Write to the assign directory */
 			cv::imwrite(right_cam_result, right_frame_cam);
@@ -189,7 +184,6 @@ class FrameMangSub : public rclcpp::Node {
 
 			RCLCPP_INFO(this->get_logger(), "%s", front_cam_result.c_str()); 
 		} 
-
 		 
 		rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr subscription_front_camera; 
 }; 
