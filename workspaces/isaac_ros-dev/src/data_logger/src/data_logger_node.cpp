@@ -81,7 +81,7 @@ class DataLogger: public rclcpp::Node {
 
 			/* Name the current logging file */
 			m_logging_files = m_logging_files + std::to_string(m_log_count); 
-			m_current_file.open(m_drive + "/" + logging_files + m_type_file); 
+			m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
 
 			/* Append the headers for file */
 			m_current_file << "Time\t\tImage Name" << std::endl;
@@ -150,18 +150,18 @@ class DataLogger: public rclcpp::Node {
 			cv::Mat left_frame_cam; 
 			cv::Mat right_frame_cam; 
 
-			m_left_cam.read(left_frame_cam); 
-			m_right_cam.read(right_frame_cam);
+			m_left_cam.read(m_left_frame_cam); 
+			m_right_cam.read(m_right_frame_cam);
 
 			m_image_count++;
 
-			std::string m_front_cam_result; 
-			std::string m_left_cam_result; 
-			std::string m_right_cam_result;
+			std::string front_cam_result; 
+			std::string left_cam_result; 
+			std::string right_cam_result;
 
-			m_front_cam_result = image_drive + "/" + "image_front_" + std::to_string(m_image_count) + ".jpg"; 
-			m_left_cam_result = image_drive + "/" + "image_left_" + std::to_string(m_image_count) + ".jpg"; 
-			m_right_cam_result = image_drive + "/" + "image_right_" + std::to_string(m_image_count) + ".jpg";
+			front_cam_result = m_image_drive + "/" + "image_front_" + std::to_string(m_image_count) + ".jpg"; 
+			left_cam_result = m_image_drive + "/" + "image_left_" + std::to_string(m_image_count) + ".jpg"; 
+			right_cam_result = m_image_drive + "/" + "image_right_" + std::to_string(m_image_count) + ".jpg";
 
 			double mb = fs::file_size(m_drive + "/" + m_logging_files + m_type_file) / 1024 / 1024; 
 		    if (mb >= 500) {
