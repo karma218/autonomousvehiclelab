@@ -8,6 +8,7 @@
 #include <cv_bridge/cv_bridge.hpp>
 #include <sys/types.h> 
 #include <sys/stat.h>
+#include "geometry_msgs/msg/twist.hpp"
 
 #include "sensor_msgs/image_encodings.hpp" 
 #include "image_transport/image_transport.hpp" 
@@ -26,12 +27,35 @@ class DataLogger: public rclcpp::Node {
 		DataLogger() : Node("data_logger_node"),  m_log_count(0), m_image_count(0){
 
 			/* Subscribe to the front facing camera */
-			m_subscription_front_camera = this->create_subscription<sensor_msgs::msg::Image>(
-			"/video/front_camera", 10, std::bind(&FrameMangSub::topic_callback, this, _1)); 
+			// m_subscription_front_camera = this->create_subscription<sensor_msgs::msg::Image>(
+			// "/video/front_fisheye_camera", 10, std::bind(&FrameMangSub::topic_callback, this, _1)); 
+
+			// m_subscription_left_camera = this->create_subscription<sensor_msgs::msg::Image>(
+			// "/video/left_camera", 10, std::bind(&FrameMangSub::topic_callback, this, _1)); 
+
+			// m_subscription_front_camera = this->create_subscription<sensor_msgs::msg::Image>(
+			// "/video/right_camera", 10, std::bind(&FrameMangSub::topic_callback, this, _1)); 
+
+			m_subscription_steering_angle = this->create_subscription<geometry_msgs::msg::Twist>(
+				"/twist_mux/cmd_vel", 10, std::bind(&DataLogger::topic_callback, this, _1));
+			
+			/* TODO: Integrate throttle data */ 
+			/* Read from front camera and check if it's open */
+
+			m_front_cam.open(m_front_cam_id, cv::CAP_V4L2);
+
+			m_front_cam.set(cv::CAP_PROP_FRAME_WIDTH, FRAME_WIDTH); 
+			m_front_cam.set(cv::CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
+
+			if (!m_front_cam.isOpened()){
+				RCLCPP_ERROR(this->get_logger(), "Front camera is not open"); 
+				return; 
+			}
+
+
 
 			/* Read from left camera and check if it's open */
 			m_left_cam.open(m_left_cam_id, cv::CAP_V4L2);
-
 			m_left_cam.set(cv::CAP_PROP_FRAME_WIDTH, FRAME_WIDTH); 
 			m_left_cam.set(cv::CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
 
@@ -110,13 +134,16 @@ class DataLogger: public rclcpp::Node {
 
 
 	private:
-		rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr m_subscription_front_camera; 
+		rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr m_subscription_steering_angle;  
 
 		cv::VideoCapture m_left_cam; 
 		cv::VideoCapture m_right_cam; 
+		cv::VideoCapture m_front_cam;
 
-		const int m_left_cam_id = 0; 
-		const int m_right_cam_id = 4;
+		const int m_left_cam_id = 8; 
+		const int m_right_cam_id = 0;
+		const int m_front_cam_id = 4;
+
 
 		std::ofstream m_current_file; 
 
@@ -130,28 +157,24 @@ class DataLogger: public rclcpp::Node {
 		int m_log_count;
 		int m_image_count; 
 
-		void topic_callback (const sensor_msgs::msg::Image &msg) {
-			cv_bridge::CvImagePtr cv_ptr; 
-
-			try {
-				cv_ptr = cv_bridge::toCvCopy(msg, 
-					sensor_msgs::image_encodings::BGR8); 
-			} catch (cv_bridge::Exception& e) {
-				RCLCPP_DEBUG(this->get_logger(), 
-					"cv_bridge execption: %s", e.what()); 
-				return; 
-			}
+		void topic_callback (const geometry_msgs::msg::Twist::SharedPtr msg) {
+			
 
 			if (!m_current_file.is_open()){
 				RCLCPP_ERROR(this->get_logger(), "File is not open"); 
 				return; 
 			}
 
-			cv::Mat left_frame_cam; 
-			cv::Mat right_frame_cam; 
+			double steering_angle = msg->angular.z;
+            int steering_angle_int = steering_angle*61.0+512.0;
 
-			m_left_cam.read(m_left_frame_cam); 
-			m_right_cam.read(m_right_frame_cam);
+			cv::Mat left_frame_cam; 
+			cv::Mat right_frame_cam;
+			cv::Mat front_frame_cam; 
+
+			m_left_cam.read(left_frame_cam); 
+			m_right_cam.read(right_frame_cam);
+			m_front_cam.read(right_frame_cam);
 
 			m_image_count++;
 
@@ -170,7 +193,7 @@ class DataLogger: public rclcpp::Node {
 				m_logging_files = m_logging_files + std::to_string(m_log_count); 
 
 				m_current_file.close(); 
-				m_current_file.open(drive + "/" + m_logging_files + m_type_file); 	
+				m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 	
 
 				m_current_file << "Time\t\tImage Name" << std::endl;
 			} 	
@@ -181,12 +204,12 @@ class DataLogger: public rclcpp::Node {
 			tt = std::chrono::system_clock::to_time_t ( now_time ); 
 			
 			/* Input seconds and reult to current logging file */ 
-			m_current_file << tt << ": " << front_cam_result << " " << left_cam_result << " " << right_cam_result << std::endl; 
+			m_current_file << tt << ": " << front_cam_result << " " << left_cam_result << " " << right_cam_result <<  " " << steering_angle_int << std::endl; 
 
 			/* Write to the assign directory */
 			cv::imwrite(right_cam_result, right_frame_cam);
 			cv::imwrite(left_cam_result, left_frame_cam);
-			cv::imwrite(front_cam_result, cv_ptr->image); 
+			cv::imwrite(front_cam_result, front_frame_cam); 
 
 			RCLCPP_INFO(this->get_logger(), "%s", front_cam_result.c_str()); 
 		} 
@@ -195,7 +218,7 @@ class DataLogger: public rclcpp::Node {
 
 int main(int argc, char *argv[]){
 	rclcpp::init(argc, argv); 
-    rclcpp::spin(std::make_shared<FrameMangSub>()); 
+    rclcpp::spin(std::make_shared<DataLogger>()); 
 	rclcpp::shutdown(); 
 
 	return 0; 

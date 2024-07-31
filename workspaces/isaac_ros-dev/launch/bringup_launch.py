@@ -43,11 +43,18 @@ def generate_launch_description():
         
     )
 
-    data_logging = Node(
-        package='data_logger', 
-        namespace='data_logger', 
-        executable='data_logger_node'
-    )
+    # data_logging = Node(
+    #     package='data_logger', 
+    #     namespace='data_logger', 
+    #     executable='data_logger_node'
+    # )
+
+    
+    motor_control_node = Node(
+        package='motor_control_pkg', 
+        namespace='motor_contorl_pkg', 
+        executable='motor_control_node'
+    ) 
 
     camera_pub = Node(
         package='camera_publishers', 
@@ -125,8 +132,8 @@ def generate_launch_description():
         #     ])
         # ),
         # right_fisheye_node,
-        gps_node,
-        data_logging,
+        # gps_node,
+        # data_logging,
         # simulator_control_node,
         # realsense_obj_det_node,
         web_video_server_node,
@@ -135,7 +142,8 @@ def generate_launch_description():
         
         #image_stitcher_node
         # left_boxcam_node,
-        #right_boxcam_node
+        #right_boxcam_node,
+        motor_control_node
         
         
     ])
