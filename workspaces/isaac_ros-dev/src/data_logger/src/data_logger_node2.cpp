@@ -70,7 +70,7 @@ class DataLogger : public rclcpp::Node {
 			m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
 
             if (!m_current_file.is_open()){
-                RCLCPP_INFO(this->get_logger(), "Creating Image directory");
+                RCLCPP_ERROR(this->get_logger(), "File is not opened at init");
                 return;
             }
 
