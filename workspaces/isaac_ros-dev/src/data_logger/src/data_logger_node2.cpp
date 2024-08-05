@@ -25,16 +25,22 @@ namespace fs = std::filesystem;
 class DataLogger : public rclcpp::Node {
 	public: 
 		DataLogger() : Node("data_logger_node"), 
-        m_log_count(0), m_image_count(0), {
+            m_log_count(0), m_image_count(0), {
 
 			/* Create logging file if not existent */
 			if (!fs::is_directory("/home/admin/logging")){
+                RCLCPP_INFO(this->get_logger(), "Creating logging directory");
+
 				fs::create_directory("/home/admin/logging"); 
+                assert(!std::fs::create_directory("/home/admin/logging"));
 			}
 
 			/* Check whether directory exists or not */
 			if (!fs::is_directory(m_drive)){
+                RCLCPP_INFO(this->get_logger(), "Creating logging files directory");
+
 				fs::create_directory(m_drive);
+                assert(!std::fs::create_directory(m_drive));
 			} else {
 				/* TODO: Use std::distance or std::count_if */
 				/* Count the number of log files in the directory */ 
@@ -43,9 +49,14 @@ class DataLogger : public rclcpp::Node {
 				} 
 			} 
 
+            assert(!std::fs::create_directory(m_drive));
+
 			/* Determine whether Image directory has been created or not */ 
 			if (!fs::is_directory(m_image_drive)){
+                RCLCPP_INFO(this->get_logger(), "Creating Image directory");
+
 				fs::create_directory(m_image_drive); 
+                assert(!std::fs::create_directory(m_image_drive));
 			} else {
 				/* TODO: Use std::distance or std::count_if */
 				/* Count the number of images in the directory */ 
@@ -53,6 +64,7 @@ class DataLogger : public rclcpp::Node {
 					m_image_count++; 
 				}
 			}
+
 
 			m_logging_files = m_logging_files + std::to_string(m_log_count); 
 			m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
@@ -64,7 +76,7 @@ class DataLogger : public rclcpp::Node {
 			double mb = fs::file_size(m_drive + "/" + m_logging_files + m_type_file) / 1024 / 1024; 
 
 			/* Check size of the tx file */
-			if (mb >= 500){
+			if (mb >= 50){
 				m_logging_files.pop_back();
 				m_log_count++; 
 				m_logging_files = m_logging_files + std::to_string(m_log_count);
@@ -119,8 +131,10 @@ class DataLogger : public rclcpp::Node {
         void camera_sync_callback(const sensor_msgs::msg::Image &front_image, const sensor_msgs::msg::Image &left_image, 
             const sensor_msgs::msg::Image &right_image, const geometry_msgs::msg::Twist &msg){
 
-            if (!m_current_file.is_open())
+            if (!m_current_file.is_open()){
                 RCLCPP_ERROR(this->get_logger, "Logging file isn't opened for logging");
+                return;
+            }
         
             /* Process results from all the cameras */
             cv_bridge::CvImagePtr cv_front_ptr; 
@@ -166,9 +180,20 @@ class DataLogger : public rclcpp::Node {
 			m_current_file << tt << ": " << front_cam_result << " " << left_cam_result << " " << right_cam_result <<  " " << steering_angle_int << std::endl; 
 
 			/* Write to the assign directory */
-			cv::imwrite(right_cam_result, cv_front_ptr->image);
-			cv::imwrite(left_cam_result, cv_left_ptr->image);
-			cv::imwrite(front_cam_result, cv_right_ptr->image); 
+			if (!cv::imwrite(right_cam_result, cv_front_ptr->image)){
+                RCLCPP_DEBUG(this->get_logger(), "Failed to write right camera frame");
+                return;
+            }
+
+			if (!cv::imwrite(left_cam_result, cv_left_ptr->image)){
+                RCLCPP_DEBUG(this->get_logger(), "Failed to write left camera frame"); 
+                return;
+            }
+
+			if (!cv::imwrite(front_cam_result, cv_right_ptr->image)){
+                RCLCPP_DEBUG(this->get_logger(), "Failed to write front camera frame"); 
+                return;
+            }; 
 
 			RCLCPP_INFO(this->get_logger(), "%s", front_cam_result.c_str()); 
 
