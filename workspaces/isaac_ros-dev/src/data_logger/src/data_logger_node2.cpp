@@ -166,9 +166,9 @@ class DataLogger : public rclcpp::Node {
 			m_current_file << tt << ": " << front_cam_result << " " << left_cam_result << " " << right_cam_result <<  " " << steering_angle_int << std::endl; 
 
 			/* Write to the assign directory */
-			cv::imwrite(right_cam_result, right_frame_cam);
-			cv::imwrite(left_cam_result, left_frame_cam);
-			cv::imwrite(front_cam_result, front_frame_cam); 
+			cv::imwrite(right_cam_result, cv_front_ptr->image);
+			cv::imwrite(left_cam_result, cv_left_ptr->image);
+			cv::imwrite(front_cam_result, cv_right_ptr->image); 
 
 			RCLCPP_INFO(this->get_logger(), "%s", front_cam_result.c_str()); 
 
