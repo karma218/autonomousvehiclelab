@@ -69,6 +69,11 @@ class DataLogger : public rclcpp::Node {
 			m_logging_files = m_logging_files + std::to_string(m_log_count); 
 			m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
 
+            if (!m_current_file.is_open()){
+                RCLCPP_INFO(this->get_logger(), "Creating Image directory");
+                return;
+            }
+
 			/* Append the headers for file */
 			m_current_file << "Time\t\tImage Name\t\tSteering" << std::endl;
 
@@ -193,7 +198,7 @@ class DataLogger : public rclcpp::Node {
 			if (!cv::imwrite(front_cam_result, cv_right_ptr->image)){
                 RCLCPP_DEBUG(this->get_logger(), "Failed to write front camera frame"); 
                 return;
-            }; 
+            } 
 
 			RCLCPP_INFO(this->get_logger(), "%s", front_cam_result.c_str()); 
 
