@@ -27,6 +27,7 @@ class MotorNode(Node):
         self.subscription = self.create_subscription(Twist,'/twist_mux/cmd_vel',self.listener_callback,1)
         self.subscription  # prevent unused variable warning
 
+
     def listener_callback(self, msg):
         linear_velocity = round((msg.linear.x)/1.5,2)
         print(linear_velocity)
@@ -36,6 +37,7 @@ class MotorNode(Node):
         print('listener called back')
         #message = str("0") + "," + str("512")
         message = str(linear_velocity) + "," + str(steering_angle_int) + "\n"
+        print(message)
         # message = str(1) + "," + str(2) + "," + str(3) 
         #ser.write(bytes(message, 'utf-8'))
 	#print(message)
