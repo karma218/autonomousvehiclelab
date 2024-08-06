@@ -166,7 +166,7 @@ class DataLogger: public rclcpp::Node {
 			}
 
 			double steering_angle = msg->angular.z;
-            int steering_angle_int = steering_angle*61.0+512.0;
+            int steering_angle_int = steering_angle * 61.0 + 512.0;
 
 			cv::Mat left_frame_cam; 
 			cv::Mat right_frame_cam;
