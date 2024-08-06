@@ -137,7 +137,7 @@ def main():
     node = rclpy.create_node('teleop_twist_keyboard')
     pub = node.create_publisher(geometry_msgs.msg.Twist, '/keyboard/cmd_vel', 10)
 
-    speed = 0.5
+    speed = 0.3
     turn = 1.0
     x = 0.0
     y = 0.0
@@ -178,6 +178,7 @@ def main():
             twist.angular.x = 0.0
             twist.angular.y = 0.0
             twist.angular.z = th * turn
+            print(f'key pressed: {key},', vels(speed, turn))
             pub.publish(twist)
 
     except Exception as e:
