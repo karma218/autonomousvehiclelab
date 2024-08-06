@@ -43,24 +43,12 @@ def generate_launch_description():
         
     )
 
-    # data_logging = Node(
-    #     package='data_logger', 
-    #     namespace='data_logger', 
-    #     executable='data_logger_node'
-    # )
-
-    
     motor_control_node = Node(
-        package='motor_control_pkg', 
-        namespace='motor_contorl_pkg', 
+        package='motor_control_pkg',
+        namespace='motor_control_pkg',
         executable='motor_control_node'
-    ) 
-
-    camera_pub = Node(
-        package='camera_publishers', 
-        namespace='camera_publishers', 
-        executable='camera_publishers'
-    ) 
+        
+    )
 
     # road_segmentation_node = Node(
 	# package='road_segmentation',
@@ -113,7 +101,7 @@ def generate_launch_description():
         #             'launch/velodyne-all-nodes-VLP16-launch.py'
         #         ])
         #     ])
-        #  ),
+        # ),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([
                 PathJoinSubstitution([
@@ -137,7 +125,7 @@ def generate_launch_description():
         # simulator_control_node,
         # realsense_obj_det_node,
         web_video_server_node,
-        camera_pub, 
+        motor_control_node,
         #road_segmentation_node.0
         
         #image_stitcher_node
