@@ -1,4 +1,4 @@
-#include <memory> 
+#include <memory>
 #include <string>
 #include <fstream>
 #include <filesystem>
@@ -9,8 +9,11 @@
 #include <cv_bridge/cv_bridge.hpp>
 #include <sys/types.h> 
 #include <sys/stat.h>
+
 #include <message_filters/subscriber.h> 
 #include <message_filters/time_synchronizer.h>
+#include <message_filters/sync_policies/approximate_time.h>
+#include <message_filters/synchronizer.h>
 
 #include "geometry_msgs/msg/twist.hpp"
 #include "sensor_msgs/image_encodings.hpp" 
@@ -19,20 +22,22 @@
 #include "rclcpp/rclcpp.hpp" 
 #include "std_msgs/msg/string.hpp" 
 
-using std::placeholders::_1; 
+#include "boost/bind/bind.hpp"
+
+using std::placeholders::_1; ;
 namespace fs = std::filesystem;
 
 class DataLogger : public rclcpp::Node {
 	public: 
 		DataLogger() : Node("data_logger_node"), 
-            m_log_count(0), m_image_count(0), {
+            m_log_count(0), m_image_count(0) {
 
 			/* Create logging file if not existent */
 			if (!fs::is_directory("/home/admin/logging")){
                 RCLCPP_INFO(this->get_logger(), "Creating logging directory");
 
 				fs::create_directory("/home/admin/logging"); 
-                assert(!std::fs::create_directory("/home/admin/logging"));
+                assert(!fs::create_directory("/home/admin/logging"));
 			}
 
 			/* Check whether directory exists or not */
@@ -40,7 +45,7 @@ class DataLogger : public rclcpp::Node {
                 RCLCPP_INFO(this->get_logger(), "Creating logging files directory");
 
 				fs::create_directory(m_drive);
-                assert(!std::fs::create_directory(m_drive));
+                assert(!fs::create_directory(m_drive));
 			} else {
 				/* TODO: Use std::distance or std::count_if */
 				/* Count the number of log files in the directory */ 
@@ -49,14 +54,14 @@ class DataLogger : public rclcpp::Node {
 				} 
 			} 
 
-            assert(!std::fs::create_directory(m_drive));
+            assert(!fs::create_directory(m_drive));
 
 			/* Determine whether Image directory has been created or not */ 
 			if (!fs::is_directory(m_image_drive)){
                 RCLCPP_INFO(this->get_logger(), "Creating Image directory");
 
 				fs::create_directory(m_image_drive); 
-                assert(!std::fs::create_directory(m_image_drive));
+                assert(!fs::create_directory(m_image_drive));
 			} else {
 				/* TODO: Use std::distance or std::count_if */
 				/* Count the number of images in the directory */ 
@@ -90,21 +95,34 @@ class DataLogger : public rclcpp::Node {
 				m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
 			}
 
-            front_camera.subscribe(this, "/video/font_fisheye_camera"); 
-            left_camera.subscribe(this, "/video/left_camera"); 
-            right_camera.subscribe(this, "/video/right_camera"); 
-            steering_msg.subscribe(this, "/twist_mux/cmd_vel");
+            m_front_camera.subscribe(this, "/video/front_camera"); 
+            m_left_camera.subscribe(this, "/video/left_camera"); 
+            m_right_camera.subscribe(this, "/video/right_camera"); 
+            m_steering_msg.subscribe(this, "/twist_mux/cmd_vel");
 
-            typedef message_filters::sync_policies::ApproximateTimer<sensor_msgs::msg::Image, sensor_msgs::msgs::Image, 
-                sensor_msgs::msgs::Image, geometry_msgs::msgs::Twist> approximate_policy;
+			m_sync_approximate = std::make_shared<message_filters::Synchronizer<message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
+                 sensor_msgs::msg::Image, geometry_msgs::msg::Twist>>>(message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
+                 sensor_msgs::msg::Image, geometry_msgs::msg::Twist>(10), m_front_camera, m_left_camera, m_right_camera, m_steering_msg); 
+			
 
-            message_filters::Synchronizer<approximate_policy>syncApproximate(
-                approximate_policy(1, 0), front_camera, left_camera, right_camera, steering_msg); 
+            // typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
+            //     sensor_msgs::msg::Image, geometry_msgs::msg::Twist> approximate_policy;
 
-            syncApproximate.setMaxIntervalDuration(rclcpp::Duration(3, 0));
-            syncApproximate.registerCallback(&DataLogger::camera_sync_callback, this);
+            // message_filters::Synchronizer<m_approximate_policy> syncApproximate(
+            //     m_approximate_policy(10), m_front_camera, m_left_camera, m_right_camera, m_steering_msg); 
 
-			RCLCPP_DEBUG(this->get_logger(), "Finish Init"); 
+			// m_sync_approximate(m_approximate_policy(10), m_front_camera, m_left_camera, m_right_camera, m_steering_msg);
+			// m_sync_approximate.setMaxIntervalDuration(rclcpp::Duration(30, 0));
+			// m_sync_approximate.setAgePenalty(1.00);
+			// m_sync_approximate.registerCallback(&DataLogger::camera_sync_callback, this);
+            // m_sync_approximate.registerCallback(std::bind(&DataLogger::camera_sync_callback, this, std::placeholders::_1, std::placeholders::_2, 
+			// 	std::placeholders::_3, std::placeholders::_4));
+
+			m_sync_approximate->setAgePenalty(0.50);
+            m_sync_approximate->registerCallback(std::bind(&DataLogger::camera_sync_callback, this, std::placeholders::_1, std::placeholders::_2, 
+				std::placeholders::_3, std::placeholders::_4)); 
+
+			RCLCPP_INFO(this->get_logger(), "Finish Init"); 
         }
 
         ~DataLogger() {
@@ -112,6 +130,15 @@ class DataLogger : public rclcpp::Node {
         }
 
     private: 
+		// typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
+        //         sensor_msgs::msg::Image, geometry_msgs::msg::Twist> m_approximate_policy;
+        // typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
+        //     sensor_msgs::msg::Image, geometry_msgs::msg::Twist> m_approximate_policy;
+
+        // message_filters::Synchronizer<m_approximate_policy> m_sync_approximate;
+
+		std::shared_ptr<message_filters::Synchronizer<message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
+                 sensor_msgs::msg::Image, geometry_msgs::msg::Twist>>> m_sync_approximate; 
         /* Subscribers to cameras and steering*/
         message_filters::Subscriber<sensor_msgs::msg::Image> m_front_camera; 
         message_filters::Subscriber<sensor_msgs::msg::Image> m_left_camera;
@@ -130,11 +157,13 @@ class DataLogger : public rclcpp::Node {
 
 		int m_log_count;
 		int m_image_count; 
-        void camera_sync_callback(const sensor_msgs::msg::Image &front_image, const sensor_msgs::msg::Image &left_image, 
-            const sensor_msgs::msg::Image &right_image, const geometry_msgs::msg::Twist &msg){
+        void camera_sync_callback(const sensor_msgs::msg::Image::ConstSharedPtr &front_image, const sensor_msgs::msg::Image::ConstSharedPtr left_image, 
+            const sensor_msgs::msg::Image::ConstSharedPtr &right_image, const geometry_msgs::msg::Twist::ConstSharedPtr &msg){
+
+			RCLCPP_INFO(this->get_logger(), "callback"); 
 
             if (!m_current_file.is_open()){
-                RCLCPP_ERROR(this->get_logger, "Logging file isn't opened for logging");
+                RCLCPP_ERROR(this->get_logger(), "Logging file isn't opened for logging");
                 return;
             }
         
@@ -145,12 +174,14 @@ class DataLogger : public rclcpp::Node {
             
             cv_front_ptr = cv_bridge::toCvCopy(front_image, sensor_msgs::image_encodings::BGR8);
             cv_left_ptr = cv_bridge::toCvCopy(left_image, sensor_msgs::image_encodings::BGR8);
-            cv_right_ptr = cv_bridge::toCvCopy(right_camera, sensor_msgs::image_encodings::BGR8);
+            cv_right_ptr = cv_bridge::toCvCopy(right_image, sensor_msgs::image_encodings::BGR8);
 
             /* Prepare the images name */
 			std::string front_cam_result; 
 			std::string left_cam_result; 
 			std::string right_cam_result;
+
+			m_image_count++; 
 
 			front_cam_result = m_image_drive + "/" + "image_front_" + std::to_string(m_image_count) + ".jpg"; 
 			left_cam_result = m_image_drive + "/" + "image_left_" + std::to_string(m_image_count) + ".jpg"; 
@@ -201,11 +232,11 @@ class DataLogger : public rclcpp::Node {
 
         }
 
-}
+};
 
 int main(int argc, char* argv[]){
 	rclcpp::init(argc, argv); 
-    rclcpp::spin();
+    rclcpp::spin(std::make_shared<DataLogger>()); 
 	rclcpp::shutdown(); 
 
 	return 0; 
