@@ -27,7 +27,7 @@ class end_to_end_CNN_node(Node):
         self.end_to_end_CNN.load_state_dict(torch.load(""))
         self.end_to_end_CNN.eval()
 
-        self.bridge = CvBridge() 
+        self.bridge: CvBridge = CvBridge() 
 
         if torch.cuda.is_available():
             self.device = torch.device('cuda:0')
@@ -82,4 +82,12 @@ class end_to_end_CNN_node(Node):
         
         
 
-    
+def main(args=None):
+    rclpy.init(args=args)
+    end_to_end_CNN = end_to_end_CNN_node()
+    rclpy.spin(end_to_end_CNN)
+    end_to_end_CNN.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
