@@ -10,10 +10,9 @@
 #include <sys/types.h> 
 #include <sys/stat.h>
 
-#include <message_filters/subscriber.h> 
-#include <message_filters/time_synchronizer.h>
-#include <message_filters/sync_policies/approximate_time.h>
-#include <message_filters/synchronizer.h>
+#include "message_filters/subscriber.hpp"
+#include "message_filters/synchronizer.hpp"
+#include "message_filters/sync_policies/approximate_time.hpp"
 
 #include "geometry_msgs/msg/twist.hpp"
 #include "sensor_msgs/image_encodings.hpp" 
@@ -31,6 +30,8 @@ class DataLogger : public rclcpp::Node {
 	public: 
 		DataLogger() : Node("data_logger_node"), 
             m_log_count(0), m_image_count(0) {
+
+			rclcpp::QoS qos = rclcpp::QoS(10);
 
 			/* Create logging file if not existent */
 			if (!fs::is_directory("/home/admin/logging")){
@@ -95,28 +96,15 @@ class DataLogger : public rclcpp::Node {
 				m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
 			}
 
-            m_front_camera.subscribe(this, "/video/front_camera"); 
-            m_left_camera.subscribe(this, "/video/left_camera"); 
-            m_right_camera.subscribe(this, "/video/right_camera"); 
-            m_steering_msg.subscribe(this, "/twist_mux/cmd_vel");
+            m_front_camera.subscribe(this, "/video/front_camera", qos); 
+            m_left_camera.subscribe(this, "/video/left_camera", qos); 
+            m_right_camera.subscribe(this, "/video/right_camera", qos); 
+            m_steering_msg.subscribe(this, "/twist_mux/cmd_vel", qos);
 
 			m_sync_approximate = std::make_shared<message_filters::Synchronizer<message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
                  sensor_msgs::msg::Image, geometry_msgs::msg::Twist>>>(message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
                  sensor_msgs::msg::Image, geometry_msgs::msg::Twist>(10), m_front_camera, m_left_camera, m_right_camera, m_steering_msg); 
 			
-
-            // typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
-            //     sensor_msgs::msg::Image, geometry_msgs::msg::Twist> approximate_policy;
-
-            // message_filters::Synchronizer<m_approximate_policy> syncApproximate(
-            //     m_approximate_policy(10), m_front_camera, m_left_camera, m_right_camera, m_steering_msg); 
-
-			// m_sync_approximate(m_approximate_policy(10), m_front_camera, m_left_camera, m_right_camera, m_steering_msg);
-			// m_sync_approximate.setMaxIntervalDuration(rclcpp::Duration(30, 0));
-			// m_sync_approximate.setAgePenalty(1.00);
-			// m_sync_approximate.registerCallback(&DataLogger::camera_sync_callback, this);
-            // m_sync_approximate.registerCallback(std::bind(&DataLogger::camera_sync_callback, this, std::placeholders::_1, std::placeholders::_2, 
-			// 	std::placeholders::_3, std::placeholders::_4));
 
 			m_sync_approximate->setAgePenalty(0.50);
             m_sync_approximate->registerCallback(std::bind(&DataLogger::camera_sync_callback, this, std::placeholders::_1, std::placeholders::_2, 
@@ -130,15 +118,9 @@ class DataLogger : public rclcpp::Node {
         }
 
     private: 
-		// typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
-        //         sensor_msgs::msg::Image, geometry_msgs::msg::Twist> m_approximate_policy;
-        // typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
-        //     sensor_msgs::msg::Image, geometry_msgs::msg::Twist> m_approximate_policy;
-
-        // message_filters::Synchronizer<m_approximate_policy> m_sync_approximate;
-
 		std::shared_ptr<message_filters::Synchronizer<message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
                  sensor_msgs::msg::Image, geometry_msgs::msg::Twist>>> m_sync_approximate; 
+
         /* Subscribers to cameras and steering*/
         message_filters::Subscriber<sensor_msgs::msg::Image> m_front_camera; 
         message_filters::Subscriber<sensor_msgs::msg::Image> m_left_camera;
