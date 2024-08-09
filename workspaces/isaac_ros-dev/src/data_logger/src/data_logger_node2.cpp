@@ -29,7 +29,7 @@ class DataLogger : public rclcpp::Node {
 		DataLogger() : Node("data_logger_node"), 
             m_log_count(0), m_image_count(0) {
 
-			rclcpp::QoS qos = rclcpp::QoS(10);
+			rclcpp::QoS qos = rclcpp::QoS(1);
 
 			/* Create logging file if not existent */
 			if (!fs::is_directory("/home/admin/logging")){
