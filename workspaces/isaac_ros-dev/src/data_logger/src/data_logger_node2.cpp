@@ -21,8 +21,6 @@
 #include "rclcpp/rclcpp.hpp" 
 #include "std_msgs/msg/string.hpp" 
 
-#include "boost/bind/bind.hpp"
-
 using std::placeholders::_1; ;
 namespace fs = std::filesystem;
 
@@ -114,7 +112,8 @@ class DataLogger : public rclcpp::Node {
         }
 
         ~DataLogger() {
-			m_current_file.close(); 
+			if (m_current_file.is_open())
+				m_current_file.close(); 
         }
 
     private: 
