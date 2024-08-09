@@ -14,6 +14,7 @@ find_package(cv_bridge REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(message_filters REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -32,6 +33,7 @@ ament_target_dependencies(data_logger_node
 	"rclcpp"
 	"cv_bridge"
 	"OpenCV"
+  "message_filters"
 )
 
 target_link_libraries(data_logger_node 
