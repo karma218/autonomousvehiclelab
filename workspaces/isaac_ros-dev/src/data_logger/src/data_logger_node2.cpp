@@ -21,7 +21,7 @@
 #include "rclcpp/rclcpp.hpp" 
 #include "std_msgs/msg/string.hpp" 
 
-using std::placeholders::_1; ;
+using std::placeholders::_1; 
 namespace fs = std::filesystem;
 
 class DataLogger : public rclcpp::Node {
@@ -104,7 +104,7 @@ class DataLogger : public rclcpp::Node {
                  sensor_msgs::msg::Image, geometry_msgs::msg::Twist>(10), m_front_camera, m_left_camera, m_right_camera, m_steering_msg); 
 			
 
-			m_sync_approximate->setAgePenalty(0.50);
+			m_sync_approximate->setAgePenalty(5.00);
             m_sync_approximate->registerCallback(std::bind(&DataLogger::camera_sync_callback, this, std::placeholders::_1, std::placeholders::_2, 
 				std::placeholders::_3, std::placeholders::_4)); 
 
