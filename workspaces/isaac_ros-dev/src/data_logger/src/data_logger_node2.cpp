@@ -10,9 +10,9 @@
 #include <sys/types.h> 
 #include <sys/stat.h>
 
-#include "message_filters/subscriber.hpp"
-#include "message_filters/synchronizer.hpp"
-#include "message_filters/sync_policies/approximate_time.hpp"
+#include <message_filters/subscriber.hpp>
+#include <message_filters/synchronizer.hpp>
+#include <message_filters/sync_policies/approximate_time.hpp>
 
 #include "geometry_msgs/msg/twist.hpp"
 #include "sensor_msgs/image_encodings.hpp" 
@@ -138,8 +138,12 @@ class DataLogger : public rclcpp::Node {
 
 		int m_log_count;
 		int m_image_count; 
-        void camera_sync_callback(const sensor_msgs::msg::Image::ConstSharedPtr &front_image, const sensor_msgs::msg::Image::ConstSharedPtr left_image, 
-            const sensor_msgs::msg::Image::ConstSharedPtr &right_image, const geometry_msgs::msg::Twist::ConstSharedPtr &msg){
+
+        void camera_sync_callback(
+			const sensor_msgs::msg::Image::ConstSharedPtr &front_image, 
+			const sensor_msgs::msg::Image::ConstSharedPtr &left_image, 
+            const sensor_msgs::msg::Image::ConstSharedPtr &right_image, 
+			const geometry_msgs::msg::Twist::ConstSharedPtr &msg){
 
 			RCLCPP_INFO(this->get_logger(), "callback"); 
 
