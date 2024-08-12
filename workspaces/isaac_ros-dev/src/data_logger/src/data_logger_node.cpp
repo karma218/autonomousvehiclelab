@@ -107,6 +107,11 @@ class DataLogger: public rclcpp::Node {
 			m_logging_files = m_logging_files + std::to_string(m_log_count); 
 			m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
 
+			if (!m_current_file.is_open()){
+				RCLCPP_ERROR(this->get_logger(), "File is not open: " << fs::current_path()); 
+				return; 
+			}
+
 			/* Append the headers for file */
 			m_current_file << "Time\t\tImage Name" << std::endl;
 
@@ -174,7 +179,7 @@ class DataLogger: public rclcpp::Node {
 
 			m_left_cam.read(left_frame_cam); 
 			m_right_cam.read(right_frame_cam);
-			m_front_cam.read(right_frame_cam);
+			m_front_cam.read(front_frame_cam);
 
 			m_image_count++;
 
