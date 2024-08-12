@@ -108,7 +108,7 @@ class DataLogger: public rclcpp::Node {
 			m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
 
 			if (!m_current_file.is_open()){
-				RCLCPP_ERROR(this->get_logger(), "File is not open: " << fs::current_path()); 
+				RCLCPP_ERROR(this->get_logger(), "File is not open: %c", fs::current_path()); 
 				return; 
 			}
 
@@ -166,7 +166,7 @@ class DataLogger: public rclcpp::Node {
 			
 
 			if (!m_current_file.is_open()){
-				RCLCPP_ERROR(this->get_logger(), "File is not open" << fs::current_path()); 
+				RCLCPP_ERROR(this->get_logger(), "File is not open:  %c", fs::current_path()); 
 				return; 
 			}
 
