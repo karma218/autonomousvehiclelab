@@ -56,11 +56,11 @@ def generate_launch_description():
 	 #executable='road_segmentation_node'
     #)
 
-    #image_stitcher_node = Node(
-    #     package='image_stitcher',
-    #     namespace='stiched_images',
-    #     executable='image_stitcher_node'
-    #)
+    image_stitcher_node = Node(
+        package='image_stitcher',
+        namespace='stiched_images',
+        executable='image_stitcher_node'
+    )
 
     # right_fisheye_node = Node(
     #     package='usb_cam', executable='usb_cam_node_exe',
@@ -94,14 +94,14 @@ def generate_launch_description():
                 ])
             ])              
         ),
-        # IncludeLaunchDescription(
-        #     PythonLaunchDescriptionSource([
-        #         PathJoinSubstitution([
-        #             FindPackageShare('velodyne'),
-        #             'launch/velodyne-all-nodes-VLP16-launch.py'
-        #         ])
-        #     ])
-        # ),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                PathJoinSubstitution([
+                    FindPackageShare('velodyne'),
+                    'launch/velodyne-all-nodes-VLP16-launch.py'
+                ])
+            ])
+        ),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([
                 PathJoinSubstitution([
@@ -128,10 +128,9 @@ def generate_launch_description():
         motor_control_node,
         #road_segmentation_node.0
         
-        #image_stitcher_node
+        image_stitcher_node
         # left_boxcam_node,
         #right_boxcam_node,
-        motor_control_node
         
         
     ])
