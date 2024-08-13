@@ -126,7 +126,7 @@ def generate_launch_description():
         # realsense_obj_det_node,
         web_video_server_node,
         motor_control_node,
-        teleop_twist_keyboard_node,
+        # teleop_twist_keyboard_node,
         #road_segmentation_node.0
         
         image_stitcher_node
