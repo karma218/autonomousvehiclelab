@@ -33,11 +33,17 @@ class MotorNode(Node):
         print(linear_velocity)
         steering_angle = (msg.angular.z)
         steering_angle_int = int(steering_angle*61.0+512.0)
-        print(steering_angle_int)
-        print('listener called back')
+        # print(steering_angle_int)
+        # print('listener called back')
         #message = str("0") + "," + str("512")
+        if  steering_angle_int < 451:
+            steering_angle_int = 451
+        elif steering_angle_int > 572:
+            steering_angle_int = 572
+        else:
+            steering_angle_int = steering_angle_int
         message = str(linear_velocity) + "," + str(steering_angle_int) + "\n"
-        print(message)
+        self.get_logger().info(f"Pushing to Serial:{message}")
         # message = str(1) + "," + str(2) + "," + str(3) 
         #ser.write(bytes(message, 'utf-8'))
 	#print(message)
