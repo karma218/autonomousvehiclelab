@@ -37,8 +37,8 @@ Ticker timer3(printvelocity,200,0,MILLIS); //Write velocity and steering angle o
 
 int Pos1; //Position encoder 1
 int Pos2; //Position encoder 2
-Encoder myEnc1 (2,3); //Encoder 1
-Encoder myEnc2 (21,20); //Encoder 2
+Encoder myEnc1 (2,3); //Encoder 1 #Left
+Encoder myEnc2 (21,20); //Encoder 2 #right
 //double average = 0;
 
 const int l = 5; //Size of rolling average
@@ -271,7 +271,7 @@ void movemotor(){
   // Serial.println("moved motor");
   stepper.stop();
   stepper.disable();
-  stepper.enable();
+  stepper.enable(); // why?
   // Serial.println(String(commands[1]).toDouble());
   if (String(commands[1]).toDouble()!=0.00 && String(commands[1]).toDouble()>450 && String(commands[1]).toDouble()<600 ) //Check to makesure setpoint is within acceptable range.
   {

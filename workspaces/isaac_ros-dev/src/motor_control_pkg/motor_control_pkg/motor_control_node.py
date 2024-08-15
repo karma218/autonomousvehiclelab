@@ -12,13 +12,21 @@ wheel_base = 1.6 # Meters
 track_width = .87 # Meters
 wheel_diameter = .33 # Meters
 
-ser = serial.Serial('/dev/ttyACM0', 115200, timeout=0.1)         # 1/timeout is the frequency at which the port is read
+# ser = serial.Serial('/dev/ttyACM0', 115200, timeout=0.1)         # 1/timeout is the frequency at which the port is read
 # ser.close()
 # data ="0,0" # ser.readline().decode().strip()
 
 class MotorNode(Node):
     def __init__(self):
         super().__init__("motor_control_node")
+        
+        # Initialize serial port
+        try:
+            self.ser = serial.Serial('/dev/ttyACM0', 115200, timeout=0.1)
+        except serial.SerialException as e:
+            self.get_logger().error(f"Failed to open serial port: {e}")
+            raise
+        
         self.wheel_velocity_publisher = self.create_publisher(Twist, "odom_encoder", 1)
         self.timer_ = self.create_timer(0.2, self.publish_wheel_velocity)
         self.get_logger().info("publishing velocities")
@@ -33,16 +41,20 @@ class MotorNode(Node):
         print(linear_velocity)
         steering_angle = (msg.angular.z)
         steering_angle_int = int(steering_angle*61.0+512.0)
-        print(steering_angle_int)
-        print('listener called back')
+        # print(steering_angle_int)
+        self.get_logger().info("Listening Callback")
         #message = str("0") + "," + str("512")
         message = str(linear_velocity) + "," + str(steering_angle_int) + "\n"
-        print(message)
+        self.get_logger().info(f"Pushing to Serial: {message}")
+        try:
+            self.ser.write(message.encode('utf-8'))
+        except serial.SerialException as e:
+            self.get_logger().error(f"Failed to write to serial port: {e}")
         # message = str(1) + "," + str(2) + "," + str(3) 
         #ser.write(bytes(message, 'utf-8'))
 	#print(message)
         #time.sleep(.2)
-        ser.write(bytes(message, 'utf-8'))
+        # ser.write(bytes(message, 'utf-8'))
         #print(message)
 
 
@@ -64,11 +76,11 @@ class MotorNode(Node):
         # print(ser.in_waiting) 
         # print("")
         # time.sleep(0.5)
-        while ser.in_waiting > 0:
+        while self.ser.in_waiting > 0:
             # print(ser.readline())
             try:
                 
-                encoder_data = ser.readline()
+                encoder_data = self.ser.readline()
         #        print(encoder_data)
                 encoder_data = encoder_data.decode().strip()
                 encoder_data_split = encoder_data.split(',') 
@@ -88,6 +100,7 @@ class MotorNode(Node):
                 # print("Encoder Angular Velocity", (right_wheel - left_wheel)*.87)
                 # print("Other angular velocity" ,angular_velocity)
                 msg.angular.z = angular_velocity
+                self.get_logger().info(f'angular_velocity is : {angular_velocity}, Steering angle: {steering_angle}')
                 self.wheel_velocity_publisher.publish(msg)
                 # # ser.reset_input_buffer()
        
@@ -101,8 +114,12 @@ class MotorNode(Node):
         #    self.message = "0,0"
         #except Exception as e2:
         #    print("no cmdvel")
-
-
+    
+    def destroy_node(self):
+        if self.ser.is_open:
+            self.ser.close()
+            self.get_logger().info("Serial port closed")
+        super().destroy_node()
 
 def main(args=None):
     rclpy.init(args=args)
