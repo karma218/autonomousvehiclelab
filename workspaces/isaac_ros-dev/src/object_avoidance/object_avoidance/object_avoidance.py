@@ -8,6 +8,8 @@ from matplotlib import pyplot as plt
 import glob
 from natsort import natsorted
 
+cnt = 0
+
 def box_label(image, box, b1, b2, label='', color=(128, 128, 128), txt_color=(255, 255, 255)):
   lw = max(round(sum(image.shape) / 2 * 0.003), 2)
   p1, p2 = (int(box[0]), int(box[1])), (int(box[2]), int(box[3]))
@@ -22,6 +24,7 @@ def is_point_in_trapezoid(point, trapezoid_points):
 def plot_bboxes(image, boxes, b1, b2, trapezoid_points, labels=[], colors=[], score=True, conf=None):
   #Define COCO Labels
   global cb # box center 
+  global cnt
   if labels == []:
     labels = {0: u'__background__', 1: u'person', 2: u'bicycle',3: u'car', 4: u'motorcycle', 5: u'airplane', 6: u'bus', 7: u'train', 8: u'truck', 9: u'boat', 10: u'traffic light', 11: u'fire hydrant', 12: u'stop sign', 13: u'parking meter', 14: u'bench', 15: u'bird', 16: u'cat', 17: u'dog', 18: u'horse', 19: u'sheep', 20: u'cow', 21: u'elephant', 22: u'bear', 23: u'zebra', 24: u'giraffe', 25: u'backpack', 26: u'umbrella', 27: u'handbag', 28: u'tie', 29: u'suitcase', 30: u'frisbee', 31: u'skis', 32: u'snowboard', 33: u'sports ball', 34: u'kite', 35: u'baseball bat', 36: u'baseball glove', 37: u'skateboard', 38: u'surfboard', 39: u'tennis racket', 40: u'bottle', 41: u'wine glass', 42: u'cup', 43: u'fork', 44: u'knife', 45: u'spoon', 46: u'bowl', 47: u'banana', 48: u'apple', 49: u'sandwich', 50: u'orange', 51: u'broccoli', 52: u'carrot', 53: u'hot dog', 54: u'pizza', 55: u'donut', 56: u'cake', 57: u'chair', 58: u'couch', 59: u'potted plant', 60: u'bed', 61: u'dining table', 62: u'toilet', 63: u'tv', 64: u'laptop', 65: u'mouse', 66: u'remote', 67: u'keyboard', 68: u'cell phone', 69: u'microwave', 70: u'oven', 71: u'toaster', 72: u'sink', 73: u'refrigerator', 74: u'book', 75: u'clock', 76: u'vase', 77: u'scissors', 78: u'teddy bear', 79: u'hair drier', 80: u'toothbrush'}
   #Define colors
@@ -50,51 +53,74 @@ def plot_bboxes(image, boxes, b1, b2, trapezoid_points, labels=[], colors=[], sc
           points_to_check = [p1, p2, (p1[0], p2[1]), (p2[0], p1[1])]
           for point in points_to_check:
               if is_point_in_trapezoid(point, trapezoid_points):
-                cb = (p2[0] + p1[0])/2
-                if cb < cf:
-                  print("Turn right")
-                elif cb >= cf:
-                  print("Turn left")
-                print(f"Point {point} is inside the trapezoid")
+                filename = f"./images/{cnt}_move.jpg"
+                cnt += 1
+                cv2.imwrite(filename, image)
+                print(f"STOOOOOOOOP")
+                return f"STOP"
       else:
         color = colors[int(box[-1])]
         box_label(image, box, b1, b2, label, color)
         
             # Check if any point in the boxes lies within the trapezoid
+  filename = f"./images/{cnt}_move.jpg"
+  cnt += 1
+  cv2.imwrite(filename, image)
+  # cv2.imshow(image)
+# plt.show()
 
-
-  return image
+  return "MOVE"
 
 cf =  320
 
 model = YOLO("yolov8n.pt")
 
-#path = './soccer_pics/frame_30.jpg'
-path = './A/a.jpg'
+# #path = './soccer_pics/frame_30.jpg'
+# path = './A/a.jpg'
 
-image = Image.open(path)
-image = np.asarray(image)
+# image = Image.open(path)
+# image = np.asarray(image)
 
-image = cv2.resize(image, (640, 480))
+# image = cv2.resize(image, (640, 480))
 
-current_result = model.predict(image)
+# current_result = model.predict(image)
 
-boxes = current_result[0].boxes.data
-#print("prev boxes", len(boxes))
+# boxes = current_result[0].boxes.data
+# #print("prev boxes", len(boxes))
 
-# plotting boxes in original image and saving the coordinates   
+# # plotting boxes in original image and saving the coordinates   
 
-black1 = np.zeros_like(image, dtype=np.uint8)
-b1 = []
-b2 = []
-# Define trapezoid points
-trapezoid_points = np.array([[140, 480], [500, 480], [320, 200], [140, 480] ], np.int32)
-trapezoid_points = trapezoid_points.reshape((-1, 1, 2))
-cv2.polylines(image, [trapezoid_points], isClosed=True, color=(0, 0, 255), thickness=2)
+# black1 = np.zeros_like(image, dtype=np.uint8)
+# b1 = []
+# b2 = []
+# # Define trapezoid points
+# trapezoid_points = np.array([[140, 480], [500, 480], [370, 280], [270, 280]], np.int32)
+# trapezoid_points = trapezoid_points.reshape((-1, 1, 2))
+# cv2.polylines(image, [trapezoid_points], isClosed=True, color=(0, 0, 255), thickness=2)
 
-image = plot_bboxes(image, boxes, b1, b2, trapezoid_points, score=True, conf=0.90)
+# image = plot_bboxes(image, boxes, b1, b2, trapezoid_points, score=True, conf=0.90)
 
-plt.imshow(image)
-plt.show()
+# # plt.imshow(image)
+# # plt.show()
 
 
+
+def detect_object(msg):
+  image = cv2.resize(msg, (640, 480))
+
+  current_result = model.predict(image)
+
+  boxes = current_result[0].boxes.data
+  #print("prev boxes", len(boxes))
+
+  # plotting boxes in original image and saving the coordinates   
+
+  black1 = np.zeros_like(image, dtype=np.uint8)
+  b1 = []
+  b2 = []
+  # Define trapezoid points
+  trapezoid_points = np.array([[140, 480], [500, 480], [370, 280], [270, 280]], np.int32)
+  trapezoid_points = trapezoid_points.reshape((-1, 1, 2))
+  cv2.polylines(image, [trapezoid_points], isClosed=True, color=(0, 0, 255), thickness=2)
+
+  return plot_bboxes(image, boxes, b1, b2, trapezoid_points, score=True, conf=0.50)

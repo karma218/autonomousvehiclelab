@@ -14,6 +14,10 @@ import time
 FRAME_WIDTH = 320
 FRAME_HEIGHT = 240
 
+camera_dict = dict()
+with open('/avlcode/workspaces/isaac_ros-dev/configs/camera_configs/cameras.json') as camera_json:
+    camera_dict = json.load(camera_json)
+
 class CameraPublishers(Node):
     def __init__(self):
         super().__init__("camera_publishers")
@@ -24,7 +28,7 @@ class CameraPublishers(Node):
         timer_period = 0.05 #seconds
         self.timer = self.create_timer(timer_period, self.publishers_callback)
 
-        self.front_fisheye = cv2.VideoCapture(8, cv2.CAP_V4L2) # Fisheye Front
+        self.front_fisheye = cv2.VideoCapture(camera_dict['/dev/front_fisheye'], cv2.CAP_V4L2) # Fisheye Front
         # self.back_boxcam = cv2.VideoCapture(5, cv2.CAP_V4L2) # Back Boxcamera
 
         self.front_fisheye.set(cv2.CAP_PROP_FRAME_WIDTH, FRAME_WIDTH)

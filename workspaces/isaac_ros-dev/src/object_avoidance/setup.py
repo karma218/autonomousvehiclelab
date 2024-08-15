@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+             "object_avoidance_node = object_avoidance.object_avoidance_node:main"
         ],
     },
 )
