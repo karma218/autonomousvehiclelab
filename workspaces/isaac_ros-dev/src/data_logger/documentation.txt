@@ -1,0 +1,48 @@
+# Data Logger Node 
+
+# Purpose 
+The purpose behind the Data Logger Node is to collect frames from the left, right, and front camera, plus the steering data. The Data Logger 
+is to be configured with other data points (Ex. Throttle, speed, etc). 
+
+# How it works? 
+Unforuantely, the current Data Logger Node takes full control of the cameras and prevents other Nodes from using the cameras. This means
+that the user must use a camera to guide the driver to collect data. By guiding the vehicle outside and using one's device, we can guide 
+the driver to the path given. 
+
+# What is Data Logger Node 2? 
+To solve the issues mentioned above, we've decided to use message_filters to allow the topics to be collected by the callback at the sametime. It remains 
+in the works due to the callback being unable to be called. However, if solved it would allow for the cameras to be unblocked for other nodes. 
+
+
+# Future hopes? 
+I hope to be able to compress these images so that it can be easier to manage and store. Eventually, there's hope we can even put it on a server. 
+
+
+# Documentation of Code 
+
+# Data Logger Node 
+
+    # Whenever the Steering Wheel is published from "/twist_mux/cmd_vel" then the callback in envoked. 
+    function: topic_callback(const geometry_msgs::msg::Twist::SharedPtr msg) 
+        parameters: 
+            msg: Steering Wheel Angle
+        return: void 
+
+
+# Data Logger Node 2
+
+    # Whenever the cameras and steering wheel are within the Duration, the callback is called 
+    function: void camera_sync_callback(
+			const sensor_msgs::msg::Image::ConstSharedPtr &front_image, 
+			const sensor_msgs::msg::Image::ConstSharedPtr &left_image, 
+            const sensor_msgs::msg::Image::ConstSharedPtr &right_image, 
+            const geometry_msgs::msg::Image::ConstSharedPtr &msg) 
+
+        parameters:  
+            front_image: Front Camera Frame 
+            left_image: Left Camera Frame 
+            right_image: Right Camera Frame 
+            msg: Steering Wheel Angle
+        
+        return: 
+            void 
