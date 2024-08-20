@@ -81,12 +81,12 @@ class DataLogger: public rclcpp::Node {
 			}
 
 			/* Check whether directory exists or not */
-			if (!fs::is_directory(m_drive)){
-				fs::create_directory(m_drive);
+			if (!fs::is_directory(M_DRIVE)){
+				fs::create_directory(M_DRIVE);
 			} else {
 				/* TODO: Use std::distance or std::count_if */
 				/* Count the number of log files in the directory */ 
-				for (const auto &entry : fs::directory_iterator(m_drive)) {
+				for (const auto &entry : fs::directory_iterator(M_DRIVE)) {
 					m_log_count++; 
 				} 
 			} 
@@ -105,7 +105,7 @@ class DataLogger: public rclcpp::Node {
 
 			/* Name the current logging file */
 			m_logging_files = m_logging_files + std::to_string(m_log_count); 
-			m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
+			m_current_file.open(M_DRIVE + "/" + m_logging_files + M_TYPE_FILE); 
 
 			if (!m_current_file.is_open()){
 				RCLCPP_ERROR(this->get_logger(), "File is not open: %c", fs::current_path()); 
@@ -116,7 +116,7 @@ class DataLogger: public rclcpp::Node {
 			m_current_file << "Time\t\tImage Name" << std::endl;
 
 			/* Get current size of filesize */
-			double mb = fs::file_size(m_drive + "/" + m_logging_files + m_type_file) / 1024 / 1024; 
+			double mb = fs::file_size(M_DRIVE + "/" + m_logging_files + M_TYPE_FILE) / 1024 / 1024; 
 
 			/* Check size of the tx file */
 			if (mb >= 500){
@@ -125,7 +125,7 @@ class DataLogger: public rclcpp::Node {
 				m_logging_files = m_logging_files + std::to_string(m_log_count);
 
 				m_current_file.close(); 
-				m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
+				m_current_file.open(M_DRIVE + "/" + m_logging_files + M_TYPE_FILE); 
 			}
 			RCLCPP_DEBUG(this->get_logger(), "Finish Init"); 
 		} 
@@ -133,8 +133,10 @@ class DataLogger: public rclcpp::Node {
 		~DataLogger() {
 			m_left_cam.release(); 
 			m_right_cam.release();
+			m_right_cam.release();
 
-			m_current_file.close(); 
+			if (m_current_file.is_open())
+				m_current_file.close(); 
 		}
 
 
@@ -152,10 +154,9 @@ class DataLogger: public rclcpp::Node {
 
 		std::ofstream m_current_file; 
 
-		/* '/logging' should contain logging folder */
-		const std::string m_drive = "/home/admin/logging/logging_data"; // '/' is the location of 1tb drive  
-		const std::string m_image_drive = "/home/admin/logging/image_data"; // 
-		const std::string m_type_file = ".txt"; 
+		const std::string M_DRIVE = "/home/admin/logging/logging_data"; // '/' is the location of 1tb drive  
+		const std::string M_IMAGE_DRIVE = "/home/admin/logging/image_data"; // 
+		const std::string M_TYPE_FILE = ".txt";  
 
 		std::string m_logging_files = "log_file_"; 
 
@@ -191,14 +192,14 @@ class DataLogger: public rclcpp::Node {
 			left_cam_result = m_image_drive + "/" + "image_left_" + std::to_string(m_image_count) + ".jpg"; 
 			right_cam_result = m_image_drive + "/" + "image_right_" + std::to_string(m_image_count) + ".jpg";
 
-			double mb = fs::file_size(m_drive + "/" + m_logging_files + m_type_file) / 1024 / 1024; 
+			double mb = fs::file_size(M_DRIVE + "/" + m_logging_files + M_TYPE_FILE) / 1024 / 1024; 
 		    if (mb >= 500) {
 				m_logging_files.pop_back(); 
 				m_log_count++; 
 				m_logging_files = m_logging_files + std::to_string(m_log_count); 
 
 				m_current_file.close(); 
-				m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 	
+				m_current_file.open(M_DRIVE + "/" + m_logging_files + M_TYPE_FILE); 	
 
 				m_current_file << "Time\t\tImage Name" << std::endl;
 			} 	
