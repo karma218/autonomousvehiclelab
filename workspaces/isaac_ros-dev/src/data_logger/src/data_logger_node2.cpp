@@ -29,8 +29,6 @@ class DataLogger : public rclcpp::Node {
 		DataLogger() : Node("data_logger_node"), 
             m_log_count(0), m_image_count(0) {
 
-			rclcpp::QoS qos = rclcpp::QoS(1);
-
 			/* Create logging file if not existent */
 			if (!fs::is_directory("/home/admin/logging")){
                 RCLCPP_INFO(this->get_logger(), "Creating logging directory");
@@ -67,6 +65,8 @@ class DataLogger : public rclcpp::Node {
 				for (const auto &entry : fs::directory_iterator(m_image_drive)) {
 					m_image_count++; 
 				}
+
+				m_image_count /= 3; 
 			}
 
 
@@ -92,19 +92,25 @@ class DataLogger : public rclcpp::Node {
 
 				m_current_file.close(); 
 				m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
+
+				if (!m_current_file.is_open()){
+					RCLCPP_ERROR(this->get_logger(), "File is not open at init");
+					return;
+				}
 			}
 
-            m_front_camera.subscribe(this, "/video/front_camera", qos); 
-            m_left_camera.subscribe(this, "/video/left_camera", qos); 
-            m_right_camera.subscribe(this, "/video/right_camera", qos); 
-            m_steering_msg.subscribe(this, "/twist_mux/cmd_vel", qos);
+			/* Subscribe to front camera and steerring */
+            m_front_camera.subscribe(this, "/video/front_camera", rmw_qos_profile_system_default); 
+            m_left_camera.subscribe(this, "/video/left_camera", rmw_qos_profile_system_default); 
+            m_right_camera.subscribe(this, "/video/right_camera", rmw_qos_profile_system_default); 
+            m_steering_msg.subscribe(this, "/twist_mux/cmd_vel", rmw_qos_profile_system_default);
 
 			m_sync_approximate = std::make_shared<message_filters::Synchronizer<message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
                  sensor_msgs::msg::Image, geometry_msgs::msg::Twist>>>(message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
                  sensor_msgs::msg::Image, geometry_msgs::msg::Twist>(10), m_front_camera, m_left_camera, m_right_camera, m_steering_msg); 
 			
 
-			m_sync_approximate->setAgePenalty(5.00);
+			m_sync_approximate->getPolicy()->setMaxIntervalDuration(rclcpp::Duration(2, 0));
             m_sync_approximate->registerCallback(std::bind(&DataLogger::camera_sync_callback, this, std::placeholders::_1, std::placeholders::_2, 
 				std::placeholders::_3, std::placeholders::_4)); 
 
@@ -114,6 +120,10 @@ class DataLogger : public rclcpp::Node {
         ~DataLogger() {
 			if (m_current_file.is_open())
 				m_current_file.close(); 
+		
+			m_front_cam.unsubscribe(); 
+			m_left_camera.unsubscribe(); 
+			m_right_camera.unsubscribe();
         }
 
     private: 
@@ -148,7 +158,7 @@ class DataLogger : public rclcpp::Node {
 			RCLCPP_INFO(this->get_logger(), "callback"); 
 
             if (!m_current_file.is_open()){
-                RCLCPP_ERROR(this->get_logger(), "Logging file isn't opened for logging");
+                RCLCPP_ERROR(this->get_logger(), "Logging file isn't opened for logging at callback");
                 return;
             }
         
@@ -174,7 +184,7 @@ class DataLogger : public rclcpp::Node {
 
             /* Calculate the current steering angle */
 			double steering_angle = msg->angular.z;
-            int steering_angle_int = steering_angle * 61.0 + 512.0;
+            int steering_angle_int = steering_angle*61.0 + 512.0;
 
             /* Ensure log file is below 50 MB */
 			double mb = fs::file_size(m_drive + "/" + m_logging_files + m_type_file) / 1024 / 1024; 
@@ -185,6 +195,11 @@ class DataLogger : public rclcpp::Node {
 
 				m_current_file.close(); 
 				m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 	
+
+				if (!m_current_file.is_open()){
+					RCLCPP_ERROR(this->get_logger(), "File is not open at transation to new log file");
+					return;
+				}
 
 				m_current_file << "Time\t\tImage Name\t\tSteering Value" << std::endl;
 			} 	
