@@ -7,7 +7,9 @@ is to be configured with other data points (Ex. Throttle, speed, etc).
 # How it works? 
 Unforuantely, the current Data Logger Node takes full control of the cameras and prevents other Nodes from using the cameras. This means
 that the user must use a camera to guide the driver to collect data. By guiding the vehicle outside and using one's device, we can guide 
-the driver to the path given. 
+the driver to the path given. The data is logged within the logging_data, where a single .txt file takes the time, cameras, and steering
+within a single line. The images are stored within image_data, where they are given a name based on whether it's the left, right, or front camera. 
+Both these folders are contained with the logging folder, which is stored in the hardcoded directory 
 
 # What is Data Logger Node 2? 
 To solve the issues mentioned above, we've decided to use message_filters to allow the topics to be collected by the callback at the sametime. It remains 
