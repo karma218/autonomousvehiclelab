@@ -37,6 +37,15 @@ class end_to_end_CNN_node(Node):
         self.SelfDrivingCarCNN.to(self.device)
 
     def image_callback(self, msg: sensor_msgs.msg.Image): 
+        ''' 
+            Processes the front image to be used by the car for model 
+
+            @Params: 
+                msg: The front camera frame 
+
+            @Return
+                void 
+        ''' 
         image = self.bridge.imgmsg_to_cv2(msg)
 
         resize_image = cv2.resize(image, (200, 66)) 
@@ -58,6 +67,16 @@ class end_to_end_CNN_node(Node):
         
     
     def interference_callback(self):
+        ''' 
+            Publisher that publishs the steering value based on the model. The model takes the image processed within the 
+            image_callback function
+            
+            @Params: 
+                void
+
+            @Return: 
+                void 
+        ''' 
         # Convert the image to YUV color space
         yuv_image = cv2.cvtColor(resized_image, cv2.COLOR_BGR2YUV)
     
