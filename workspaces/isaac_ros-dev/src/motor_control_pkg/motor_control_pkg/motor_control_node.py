@@ -22,13 +22,15 @@ class MotorNode(Node):
         
         # Initialize serial port
         try:
-            self.ser = serial.Serial('/dev/ttyACM0', 115200, timeout=0.1)
+            self.ser = serial.Serial('/dev/ttyACM0', 115200, timeout=1.0)
+            self.ser.reset_input_buffer()
+            self.ser.flush()
         except serial.SerialException as e:
             self.get_logger().error(f"Failed to open serial port: {e}")
             raise
         
-        self.wheel_velocity_publisher = self.create_publisher(Twist, "odom_encoder", 1)
-        self.timer_ = self.create_timer(0.2, self.publish_wheel_velocity)
+        # self.wheel_velocity_publisher = self.create_publisher(Twist, "odom_encoder", 1)
+        # self.timer_ = self.create_timer(0.2, self.publish_wheel_velocity)
         self.get_logger().info("publishing velocities")
 
         
@@ -47,10 +49,12 @@ class MotorNode(Node):
         message = str(linear_velocity) + "," + str(steering_angle_int) + "\n"
         self.get_logger().info(f"Pushing to Serial: {message}")
         try:
+            # self.ser.reset_input_buffer()  # Clear buffer before sending new data
+            # self.ser.flush()
             self.ser.write(message.encode('utf-8'))
         except serial.SerialException as e:
             self.get_logger().error(f"Failed to write to serial port: {e}")
-        # message = str(1) + "," + str(2) + "," + str(3) 
+        # message = str(1) + "," + str(2) + "," + str(
         #ser.write(bytes(message, 'utf-8'))
 	#print(message)
         #time.sleep(.2)

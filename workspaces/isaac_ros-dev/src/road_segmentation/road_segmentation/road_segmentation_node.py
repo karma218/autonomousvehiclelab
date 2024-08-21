@@ -45,7 +45,7 @@ class RoadSegmentationNode(Node):
         self.image = np.zeros([320, 240, 3], dtype=np.uint8)
 
         self.Unet = unet.UNet(in_chans=3, depth=3, layers=1, skip_connection=True)
-        self.Unet.load_state_dict(torch.load('avlcode/workspaces/isaac_ros-dev/src/road_segmentation/models/checkpoints/unet.pkl'))
+        self.Unet.load_state_dict(torch.load('/avlcode/workspaces/isaac_ros-dev/src/road_segmentation/models/checkpoints/unet.pkl', map_location=torch.device('cpu'), weights_only=True))
         self.sigmoid = nn.Sigmoid()
         self.Unet.eval()
         self.center_line = 112.

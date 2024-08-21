@@ -97,10 +97,17 @@ PLATFORM="$(uname -m)"
 BASE_NAME="isaac_ros_dev-$PLATFORM"
 CONTAINER_NAME="$BASE_NAME-container"
 
+# # Remove any exited containers.
+# if [ "$(docker ps -a --quiet --filter status=exited --filter name=$CONTAINER_NAME)" ]; then
+#     docker rm $CONTAINER_NAME > /dev/null
+# fi
+
 # Remove any exited containers.
-if [ "$(docker ps -a --quiet --filter status=exited --filter name=$CONTAINER_NAME)" ]; then
-    docker rm $CONTAINER_NAME > /dev/null
-fi
+for container in $(docker ps -a --quiet --filter status=exited --filter name=$CONTAINER_NAME); do
+    echo "Removing exited container: $container"
+    docker rm $container > /dev/null
+done
+
 
 # Re-use existing container.
 if [ "$(docker ps -a --quiet --filter status=running --filter name=$CONTAINER_NAME)" ]; then
@@ -181,16 +188,12 @@ fi
 print_info "Running $CONTAINER_NAME"
 docker run -it --rm \
     --privileged \
+    -p 8080:8080 \
+    -p 8081:8081 \
     --network host \
     ${DOCKER_ARGS[@]} \
     -v $ISAAC_ROS_DEV_DIR:$ISSAC_ROS_PATH \
-    -v /dev/*:/dev/* \
-    -v /dev/steeringSerial:/dev/steeringSerial \
-    -v /dev/velocitySerial:/dev/velocitySerial \
-    -v /dev/back_fisheye:/dev/back_fisheye \
-    -v /dev/left_fisheye:/dev/left_fisheye \
-    -v /dev/right_fisheye:/dev/right_fisheye \
-    -v /etc/localtime:/etc/localtime:ro \
+    --device /dev/*:/dev/* \
     --name "$CONTAINER_NAME" \
     --runtime nvidia \
     --user="admin" \
@@ -198,3 +201,10 @@ docker run -it --rm \
     --workdir "/avlcode/workspaces/isaac_ros-dev" \
     $@ \
     $BASE_NAME
+
+    #    -v /dev/steeringSerial:/dev/steeringSerial \
+    # -v /dev/velocitySerial:/dev/velocitySerial \
+    # -v /dev/back_fisheye:/dev/back_fisheye \
+    # -v /dev/left_fisheye:/dev/left_fisheye \
+    # -v /dev/right_fisheye:/dev/right_fisheye \
+    # -v /etc/localtime:/etc/localtime:ro \
