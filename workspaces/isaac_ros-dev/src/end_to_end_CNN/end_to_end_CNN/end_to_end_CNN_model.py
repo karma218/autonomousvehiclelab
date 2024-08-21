@@ -18,18 +18,16 @@ class SelfDrivingCarCNN(nn.Module):
         self.conv3 = nn.Conv2d(36, 48, kernel_size=5, stride=2)
         self.conv4 = nn.Conv2d(48, 64, kernel_size=3, stride=1)
         self.conv5 = nn.Conv2d(64, 64, kernel_size=3, stride=1)
+
+        self.dropout = nn.Dropout(p=0.5)
         
         # Fully Connected Layers(to understand features and make decisions)
-        self.fc1 = nn.Linear(64 * 1 * 18, 1164)
-        self.fc2 = nn.Linear(1164, 100)
-        self.fc3 = nn.Linear(100, 50)
-        self.fc4 = nn.Linear(50, 10)
-        self.fc5 = nn.Linear(10, 1)
+        self.fc1 = nn.Linear(1152, 100)
+        self.fc2 = nn.Linear(100, 50)
+        self.fc3 = nn.Linear(50, 10)
+        self.fc4 = nn.Linear(10, 1)
     
     def forward(self, x):
-        # Normalize the input image
-        x = (x / 255.0) - 0.5
-        
         # Apply Convolutional Layers with ReLU activations(feature identification layers)
         x = F.relu(self.conv1(x))
         x = F.relu(self.conv2(x))
@@ -37,17 +35,22 @@ class SelfDrivingCarCNN(nn.Module):
         x = F.relu(self.conv4(x))
         x = F.relu(self.conv5(x))
         
+        print('Shape after conv5:', x.shape)
+
         # Flatten the tensor(for decision-making layers)
         x = x.view(x.size(0), -1)
+        print('Shape after flattening:', x.shape)
         
         # Apply Fully Connected Layers with ReLU activations(the decision-making layers)
+        x = self.dropout(x)
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         x = F.relu(self.fc3(x))
-        x = F.relu(self.fc4(x))
-        
-        # Output layer
-        x = self.fc5(x)
+        x = self.fc4(x)
         
         return x
 
+model = SelfDrivingCarCNN()
+dummy_input = torch.randn(1, 3, 66, 200)  
+output = model(dummy_input)
+print("Output shape:", output.shape)
