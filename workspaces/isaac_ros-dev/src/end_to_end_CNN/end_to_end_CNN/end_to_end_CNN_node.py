@@ -41,6 +41,7 @@ class end_to_end_CNN_node(Node):
         self.end_to_end_CNN_.load_state_dict(torch.load('/avlcode/workspaces/isaac_ros-dev/src/end_to_end_CNN/models/checkpoints/model.pth'))
         self.end_to_end_CNN_.eval()
 
+
         if torch.cuda.is_available():
             self.device_ = torch.device('cuda:0')
         else:
@@ -49,7 +50,7 @@ class end_to_end_CNN_node(Node):
         print('using device:', self.device_)
         self.end_to_end_CNN_.to(self.device_)
 
-    def front_image_callback(self, msg: sensor_msgs.msg) -> None: 
+    def front_image_callback(self, msg: sensor_msgs.msg.Image) -> None: 
         img = self.bridge.imgmsg_to_cv2(msg)
         self.front_image_ = img
 
