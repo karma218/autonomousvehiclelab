@@ -39,7 +39,6 @@ class end_to_end_CNN_node(Node):
         self.nn_steering_: Publisher = self.create_publisher(Twist, '/twist_mux/cmd_vel', 2)
         self.drive_commands_timer_: Timer = self.create_timer(.2, self.model_callback)
 
-
         # Init the End to End Convolutional Neural Network
         self.end_to_end_CNN_: end_to_end_CNN_model.SelfDrivingCarCNN = end_to_end_CNN_model.SelfDrivingCarCNN()
         self.end_to_end_CNN_.load_state_dict(torch.load('/avlcode/workspaces/isaac_ros-dev/src/end_to_end_CNN/models/checkpoints/model.pth'))
@@ -55,10 +54,26 @@ class end_to_end_CNN_node(Node):
         self.end_to_end_CNN_.to(self.device_)
 
     def front_image_callback(self, msg: sensor_msgs.msg.Image) -> None: 
+        ''' 
+            Front Image is passed via a Subscriber (Callback) and passed to class variable 
+
+            @params 
+                msg: Is the message that's an Image 
+            @return
+                None
+        ''' 
         img: np.ndarray = self.bridge.imgmsg_to_cv2(msg)
         self.front_image_ = img
 
     def model_callback(self) -> None:
+        ''' 
+            Model is called on a publisher that publishes the steering commands 
+
+            @params 
+                None 
+            @reteurn 
+                None
+        ''' 
 
         if self.front_image_ is None: 
             self.get_logger().error(f'Error when attempting to get Front Camera')
