@@ -39,7 +39,6 @@ class SelfDrivingCarCNN(nn.Module):
 
         # Flatten the tensor(for decision-making layers)
         x = x.view(x.size(0), -1)
-        print('Shape after flattening:', x.shape)
         
         # Apply Fully Connected Layers with ReLU activations(the decision-making layers)
         x = self.dropout(x)
