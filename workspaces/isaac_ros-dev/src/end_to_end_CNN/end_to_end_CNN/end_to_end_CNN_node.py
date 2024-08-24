@@ -9,9 +9,6 @@ from cv_bridge import CvBridge
 
 import rclpy
 from rclpy.node import Node
-from rclpy.subscription import Subscription
-from rclpy.publisher import Publisher
-from rclpy.timer import Timer 
 
 from end_to_end_CNN import end_to_end_CNN_model
 
