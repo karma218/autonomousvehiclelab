@@ -2,12 +2,16 @@ import cv2
 import torch 
 import numpy as np  
 
-import rclpy
 import torchvision.transforms as transforms
-from rclpy.node import Node
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
 from cv_bridge import CvBridge
+
+import rclpy
+from rclpy.node import Node
+from rclpy.subscription import Subscription
+from rclpy.publisher import Publisher
+from rclpy.timer import Timer 
 
 from end_to_end_CNN import end_to_end_CNN_model
 
@@ -25,15 +29,15 @@ class end_to_end_CNN_node(Node):
         self.drive_twist_: Twist = Twist() 
         self.bridge_: CvBridge = CvBridge() 
 
-        self.front_image_ = None
-        self.device_ = None
+        self.front_image_: np.ndarray = None
+        self.device_: torch.device = None
 
         # Subscribe to the front camera 
-        self.front_image_subscriber_ = self.create_subscription(Image, '/video/front_camera', self.front_image_callback, 2)
+        self.front_image_subscriber_: Subscriber = self.create_subscription(Image, '/video/front_camera', self.front_image_callback, 2)
 
         # Create a publisher for the steering commands
-        self.nn_steering_ = self.create_publisher(Twist, '/twist_mux/cmd_vel', 2)
-        self.drive_commands_timer_ = self.create_timer(.2, self.model_callback)
+        self.nn_steering_: Publisher = self.create_publisher(Twist, '/twist_mux/cmd_vel', 2)
+        self.drive_commands_timer_: Timer = self.create_timer(.2, self.model_callback)
 
 
         # Init the End to End Convolutional Neural Network
@@ -51,7 +55,7 @@ class end_to_end_CNN_node(Node):
         self.end_to_end_CNN_.to(self.device_)
 
     def front_image_callback(self, msg: sensor_msgs.msg.Image) -> None: 
-        img = self.bridge.imgmsg_to_cv2(msg)
+        img: np.ndarray = self.bridge.imgmsg_to_cv2(msg)
         self.front_image_ = img
 
     def model_callback(self) -> None:
@@ -60,22 +64,22 @@ class end_to_end_CNN_node(Node):
             self.get_logger().error(f'Error when attempting to get Front Camera')
             return
 
-        front_frame = self.front_image_ 
+        front_frame: np.ndarray = self.front_image_ 
 
-        steering_value = None 
+        steering_value: torch.Tensor = None 
         with torch.no_grad(): 
-            front_frame = transform(front_frame)
-            front_frame = torch.unsqueeze(front_frame, 1)
-            front_frame = front_frame.permute(1, 0, 2, 3)
+            front_frame_tensor: torch.Tensor = transform(front_frame)
+            front_frame_tensor  = torch.unsqueeze(front_frame_tensor, 1)
+            front_frame_tensor = front_frame_tensor.permute(1, 0, 2, 3)
 
-            steering_value = self.end_to_end_CNN_(front_frame).squeeze() 
+            steering_value = self.end_to_end_CNN_(front_frame_tensor).squeeze() 
         
         self.get_logger().info("Steering value: " + str(steering_value.cpu().numpy().item()))
 
         self.drive_twist_.angular.z = steering_value.cpu().numpy().item()
         self.drive_twist_.linear.x = .25
 
-        self.nn_steering_.publish(drive_twist)
+        self.nn_steering_.publish(self.drive_twist_)
         
         
 
