@@ -23,8 +23,8 @@ class end_to_end_CNN_node(Node):
     def __init__(self):
         super().__init__("End_to_End_CNN")
         # Create Object for Twist Commands 
-        self.drive_twist_: Twist = Twist() 
-        self.bridge_: CvBridge = CvBridge() 
+        self.drive_twist_ = Twist() 
+        self.bridge_ = CvBridge() 
 
         self.front_image_ = None
         self.device_ = torch.device('cpu')
