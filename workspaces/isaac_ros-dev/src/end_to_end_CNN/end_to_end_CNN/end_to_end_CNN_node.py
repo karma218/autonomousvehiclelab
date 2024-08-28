@@ -12,7 +12,7 @@ from rclpy.node import Node
 
 from end_to_end_CNN import end_to_end_CNN_model
 
-model_dir = r"/avlcode/workspace/issac_ros-dev/src/end_to_end_CNN/models/checkpoints/model.pth"
+model_dir = "/avlcode/workspaces/issac_ros-dev/src/end_to_end_CNN/models/checkpoints/model.pth"
 transform = transforms.Compose([
     transforms.ToPILImage(), 
     transforms.Resize((66, 200)),
@@ -39,7 +39,7 @@ class end_to_end_CNN_node(Node):
 
         # Init the End to End Convolutional Neural Network
         self.end_to_end_CNN_ = end_to_end_CNN_model.SelfDrivingCarCNN()
-        self.end_to_end_CNN_.load_state_dict(torch.load(model_dir))
+        self.end_to_end_CNN_.load_state_dict(torch.load('/avlcode/workspaces/isaac_ros-dev/src/end_to_end_CNN/models/checkpoints/model.pth'))
         self.end_to_end_CNN_.eval()
 
 
