@@ -24,7 +24,7 @@ class ObjectAvoidanceNode(Node):
         self.front_camera_subscription = self.create_subscription(Image, '/video/front_camera', self.front_camera_callback, 1)
         
     def front_camera_callback(self, msg):
-        speed = 0.25
+        speed = 0.15
         self.get_logger().info('front_camera_callback')
         try:
             image_array = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
@@ -35,19 +35,21 @@ class ObjectAvoidanceNode(Node):
                 
             if result == 'left':
                 self.is_turning = True
-                angle = -0.8
+                angle = 0.7
                 
             elif result == 'right':
                 self.is_turning = True
-                angle = 0.8 
+                angle = -0.7 
             
             else:
                 self.is_turning = False
                 angle = 0.0 
                 
-            if self.is_turning and len(self.turing_path) > 0:
-                self.reverse()
+            if self.is_turning == False and len(self.turing_path) > 0:
+                self.reverse_angle()
                 return
+            
+            self.get_logger().info(f"direction: {result}")
 
             twist = geometry_msgs.msg.Twist()
             twist.linear.x = speed
@@ -68,6 +70,7 @@ class ObjectAvoidanceNode(Node):
             
     def reverse_angle(self):
         twist = self.turing_path.pop()
+        self.get_logger().info(f"reverse: {twist}")
         self.front_publisher_.publish(twist)
 
 

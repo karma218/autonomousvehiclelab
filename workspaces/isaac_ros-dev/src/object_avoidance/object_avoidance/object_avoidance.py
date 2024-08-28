@@ -164,27 +164,27 @@ model = YOLO("yolov8n.pt")
 
 
 
-def detect_object(msg):
-  image = cv2.resize(msg, (640, 480))
+# def detect_object(msg):
+#   image = cv2.resize(msg, (640, 480))
 
-  current_result = model.predict(image)
+#   current_result = model.predict(image)
 
-  boxes = current_result[0].boxes.data
-  #print("prev boxes", len(boxes))
+#   boxes = current_result[0].boxes.data
+#   #print("prev boxes", len(boxes))
 
-  # plotting boxes in original image and saving the coordinates   
+#   # plotting boxes in original image and saving the coordinates   
 
-  black1 = np.zeros_like(image, dtype=np.uint8)
-  b1 = []
-  b2 = []
-  # Define trapezoid points
-  trapezoid_points = np.array([[140, 480], [500, 480], [370, 280], [270, 280]], np.int32)
-  trapezoid_points = trapezoid_points.reshape((-1, 1, 2))
-  cv2.polylines(image, [trapezoid_points], isClosed=True, color=(0, 0, 255), thickness=2)
+#   black1 = np.zeros_like(image, dtype=np.uint8)
+#   b1 = []
+#   b2 = []
+#   # Define trapezoid points
+#   trapezoid_points = np.array([[140, 480], [500, 480], [370, 280], [270, 280]], np.int32)
+#   trapezoid_points = trapezoid_points.reshape((-1, 1, 2))
+#   cv2.polylines(image, [trapezoid_points], isClosed=True, color=(0, 0, 255), thickness=2)
 
-  image, result = plot_bboxes(image, boxes, b1, b2, trapezoid_points, score=True, conf=0.50)
+#   image, result = plot_bboxes(image, boxes, b1, b2, trapezoid_points, score=True, conf=0.50)
 
-  return image, result
+#   return image, result
 
 
 
@@ -199,7 +199,6 @@ from io import BytesIO
 import cv2
 from matplotlib import pyplot as plt
 import glob
-from natsort import natsorted
 
 def box_label(image, box, b1, b2, label='', color=(128, 128, 128), txt_color=(255, 255, 255)):
   lw = max(round(sum(image.shape) / 2 * 0.003), 2)
@@ -263,7 +262,7 @@ def plot_bboxes(image, boxes, b1, b2, labels=[], colors=[], score=True, conf=Non
 
 model = YOLO("yolov8n.pt")  
 cf =  320
-def detect_object2(msg):
+def detect_object(msg):
   image = cv2.resize(msg, (640, 480))
   image = np.asarray(image)
   current_result = model.predict(image)
