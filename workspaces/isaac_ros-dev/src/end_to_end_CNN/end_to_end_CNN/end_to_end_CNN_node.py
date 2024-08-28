@@ -25,7 +25,7 @@ class end_to_end_CNN_node(Node):
         super().__init__("End_to_End_CNN")
         # Create Object for Twist Commands 
         self.drive_twist_ = Twist() 
-        self.bridge_ = CvBridge() 
+        self.bridge_ = CvBridge()
 
         self.front_image_ = None
         self.device_ = torch.device('cpu')
@@ -58,7 +58,7 @@ class end_to_end_CNN_node(Node):
             @return
                 None
         ''' 
-        img = self.bridge.imgmsg_to_cv2(msg)
+        img = self.bridge_.imgmsg_to_cv2(msg)
         self.front_image_ = img
 
     def model_callback(self) -> None:
