@@ -6,11 +6,15 @@ from sensor_msgs.msg import Image
 from object_avoidance.object_avoidance import detect_object
 from cv_bridge import CvBridge
 import geometry_msgs.msg
+import time
 import cv2
 
 class ObjectAvoidanceNode(Node):
     def __init__(self):
         super().__init__("object_avoid")
+        
+        self.is_turning = False
+        self.turing_path = []
         self.logger = self.get_logger()
         self.bridge = CvBridge()
 
@@ -27,13 +31,23 @@ class ObjectAvoidanceNode(Node):
             image, result = detect_object(image_array)
 
             video_frame = self.bridge.cv2_to_imgmsg(image, 'bgr8')
-            # Handle OpenCV GUI functions outside of ROS callback to avoid potential issues
-            # if cv2.getWindowProperty('Processed Image', cv2.WND_PROP_VISIBLE) < 1:
-            #     cv2.imshow('Processed Image', image)
-            #     cv2.waitKey(1)  # Process GUI events
-
-            if result == 'STOP':
-                speed = 0.0
+            self.video_publisher.publish(video_frame)
+                
+            if result == 'left':
+                self.is_turning = True
+                angle = -0.8
+                
+            elif result == 'right':
+                self.is_turning = True
+                angle = 0.8 
+            
+            else:
+                self.is_turning = False
+                angle = 0.0 
+                
+            if self.is_turning and len(self.turing_path) > 0:
+                self.reverse()
+                return
 
             twist = geometry_msgs.msg.Twist()
             twist.linear.x = speed
@@ -41,14 +55,21 @@ class ObjectAvoidanceNode(Node):
             twist.linear.z = 0.0
             twist.angular.x = 0.0
             twist.angular.y = 0.0
-            twist.angular.z = 0.0
+            twist.angular.z = angle
             
             self.front_publisher_.publish(twist)
-            self.video_publisher.publish(video_frame)
+            
+            if self.is_turning:
+                self.turing_path.append(twist)
             
         
         except Exception as e:
             self.get_logger().error(f"Error in front_camera_callback: {e}")
+            
+    def reverse_angle(self):
+        twist = self.turing_path.pop()
+        self.front_publisher_.publish(twist)
+
 
 def main(args=None):
     rclpy.init(args=args)
