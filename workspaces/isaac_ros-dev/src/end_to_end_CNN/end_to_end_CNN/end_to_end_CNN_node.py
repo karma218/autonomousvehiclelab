@@ -67,7 +67,7 @@ class end_to_end_CNN_node(Node):
 
             @params 
                 None 
-            @reteurn 
+            @return 
                 None
         ''' 
 
