@@ -12,7 +12,7 @@ from rclpy.node import Node
 
 from end_to_end_CNN import end_to_end_CNN_model
 
-model_dir = "/avlcode/workspaces/issac_ros-dev/src/end_to_end_CNN/models/checkpoints/model.pth"
+model_dir = "/avlcode/workspaces/isaac_ros-dev/src/end_to_end_CNN/models/checkpoints/model.pth"
 transform = transforms.Compose([
     transforms.ToPILImage(), 
     transforms.Resize((66, 200)),
@@ -35,11 +35,11 @@ class end_to_end_CNN_node(Node):
 
         # Create a publisher for the steering commands
         self.steering_ = self.create_publisher(Twist, '/twist_mux/cmd_vel', 2)
-        self.steering_timer_ = self.create_timer(.2, self.model_callback)
+        self.steering_timer_ = self.create_timer(.2, self.steering_publisher)
 
         # Init the End to End Convolutional Neural Network
         self.end_to_end_CNN_ = end_to_end_CNN_model.SelfDrivingCarCNN()
-        self.end_to_end_CNN_.load_state_dict(torch.load('/avlcode/workspaces/isaac_ros-dev/src/end_to_end_CNN/models/checkpoints/model.pth'))
+        self.end_to_end_CNN_.load_state_dict(torch.load(model_dir))
         self.end_to_end_CNN_.eval()
 
 
@@ -61,9 +61,9 @@ class end_to_end_CNN_node(Node):
         img = self.bridge_.imgmsg_to_cv2(msg)
         self.front_image_ = img
 
-    def model_callback(self) -> None:
+    def steering_publisher(self) -> None:
         ''' 
-            Model is called on a publisher that publishes the steering commands 
+            Model is given a frame to process and returns the steering value + speed to the publisher
 
             @params 
                 None 
@@ -72,7 +72,7 @@ class end_to_end_CNN_node(Node):
         ''' 
 
         if self.front_image_ is None: 
-            self.get_logger().error(f'Error when attempting to get Front Camera')
+            self.get_logger().error(f"Error when attempting to get Front Camera")
             return
 
         front_frame = self.front_image_ 
