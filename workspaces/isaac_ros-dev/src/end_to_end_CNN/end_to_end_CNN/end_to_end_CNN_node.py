@@ -1,13 +1,12 @@
 import cv2
+import rclpy
 import torch 
 import numpy as np  
-
 import torchvision.transforms as transforms
+
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Twist
 from cv_bridge import CvBridge
-
-import rclpy
 from rclpy.node import Node
 
 from end_to_end_CNN import end_to_end_CNN_model
