@@ -23,7 +23,7 @@ transform = transforms.Compose([
 class end_to_end_CNN_node(Node):
     def __init__(self):
         super().__init__("End_to_End_CNN")
-        # Create Object for Twist Commands 
+        # Initialize Objects and variables
         self.drive_twist_ = Twist() 
         self.bridge_ = CvBridge()
 
