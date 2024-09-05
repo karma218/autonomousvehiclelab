@@ -107,7 +107,7 @@ class DataLogger : public rclcpp::Node {
 
 			m_sync_approximate = std::make_shared<message_filters::Synchronizer<message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
                  sensor_msgs::msg::Image, geometry_msgs::msg::Twist>>>(message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
-                 sensor_msgs::msg::Image, geometry_msgs::msg::Twist>(10), m_front_camera, m_left_camera, m_right_camera, m_steering_msg); 
+                 sensor_msgs::msg::Image, geometry_msgs::msg::Twist>(1), m_front_camera, m_left_camera, m_right_camera, m_steering_msg); 
 			
 
 			m_sync_approximate->getPolicy()->setMaxIntervalDuration(rclcpp::Duration(1, 0));
@@ -121,7 +121,7 @@ class DataLogger : public rclcpp::Node {
 			if (m_current_file.is_open())
 				m_current_file.close(); 
 		
-			m_front_cam.unsubscribe(); 
+			m_front_camera.unsubscribe(); 
 			m_left_camera.unsubscribe(); 
 			m_right_camera.unsubscribe();
         }

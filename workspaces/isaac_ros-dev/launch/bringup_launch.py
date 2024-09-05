@@ -18,11 +18,11 @@ def generate_launch_description():
     #    executable='teleop_twist_keyboard'
     # 	 )
 
-    gps_node = Node(
-            package='gps_package',
-            namespace='gps',
-            executable='gps_node'
-            )
+    # gps_node = Node(
+    #         package='gps_package',
+    #         namespace='gps',
+    #         executable='gps_node'
+    #         )
 
     # simulator_control_node = Node(
     #     package='simulator_control',
@@ -36,12 +36,11 @@ def generate_launch_description():
     #executable='realsense_obj_det_node'
      #)    
 
-    web_video_server_node = Node(
-        package='web_video_server',
-        namespace='web_video_server',
-        executable='web_video_server'
-        
-    )
+    # web_video_server_node = Node(
+    #     package='web_video_server',
+    #     namespace='web_video_server',
+    #     executable='web_video_server'  
+    # )
 
     motor_control_node = Node(
         package='motor_control_pkg',
@@ -86,14 +85,14 @@ def generate_launch_description():
     #                             'camera_configs','left_boxcam','left_boxcam_params.yaml')]
     # )
     return LaunchDescription([
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                PathJoinSubstitution([
-                    FindPackageShare('realsense2_camera'),
-                    'launch/rs_launch.py'
-                ])
-            ])              
-        ),
+        # IncludeLaunchDescription(
+        #     PythonLaunchDescriptionSource([
+        #         PathJoinSubstitution([
+        #             FindPackageShare('realsense2_camera'),
+        #             'launch/rs_launch.py'
+        #         ])
+        #     ])              
+        # ),
         # IncludeLaunchDescription(
         #     PythonLaunchDescriptionSource([
         #         PathJoinSubstitution([
@@ -124,14 +123,13 @@ def generate_launch_description():
         # data_logging,
         # simulator_control_node,
         # realsense_obj_det_node,
-        web_video_server_node,
+        # web_video_server_node,
         motor_control_node,
         #road_segmentation_node.0
         
         #image_stitcher_node
         # left_boxcam_node,
         #right_boxcam_node,
-        motor_control_node
         
         
     ])

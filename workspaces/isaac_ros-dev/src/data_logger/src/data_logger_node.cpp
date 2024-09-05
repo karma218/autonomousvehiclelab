@@ -188,9 +188,9 @@ class DataLogger: public rclcpp::Node {
 			std::string left_cam_result; 
 			std::string right_cam_result;
 
-			front_cam_result = m_image_drive + "/" + "image_front_" + std::to_string(m_image_count) + ".jpg"; 
-			left_cam_result = m_image_drive + "/" + "image_left_" + std::to_string(m_image_count) + ".jpg"; 
-			right_cam_result = m_image_drive + "/" + "image_right_" + std::to_string(m_image_count) + ".jpg";
+			front_cam_result = M_IMAGE_DRIVE + "/" + "image_front_" + std::to_string(m_image_count) + ".jpg"; 
+			left_cam_result = M_IMAGE_DRIVE + "/" + "image_left_" + std::to_string(m_image_count) + ".jpg"; 
+			right_cam_result = M_IMAGE_DRIVE + "/" + "image_right_" + std::to_string(m_image_count) + ".jpg";
 
 			double mb = fs::file_size(M_DRIVE + "/" + m_logging_files + M_TYPE_FILE) / 1024 / 1024; 
 		    if (mb >= 500) {
