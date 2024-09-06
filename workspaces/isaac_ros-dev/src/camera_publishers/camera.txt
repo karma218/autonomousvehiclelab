@@ -1,0 +1,2 @@
+v4l2-ctl --list-devices
+vlc v4l2:///dev/video4
