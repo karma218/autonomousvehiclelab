@@ -18,6 +18,7 @@ camera_dict = dict()
 with open('/workspaces/isaac_ros-dev/configs/camera_configs/cameras.json') as camera_json:
     camera_dict = json.load(camera_json)
 
+# node 
 class ImageStitching(Node):
     
     def __init__(self):
