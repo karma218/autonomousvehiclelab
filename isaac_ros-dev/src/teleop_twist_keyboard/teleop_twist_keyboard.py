@@ -48,56 +48,33 @@ This node takes keypresses from the keyboard and publishes them
 as Twist messages. It works best with a US keyboard layout.
 ---------------------------
 Moving around:
-   u    i    o
-   j    k    l
-   m    ,    .
+   w
+a  s  d
 
-For Holonomic mode (strafing), hold down the shift key:
----------------------------
-   U    I    O
-   J    K    L
-   M    <    >
+Up arrow: increase speed
+Down arrow: decrease speed
 
 t : up (+z)
 b : down (-z)
 
 anything else : stop
 
-q/z : increase/decrease max speeds by 10%
-w/x : increase/decrease only linear speed by 10%
-e/c : increase/decrease only angular speed by 10%
-
 CTRL-C to quit
 """
 
 moveBindings = {
-    'i': (1, 0, 0, 0),
-    'o': (1, 0, 0, -1),
-    'j': (0, 0, 0, 1),
-    'l': (0, 0, 0, -1),
-    'u': (1, 0, 0, 1),
-    ',': (-1, 0, 0, 0),
-    '.': (-1, 0, 0, 1),
-    'm': (-1, 0, 0, -1),
-    'O': (1, -1, 0, 0),
-    'I': (1, 0, 0, 0),
-    'J': (0, 1, 0, 0),
-    'L': (0, -1, 0, 0),
-    'U': (1, 1, 0, 0),
-    '<': (-1, 0, 0, 0),
-    '>': (-1, -1, 0, 0),
-    'M': (-1, 1, 0, 0),
+    'w': (1, 0, 0, 0),
+    'a': (0, 0, 0, 1),
+    's': (-1, 0, 0, 0),
+    'd': (0, 0, 0, -1),
     't': (0, 0, 1, 0),
     'b': (0, 0, -1, 0),
 }
 
+# Use arrow keys for speed adjustment
 speedBindings = {
-    'q': (1.1, 0,0,1.1),
-    'z': (.9,0,0, .9),
-    'w': (1.1,0,0, 1),
-    'x': (.9,0,0, 1),
-    'e': (1,0,0, 1.1),
-    'c': (1,0,0, .9),
+    '\x1b[A': (1.1, 1),  # Up arrow for increasing speed
+    '\x1b[B': (0.9, 1),  # Down arrow for decreasing speed
 }
 
 
@@ -107,8 +84,9 @@ def getKey(settings):
         key = msvcrt.getwch()
     else:
         tty.setraw(sys.stdin.fileno())
-        # sys.stdin.read() returns a string on Linux
         key = sys.stdin.read(1)
+        if key == '\x1b':  # Check for escape sequences (arrow keys)
+            key += sys.stdin.read(2)
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
     return key
 
@@ -157,8 +135,6 @@ def main():
                 th = moveBindings[key][3]
             elif key in speedBindings.keys():
                 speed = speed * speedBindings[key][0]
-                turn = turn * speedBindings[key][1]
-
                 print(vels(speed, turn))
                 if (status == 14):
                     print(msg)
