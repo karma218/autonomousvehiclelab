@@ -22,14 +22,11 @@ class MotorNode(Node):
         self.wheel_velocity_publisher = self.create_publisher(Twist, "odom_encoder", 1)
         self.timer_ = self.create_timer(0.2, self.publish_wheel_velocity)
         self.get_logger().info("publishing velocities")
-
+        self.keyboard = self.create_subscription(Twist,'/keyboard/cmd_vel',self.listener_callback,1)
+        self.twistmux = self.create_subscription(Twist,'/twist_mux/cmd_vel',self.listener_callback,1)
         
-        self.subscription = self.create_subscription(Twist,'/twist_mux/cmd_vel',self.listener_callback,1)
-        self.subscription  # prevent unused variable warning
-
-
     def listener_callback(self, msg):
-        linear_velocity = round((msg.linear.x)/1.5,2)``
+        linear_velocity = round((msg.linear.x)/1.5,2)
         print(linear_velocity)
         steering_angle = (msg.angular.z)
         steering_angle_int = int(steering_angle*61.0+512.0)
