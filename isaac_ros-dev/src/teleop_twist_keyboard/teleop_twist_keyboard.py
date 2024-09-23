@@ -1,15 +1,9 @@
 import sys
-import select
 import geometry_msgs.msg
 import rclpy
+from pynput import keyboard
 
-if sys.platform == 'win32':
-    import msvcrt
-else:
-    import termios
-    import tty
-
-
+# Messages for instructions
 msg = """
 This node takes keypresses from the keyboard and publishes them
 as Twist messages. It works best with a US keyboard layout.
@@ -20,126 +14,137 @@ a  s  d
 
 Up arrow: increase speed
 Down arrow: decrease speed
-
-t : up (+z)
-b : down (-z)
-
-anything else : stop
-
 CTRL-C to quit
 """
 
-moveBindings = {
-    'w': (1, 0, 0, 0),     # Move forward
-    'a': (0, 0, 0, 1),     # Turn left
-    's': (-1, 0, 0, 0),    # Move backward
-    'd': (0, 0, 0, -1),    # Turn right
-    't': (0, 0, 1, 0),     # Move up
-    'b': (0, 0, -1, 0),    # Move down
+move = {
+    'w': (1, 0, 0, 0),  # Move forward
+    's': (-1, 0, 0, 0),  # Move backward
 }
-
+turn = {
+    'a': (0, 0, 0, 1),  # Turn left
+    'd': (0, 0, 0, -1),  # Turn right
+}
 # Use arrow keys for speed adjustment
 speedBindings = {
-    '\x1b[A': (1.1, 1),  # Up arrow for increasing speed
-    '\x1b[B': (0.9, 1),  # Down arrow for decreasing speed
+    'up': (1.1, 1),  # Up arrow for increasing speed
+    'down': (0.9, 1),  # Down arrow for decreasing speed
 }
 
+# Set to track current keys pressed
+pressed_keys = set()
 
-def getKey(settings):
-    if sys.platform == 'win32':
-        # Check if a key is pressed on Windows
-        if msvcrt.kbhit():
-            return msvcrt.getwch()
-        return ''
-    else:
-        tty.setraw(sys.stdin.fileno())
-        rlist, _, _ = select.select([sys.stdin], [], [], 0.1)  # Non-blocking input
-        if rlist:
-            key = sys.stdin.read(1)
-            if key == '\x1b':  # Check for escape sequences (arrow keys)
-                key += sys.stdin.read(2)
+
+def on_press(key):
+    """Callback function for key press events."""
+    try:
+        # Handle regular keys (e.g., 'a', 'w', etc.)
+        if hasattr(key, 'char'):
+            pressed_keys.add(key.char)
+        # Handle special keys (e.g., arrow keys)
         else:
-            key = ''
-        termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
-        return key
+            if key == keyboard.Key.up:
+                pressed_keys.add('up')
+            elif key == keyboard.Key.down:
+                pressed_keys.add('down')
+
+    except AttributeError:
+        pass
 
 
-def saveTerminalSettings():
-    if sys.platform == 'win32':
-        return None
-    return termios.tcgetattr(sys.stdin)
+def on_release(key):
+    """Callback function for key release events."""
+    try:
+        # Handle regular keys
+        if hasattr(key, 'char'):
+            pressed_keys.discard(key.char)
+        # Handle special keys
+        else:
+            if key == keyboard.Key.up:
+                pressed_keys.discard('up')
+            elif key == keyboard.Key.down:
+                pressed_keys.discard('down')
 
-
-def restoreTerminalSettings(old_settings):
-    if sys.platform == 'win32':
-        return
-    termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
-
-
-def vels(speed, turn):
-    return 'currently:\tspeed %s\tturn %s ' % (speed, turn)
+        # Stop listener if 'esc' is pressed
+        if key == keyboard.Key.esc:
+            return False
+    except KeyError:
+        pass
 
 
 def main():
-    settings = saveTerminalSettings()
-
     rclpy.init()
 
     node = rclpy.create_node('teleop_twist_keyboard')
     pub = node.create_publisher(geometry_msgs.msg.Twist, '/keyboard/cmd_vel', 10)
 
     speed = 0.3
-    turn = 1.0
+    turn_speed = 1.0  # renamed to avoid confusion with turn dictionary
+    x = 0.0
+    y = 0.0
+    z = 0.0
+    th = 0.0
     status = 0.0
-    active_keys = set()  # Track pressed keys
-
+    
     try:
         print(msg)
-        print(vels(speed, turn))
-        while True:
-            key = getKey(settings)
-            
-            if key == '\x03':  # CTRL+C to quit
-                break
+        
+        # Start the listener for keyboard events in a background thread
+        listener = keyboard.Listener(on_press=on_press, on_release=on_release)
+        listener.start()
 
-            # Add key to active keys if valid for movement
-            if key in moveBindings:
-                active_keys.add(key)
+        while rclpy.ok():
+            x = 0.0  # Reset movement each loop
+            y = 0.0
+            z = 0.0
+            th = 0.0
 
-            # Handle speed adjustment
-            elif key in speedBindings:
-                speed = speed * speedBindings[key][0]
-                print(vels(speed, turn))
-                if status == 14:
-                    print(msg)
-                status = (status + 1) % 15
+            # Check if any movement keys are pressed
+            if pressed_keys:
+                for key in pressed_keys.copy():
+                    if key in move:
+                        move_x, move_y, move_z, move_th = move[key]
+                        x += move_x  # Add movement to x
+                        y += move_y
+                        z += move_z
+                        th += move_th  # Not expected for movement keys but keeps structure
+                    elif key in turn:
+                        turn_x, turn_y, turn_z, turn_th = turn[key]
+                        x += turn_x  # Likely 0
+                        y += turn_y  # Likely 0
+                        z += turn_z  # Likely 0
+                        th += turn_th  # Add turning to th
+                    elif key in speedBindings:
+                        speed = speed * speedBindings[key][0]
+                        if status == 14:
+                            print(msg)
+                        status = (status + 1) % 15
+            else:
+                # Stop movement if no keys are pressed
+                x = 0.0
+                y = 0.0
+                z = 0.0
+                th = 0.0
 
-            # Handle key release for move keys
-            if key == '':  # No key pressed, stop movement
-                active_keys.clear()
-
-            # Calculate movement by summing over active keys
-            x, y, z, th = 0, 0, 0, 0
-            for k in active_keys:
-                dx, dy, dz, dth = moveBindings[k]
-                x += dx
-                y += dy
-                z += dz
-                th += dth
-
-            # Publish the movement message
+            # Create the Twist message to publish
             twist = geometry_msgs.msg.Twist()
-            twist.linear.x = x * speed
-            twist.linear.y = y * speed
-            twist.linear.z = z * speed
-            twist.angular.z = th * turn
-            print(f'movement: {twist.linear.x}, {twist.linear.y}, {twist.linear.z}, {twist.angular.z}')
+            twist.linear.x = float(x) * speed
+            twist.linear.y = float(y) * speed
+            twist.linear.z = float(z) * speed
+            twist.angular.x = 0.0
+            twist.angular.y = 0.0
+            twist.angular.z = float(th) * turn_speed  # Ensure it's a float
             pub.publish(twist)
+            print(f'Direction: {twist.linear.x},{twist.linear.y},{twist.linear.z}\nTurn: {twist.angular.z}')
+            
+            # Reduce CPU load with a short sleep
+            rclpy.spin_once(node, timeout_sec=0.1)
 
     except Exception as e:
         print(e)
 
     finally:
+        # Stop the robot on exit
         twist = geometry_msgs.msg.Twist()
         twist.linear.x = 0.0
         twist.linear.y = 0.0
@@ -149,7 +154,8 @@ def main():
         twist.angular.z = 0.0
         pub.publish(twist)
 
-        restoreTerminalSettings(settings)
+        # Stop the listener when the program exits
+        listener.stop()
 
 
 if __name__ == '__main__':
