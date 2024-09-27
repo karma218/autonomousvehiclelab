@@ -15,7 +15,7 @@ FRAME_WIDTH = 320
 FRAME_HEIGHT = 240
 
 camera_dict = dict()
-with open('/avlcode/workspaces/isaac_ros-dev/configs/camera_configs/cameras.json') as camera_json:
+with open('./configs/camera_configs/cameras.json') as camera_json:
     camera_dict = json.load(camera_json)
 
 class CameraPublishers(Node):

@@ -39,7 +39,7 @@ class MotorNode(Node):
 
 
     def listener_callback(self, msg):
-        linear_velocity = round((msg.linear.x)/1.5,2)``
+        linear_velocity = round((msg.linear.x)/1.5,2)
         print(linear_velocity)
         steering_angle = (msg.angular.z)
         steering_angle_int = int(steering_angle*61.0+512.0)
