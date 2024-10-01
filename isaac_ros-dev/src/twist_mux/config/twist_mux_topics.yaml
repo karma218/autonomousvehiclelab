@@ -24,3 +24,7 @@ twist_mux:
         topic   : /simulator_chair/cmd_vel
         timeout : 0.5
         priority: 80
+      objectavoidance:
+        topic : /object_detection/cmd_vel
+        timeout : 0.5
+        priority: 70

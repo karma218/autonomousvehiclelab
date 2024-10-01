@@ -19,13 +19,13 @@ class ObjectAvoidanceNode(Node):
         self.logger = self.get_logger()
         self.bridge = CvBridge()
 
-        self.front_publisher_ = self.create_publisher(geometry_msgs.msg.Twist, '/object_detection/cmd_vel', 1)
-        self.video_publisher = self.create_publisher(Image, '/video/object_detection', 1)
+        self.front_publisher_ = self.create_publisher(geometry_msgs.msg.Twist, '/object_detection/cmd_vel', 10)
+        self.video_publisher = self.create_publisher(Image, '/video/object_detection', 10)
 
-        self.front_camera_subscription = self.create_subscription(Image, '/video/front_camera', self.front_camera_callback, 1)
+        self.front_camera_subscription = self.create_subscription(Image, '/video/front_camera', self.front_camera_callback, 10)
 
     def front_camera_callback(self, msg):
-        speed = 0.2
+        speed = 0.3
         angle = 0.0
         # self.get_logger().info('front_camera_callback')
         try:

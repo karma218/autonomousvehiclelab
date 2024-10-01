@@ -49,8 +49,8 @@ class MotorNode(Node):
         message = str(linear_velocity) + "," + str(steering_angle_int) + "\n"
         self.get_logger().info(f"Pushing to Serial: {message}")
         try:
-            # self.ser.reset_input_buffer()  # Clear buffer before sending new data
-            # self.ser.flush()
+            self.ser.reset_input_buffer()  # Clear buffer before sending new data
+            self.ser.flush()
             self.ser.write(message.encode('utf-8'))
         except serial.SerialException as e:
             self.get_logger().error(f"Failed to write to serial port: {e}")
@@ -119,11 +119,11 @@ class MotorNode(Node):
         #except Exception as e2:
         #    print("no cmdvel")
     
-    def destroy_node(self):
+    def __del__(self):
         if self.ser.is_open:
+            self.ser.flush()
             self.ser.close()
             self.get_logger().info("Serial port closed")
-        super().destroy_node()
 
 def main(args=None):
     rclpy.init(args=args)

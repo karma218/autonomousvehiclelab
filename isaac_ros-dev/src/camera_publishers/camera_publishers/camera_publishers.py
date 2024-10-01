@@ -21,11 +21,11 @@ with open('./configs/camera_configs/cameras.json') as camera_json:
 class CameraPublishers(Node):
     def __init__(self):
         super().__init__("camera_publishers")
-        self.front_publisher_ = self.create_publisher(Image, '/video/front_camera', 1)
+        self.front_publisher_ = self.create_publisher(Image, '/video/front_camera', 10)
         # self.back_publisher_ = self.create_publisher(Image, '/video/back_camera', 1)
         # self.subscription = self.create_subscription(Image, '/camera/color/image_raw', self.realsense_callback, 1)
         # self.vel_subscription = self.create_subscription(Twist, '/wheel_velocity', self.wheel_velocity_callback, 1)
-        timer_period = 0.05 #seconds
+        timer_period = 0.025 #seconds
         self.timer = self.create_timer(timer_period, self.publishers_callback)
 
         self.front_fisheye = cv2.VideoCapture(camera_dict['/dev/front_fisheye'], cv2.CAP_V4L2) # Fisheye Front

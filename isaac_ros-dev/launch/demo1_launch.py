@@ -19,9 +19,9 @@ def generate_launch_description():
        package='object_avoidance',
        namespace='object_avoidance',
        executable='object_avoidance_node',
-       remappings=[
-                ('/object_detection/cmd_vel', '/twist_mux/cmd_vel'),
-            ],
+    #    remappings=[
+    #             ('/object_detection/cmd_vel', '/twist_mux/cmd_vel'),
+    #         ],
     )
 
     # object_derek_node = Node(
