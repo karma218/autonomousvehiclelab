@@ -29,24 +29,42 @@
 
   <!-- Robot Base -->
   <link name="base_link">
-    <visual>
-      <origin xyz=".946 .521 -.313" rpy="0 0 ${pi}" />
-        <geometry>
-        <!-- <box size="${base_length} ${base_width} ${base_height}"/> -->
-          <mesh filename="package://agv_car_gazebo/models/agv_car/meshes/agv_chassis.stl"/>
-        </geometry>
-        <material name="Cyan">
-        <color rgba="0 1.0 1.0 1.0"/>
-        </material>
-    </visual>
+      <visual>
+          <origin xyz=".946 .521 -.313" rpy="0 0 ${pi}" />
+          <geometry>
+              <mesh filename="package://agv_car_gazebo/models/agv_car/meshes/agv_chassis.stl"/>
+          </geometry>
+          <material name="Cyan">
+              <color rgba="0 1.0 1.0 1.0"/>
+          </material>
+      </visual>
 
-    <collision>
-      <geometry>
-        <mesh filename="package://agv_car_gazebo/models/agv_car/meshes/agv_chassis.stl"/>
-      </geometry>
-    </collision>
+      <collision>
+          <geometry>
+              <mesh filename="package://agv_car_gazebo/models/agv_car/meshes/agv_chassis.stl"/>
+          </geometry>
+      </collision>
 
-    <xacro:box_inertia m="15" w="${base_width}" d="${base_length}" h="${base_height}"/>
+      <xacro:box_inertia m="15" w="${base_width}" d="${base_length}" h="${base_height}"/>
+
+      <!-- Ackermann Steering Plugin -->
+      <gazebo>
+          <plugin filename="libgz-sim-ackermann-steering.so" name="gz::sim::systems::AckermannSteering">
+              <left_joint>rear_left_wheel_joint</left_joint>
+              <right_joint>rear_right_wheel_joint</right_joint>
+              <front_left_joint>front_left_wheel_steering_joint</front_left_joint>
+              <front_right_joint>front_right_wheel_steering_joint</front_right_joint>
+              <wheel_separation>0.287</wheel_separation>
+              <wheel_radius>${wheel_radius}</wheel_radius>
+              <max_linear_acceleration>0.033</max_linear_acceleration>
+              <topic>cmd_vel</topic>
+              <odom_topic>odom</odom_topic>
+              <frame_id>odom</frame_id>
+              <child_frame_id>base_footprint</child_frame_id>
+              <odom_publisher_frequency>30</odom_publisher_frequency>
+              <tf_topic>/tf</tf_topic>
+          </plugin>
+      </gazebo>
   </link>
 
   <!-- Robot Footprint -->
@@ -120,7 +138,7 @@
   </xacro:macro>
 
 
-<xacro:macro name="frontwheel" params="prefix x_reflect y_reflect">
+  <xacro:macro name="frontwheel" params="prefix x_reflect y_reflect">
     <link name="front_${prefix}_wheel">
       <visual>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
@@ -149,23 +167,6 @@
       <limit effort="1000.0" lower="-0.698" upper="0.698" velocity="0.5"/>
     </joint>
   </xacro:macro>
-  
-    <!-- Ackermann Steering Plugin -->
-  <plugin filename="gz-sim-ackermann-steering" name="gz::sim::systems::AckermannSteering">
-      <left_joint>rear_left_wheel_joint</left_joint>
-      <right_joint>rear_right_wheel_joint</right_joint>
-      <front_left_joint>front_left_steering_joint</front_left_joint>
-      <front_right_joint>front_right_steering_joint</front_right_joint>
-      <wheel_separation>0.287</wheel_separation>
-      <wheel_radius>${wheel_radius}</wheel_radius>
-      <max_linear_acceleration>0.033</max_linear_acceleration>
-      <topic>cmd_vel</topic>
-      <odom_topic>odom</odom_topic>
-      <frame_id>odom</frame_id>
-      <child_frame_id>base_footprint</child_frame_id>
-      <odom_publisher_frequency>30</odom_publisher_frequency>
-      <tf_topic>/tf</tf_topic>
-  </plugin>
   
   <!-- <link name="velodyne">
   <visual>

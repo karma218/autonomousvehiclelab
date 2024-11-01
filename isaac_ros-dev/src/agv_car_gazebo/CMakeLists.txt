@@ -23,7 +23,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 install(
-  DIRECTORY src launch worlds urdf models
+  DIRECTORY src launch models params rviz urdf worlds
   DESTINATION share/${PROJECT_NAME}
 )
 
