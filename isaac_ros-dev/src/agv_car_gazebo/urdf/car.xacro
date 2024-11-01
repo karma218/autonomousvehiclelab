@@ -167,7 +167,30 @@
       <limit effort="1000.0" lower="-0.698" upper="0.698" velocity="0.5"/>
     </joint>
   </xacro:macro>
-  
+  <plugin filename="gz-sim-ackermann-steering" name="gz::sim::systems::AckermannSteering">
+    <!-- Remove <ros> tag. -->
+
+    <!-- wheels -->
+    <left_joint>wheel_left_joint</left_joint>
+    <right_joint>wheel_right_joint</right_joint>
+
+    <!-- kinematics -->
+    <wheel_separation>0.287</wheel_separation>
+    <wheel_radius>0.033</wheel_radius> <!-- computed from <wheel_diameter> in the original plugin-->
+
+    <!-- limits -->
+    <max_linear_acceleration>0.033</max_linear_acceleration> <!-- computed from <max_linear_acceleration> in the original plugin-->
+
+    <topic>cmd_vel</topic> <!-- from <commant_topic> -->
+
+    <odom_topic>odom</odom_topic> <!-- from <odometry_topic> -->
+    <frame_id>odom</frame_id> <!-- from <odometry_frame> -->
+    <child_frame_id>base_footprint</child_frame_id> <!-- from <robot_base_frame> -->
+    <odom_publisher_frequency>30</odom_publisher_frequency> <!-- from <update_rate>-->
+
+    <tf_topic>/tf</tf_topic> <!-- Short topic name for tf output -->
+
+  </plugin>
   <!-- <link name="velodyne">
   <visual>
     <origin rpy="0 0 0" xyz="0 0 0"/>
