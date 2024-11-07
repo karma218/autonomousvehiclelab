@@ -128,8 +128,10 @@ class DataLogger: public rclcpp::Node {
 		~DataLogger() {
 			m_left_cam.release(); 
 			m_right_cam.release();
+			m_front_cam.release(); 
 
-			m_current_file.close(); 
+			if (m_current_file.is_open()) 
+				m_current_file.close(); 
 		}
 
 
