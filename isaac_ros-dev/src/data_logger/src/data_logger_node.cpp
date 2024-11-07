@@ -174,7 +174,14 @@ class DataLogger: public rclcpp::Node {
 
 			m_left_cam.read(left_frame_cam); 
 			m_right_cam.read(right_frame_cam);
-			m_front_cam.read(right_frame_cam);
+			m_front_cam.read(front_frame_cam);
+
+			/* Check if the camera frame is empty */ 
+			if (left_frame_cam.empty() && right_frame_cam.empty()
+				&& front_frame_cam.empty()) {
+				RCLCPP_INFO(this->get_logger(), "%s", "A frame from one of the cameras is empty"); 	
+				return; 
+			} 
 
 			m_image_count++;
 
