@@ -67,6 +67,15 @@ def main():
         exit()
     
     runtime = sl.RuntimeParameters()
+    
+    # Get image size
+    image_size = cam.get_camera_information().camera_configuration.resolution
+    width = image_size.width
+    height = image_size.height
+    width_sbs = width * 2
+    
+    # Prepare side by side image container equivalent to CV_8UC4
+    svo_image_sbs_rgba = np.zeros((height, width_sbs, 4), dtype=np.uint8)
 
     video_writer = None
     if output_as_video:
@@ -80,15 +89,6 @@ def main():
                              "permissions.\n")
             cam.close()
             exit()
-    
-    # Get image size
-    image_size = cam.get_camera_information().camera_configuration.resolution
-    width = image_size.width
-    height = image_size.height
-    width_sbs = width * 2
-    
-    # Prepare side by side image container equivalent to CV_8UC4
-    svo_image_sbs_rgba = np.zeros((height, width_sbs, 4), dtype=np.uint8)
 
 
     left_image = sl.Mat()
