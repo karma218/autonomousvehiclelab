@@ -76,8 +76,8 @@ class DataLogger: public rclcpp::Node {
 			}
 
 			/* Create logging file if not existent */
-			if (!fs::is_directory("/home/admin/logging")){
-				fs::create_directory("/home/admin/logging"); 
+			if (!fs::is_directory("logging")){
+				fs::create_directory("logging"); 
 			}
 
 			/* Check whether directory exists or not */
@@ -150,8 +150,8 @@ class DataLogger: public rclcpp::Node {
 		std::ofstream m_current_file; 
 
 		/* '/logging' should contain logging folder */
-		const std::string m_drive = "/home/admin/logging/logging_data"; // '/' is the location of 1tb drive  
-		const std::string m_image_drive = "/home/admin/logging/image_data"; // 
+		const std::string m_drive = "logging/logging_data"; // '/' is the location of 1tb drive  
+		const std::string m_image_drive = "logging/image_data"; // 
 		const std::string m_type_file = ".txt"; 
 
 		std::string m_logging_files = "log_file_"; 
@@ -160,7 +160,6 @@ class DataLogger: public rclcpp::Node {
 		int m_image_count; 
 
 		void topic_callback (const geometry_msgs::msg::Twist::SharedPtr msg) {
-			
 
 			if (!m_current_file.is_open()){
 				RCLCPP_ERROR(this->get_logger(), "File is not open"); 
@@ -168,7 +167,7 @@ class DataLogger: public rclcpp::Node {
 			}
 
 			double steering_angle = msg->angular.z;
-            int steering_angle_int = steering_angle * 61.0 + 512.0;
+            const int steering_angle_int = steering_angle * 61.0 + 512.0;
 
 			cv::Mat left_frame_cam; 
 			cv::Mat right_frame_cam;
