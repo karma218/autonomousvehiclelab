@@ -232,6 +232,7 @@ public:
   void callback(const std_msgs::msg::Bool::ConstSharedPtr msg)
   {
     stamp_ = mux_->now();
+    stamp_ = rclcpp::Time(stamp_.nanoseconds(), RCL_ROS_TIME); 
     msg_ = *msg;
   }
 };

@@ -6,13 +6,13 @@
 #include <mutex>
 
 #include <opencv2/opencv.hpp>
-#include <cv_bridge/cv_bridge.hpp>
+#include <cv_bridge/cv_bridge.h>
 #include <sys/types.h> 
 #include <sys/stat.h>
 
-#include <message_filters/subscriber.hpp>
-#include <message_filters/synchronizer.hpp>
-#include <message_filters/sync_policies/approximate_time.hpp>
+#include <message_filters/subscriber.h>
+#include <message_filters/synchronizer.h>
+#include <message_filters/sync_policies/approximate_time.h>
 
 #include "geometry_msgs/msg/twist.hpp"
 #include "sensor_msgs/image_encodings.hpp" 
@@ -32,11 +32,11 @@ class DataLogger : public rclcpp::Node {
 			rclcpp::QoS qos = rclcpp::QoS(1);
 
 			/* Create logging file if not existent */
-			if (!fs::is_directory("/home/admin/logging")){
+			if (!fs::is_directory("logging")){
                 RCLCPP_INFO(this->get_logger(), "Creating logging directory");
 
-				fs::create_directory("/home/admin/logging"); 
-                assert(!fs::create_directory("/home/admin/logging"));
+				fs::create_directory("logging"); 
+                assert(!fs::create_directory("logging"));
 			}
 
 			/* Check whether directory exists or not */
@@ -94,10 +94,10 @@ class DataLogger : public rclcpp::Node {
 				m_current_file.open(m_drive + "/" + m_logging_files + m_type_file); 
 			}
 
-            m_front_camera.subscribe(this, "/video/front_camera", qos); 
-            m_left_camera.subscribe(this, "/video/left_camera", qos); 
-            m_right_camera.subscribe(this, "/video/right_camera", qos); 
-            m_steering_msg.subscribe(this, "/twist_mux/cmd_vel", qos);
+            m_front_camera.subscribe(this, "/video/front_camera"); 
+            m_left_camera.subscribe(this, "/video/left_camera"); 
+            m_right_camera.subscribe(this, "/video/right_camera"); 
+            m_steering_msg.subscribe(this, "/twist_mux/cmd_vel");
 
 			m_sync_approximate = std::make_shared<message_filters::Synchronizer<message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
                  sensor_msgs::msg::Image, geometry_msgs::msg::Twist>>>(message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::Image, sensor_msgs::msg::Image, 
@@ -130,8 +130,8 @@ class DataLogger : public rclcpp::Node {
 		std::ofstream m_current_file; 
 
 		/* '/logging' should contain logging folder */
-		const std::string m_drive = "/home/admin/logging/logging_data"; // '/' is the location of 1tb drive  
-		const std::string m_image_drive = "/home/admin/logging/image_data"; // 
+		const std::string m_drive = "logging/logging_data"; // '/' is the location of 1tb drive  
+		const std::string m_image_drive = "logging/image_data"; // 
 		const std::string m_type_file = ".txt"; 
 
 		std::string m_logging_files = "log_file_"; 
