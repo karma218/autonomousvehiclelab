@@ -43,6 +43,9 @@ class MotorNode(Node):
         #print(message)
 
 
+    def __del__(self): 
+        ser.flush() 
+        ser.close()
 
 
     def publish_wheel_velocity(self):
