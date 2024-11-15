@@ -73,7 +73,7 @@ public:
 
   bool hasPriority(const VelocityTopicHandle & twist);
 
-  void publishTwist(const geometry_msgs::msg::Twist::ConstSharedPtr & msg);
+  void publishTwist(const geometry_msgs::msg::Twist::SharedPtr& msg);
 
   void updateDiagnostics();
 
