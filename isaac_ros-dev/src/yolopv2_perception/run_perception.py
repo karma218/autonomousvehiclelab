@@ -67,7 +67,9 @@ class Percept(object):
             t0 = time.time()
             im0 = cv2.resize(img, (1280,720), interpolation=cv2.INTER_LINEAR)
             img = letterbox(im0, self.imgsz, stride=stride)[0]
+            img = img.transpose(2, 0, 1) 
             img = np.ascontiguousarray(img)
+            print(f"Image shape after letterbox: {img.shape}, {im0.shape}")
             img = torch.from_numpy(img).to(self.device)
             img = img.half() if self.half else img.float()  # uint8 to fp16/32
             img /= 255.0  # 0 - 255 to 0.0 - 1.0
@@ -96,7 +98,7 @@ class Percept(object):
 
             # Process detections
             for i, det in enumerate(pred):  # detections per image 
-                s += '%gx%g ' % img.shape[2:]  # print string
+                # s += '%gx%g ' % img.shape[2:]  # print string
                 gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
                 if len(det):
                     # Rescale boxes from img_size to im0 size
@@ -118,7 +120,7 @@ class Percept(object):
                        plot_one_box(xyxy, im0, line_thickness=3)
 
                 # Print time (inference)
-                print(f'{s}Done. ({t2 - t1:.3f}s)')
+                print(f'Done. ({t2 - t1:.3f}s)')
                 show_seg_result(im0, (da_seg_mask,ll_seg_mask), is_demo=True)
                 return im0
 
@@ -189,6 +191,6 @@ if __name__ == '__main__':
         img = cam.get_image()
         with torch.no_grad():
             res = percept.detect(img)
-            cv2.imshow(res)
+            cv2.imshow("Result",res)
         cv2.waitKey(5)
 
