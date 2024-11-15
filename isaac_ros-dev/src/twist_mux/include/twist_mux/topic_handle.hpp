@@ -184,18 +184,19 @@ public:
     return hasExpired() || (getPriority() < lock_priority);
   }
 
-  void callback(const geometry_msgs::msg::Twist::ConstSharedPtr msg)
+  void callback(const geometry_msgs::msg::Twist::SharedPtr msg)
   {
     stamp_ = mux_->now();
     msg_ = *msg;
-	msg_.stamp_ = rclcpp::Time(msg_.getStamp().nanoseconds(), RCL_ROS_TIME); 
+
+	msg.header.stamp = rclcpp::Time(msg.header.stamp, RCL_ROS_TIME); 
 
     // Check if this twist has priority.
     // Note that we have to check all the locks because they might time out
     // and since we have several topics we must look for the highest one in
     // all the topic list; so far there's no O(1) solution.
     if (mux_->hasPriority(*this)) {
-      mux_->publishTwist(msg_);
+      mux_->publishTwist(msg);
     }
   }
 };
@@ -234,7 +235,6 @@ public:
   {
     stamp_ = mux_->now();
     msg_ = *msg;
-	msg_.stamp_ = rclcpp::Time(msg_.getStamp().nanoseconds(), RCL_ROS_TIME); 
   }
 };
 
