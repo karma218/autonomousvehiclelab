@@ -107,8 +107,9 @@ void TwistMux::updateDiagnostics()
   diagnostics_->updateStatus(status_);
 }
 
-void TwistMux::publishTwist(const geometry_msgs::msg::Twist::ConstSharedPtr & msg)
+void TwistMux::publishTwist(const geometry_msgs::msg::Twist::SharedPtr& msg)
 {
+  *msg.header.stamp = rclcpp::Time(msg.header.stamp, RCL_ROS_TIME); 
   cmd_pub_->publish(*msg);
 }
 
