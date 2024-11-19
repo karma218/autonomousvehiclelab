@@ -136,7 +136,7 @@ def main():
             twist.angular.y = 0.0
             twist.angular.z = float(th) * turn_speed  # Ensure it's a float
             pub.publish(twist)
-            print(f'Direction: {twist.linear.x},{twist.linear.y},{twist.linear.z}\nTurn: {twist.angular.z}')
+            # print(f'Direction: {twist.linear.x},{twist.linear.y},{twist.linear.z}\nTurn: {twist.angular.z}')
             
             # Reduce CPU load with a short sleep
             rclpy.spin_once(node, timeout_sec=0.1)
