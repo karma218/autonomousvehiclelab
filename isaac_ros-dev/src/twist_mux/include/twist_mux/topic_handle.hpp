@@ -184,12 +184,11 @@ public:
     return hasExpired() || (getPriority() < lock_priority);
   }
 
-  void callback(const geometry_msgs::msg::Twist::SharedPtr msg)
+  void callback(geometry_msgs::msg::Twist::SharedPtr msg)
   {
-    stamp_ = mux_->now();
+    stamp_ = rclcpp::Time(mux_->now(), RCL_ROS_TIME);
+	// stamp_ = mux_->now(); 
     msg_ = *msg;
-
-	msg.header.stamp = rclcpp::Time(msg.header.stamp, RCL_ROS_TIME); 
 
     // Check if this twist has priority.
     // Note that we have to check all the locks because they might time out
@@ -233,7 +232,8 @@ public:
 
   void callback(const std_msgs::msg::Bool::ConstSharedPtr msg)
   {
-    stamp_ = mux_->now();
+    stamp_ = rclcpp::Time(mux_->now(), RCL_ROS_TIME);
+    // stamp_ = mux_->now();
     msg_ = *msg;
   }
 };
