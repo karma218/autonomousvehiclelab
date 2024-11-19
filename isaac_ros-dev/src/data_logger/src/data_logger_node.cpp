@@ -37,43 +37,23 @@ class DataLogger: public rclcpp::Node {
 			// "/video/right_camera", 10, std::bind(&FrameMangSub::topic_callback, this, _1)); 
 
 			m_subscription_steering_angle = this->create_subscription<geometry_msgs::msg::Twist>(
-				"/twist_mux/cmd_vel", 10, std::bind(&DataLogger::topic_callback, this, _1));
+				"/twist_mux/cmd_vel", 10, std::bind(&DataLogger::topic_callback_steering, this, _1));
 			
 			/* TODO: Integrate throttle data */ 
 			/* Read from front camera and check if it's open */
 
-			m_front_cam.open(m_front_cam_id, cv::CAP_V4L2);
-
-			m_front_cam.set(cv::CAP_PROP_FRAME_WIDTH, FRAME_WIDTH); 
-			m_front_cam.set(cv::CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
-
-			if (!m_front_cam.isOpened()){
-				RCLCPP_ERROR(this->get_logger(), "Front camera is not open"); 
-				return; 
-			}
-
+			m_subscription_front_camera = this->create_subscription<sensor_msgs::msg::Image>(
+			 	"/video/front_camera", 10, std::bind(&DataLogger::front_camera_callback, this, _1)); 
 
 
 			/* Read from left camera and check if it's open */
-			m_left_cam.open(m_left_cam_id, cv::CAP_V4L2);
-			m_left_cam.set(cv::CAP_PROP_FRAME_WIDTH, FRAME_WIDTH); 
-			m_left_cam.set(cv::CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
-
-			if (!m_left_cam.isOpened()){
-				RCLCPP_ERROR(this->get_logger(), "Left Camera is not open"); 
-				return; 
-			}
+			m_subscription_left_camera = this->create_subscription<sensor_msgs::msg::Image>(
+			 	"/video/left_camera", 10, std::bind(&DataLogger::left_camera_callback, this, _1)); 
 
 			/* Read from right camera and check if it's open */
-			m_right_cam.open(m_right_cam_id, cv::CAP_V4L2);
-
-			m_right_cam.set(cv::CAP_PROP_FRAME_WIDTH, FRAME_WIDTH); 
-			m_right_cam.set(cv::CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT);
-
-			if (!m_right_cam.isOpened()){
-				RCLCPP_ERROR(this->get_logger(), "Right Camera is not open"); 
-				return; 
-			}
+			m_subscription_right_camera = this->create_subscription<sensor_msgs::msg::Image>(
+			 	"/video/right_camera", 10, std::bind(&DataLogger::right_camera_callback, this, _1)); 
+			
 
 			/* Create logging file if not existent */
 			if (!fs::is_directory("logging")){
@@ -126,9 +106,6 @@ class DataLogger: public rclcpp::Node {
 		} 
 
 		~DataLogger() {
-			m_left_cam.release(); 
-			m_right_cam.release();
-			m_front_cam.release(); 
 
 			if (m_current_file.is_open()) 
 				m_current_file.close(); 
@@ -137,14 +114,13 @@ class DataLogger: public rclcpp::Node {
 
 	private:
 		rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr m_subscription_steering_angle;  
+		rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr m_subscription_front_camera; 
+		rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr m_subscription_left_camera; 
+		rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr m_subscription_right_camera;
 
-		cv::VideoCapture m_left_cam; 
-		cv::VideoCapture m_right_cam; 
-		cv::VideoCapture m_front_cam;
-
-		const int m_left_cam_id = 8; 
-		const int m_right_cam_id = 0;
-		const int m_front_cam_id = 4;
+		sensor_msgs::msg::Image m_left_cam; 
+		sensor_msgs::msg::Image m_right_cam; 
+		sensor_msgs::msg::Image m_front_cam;
 
 
 		std::ofstream m_current_file; 
@@ -159,7 +135,20 @@ class DataLogger: public rclcpp::Node {
 		int m_log_count;
 		int m_image_count; 
 
-		void topic_callback (const geometry_msgs::msg::Twist::SharedPtr msg) {
+		void front_camera_callback(sensor_msgs::msg::Image::SharedPtr &msg) {
+			m_front_cam = msg; 
+		}
+
+		void left_camera_callback(sensor_msgs::msg::Image::SharedPtr &msg) {
+			m_left_cam = msg; 
+		}
+
+		void right_camera_callback(sensor_msgs::msg::Image::SharedPtr &msg) {
+			m_right_cam = msg; 
+		}
+
+
+		void topic_callback_steering (const geometry_msgs::msg::Twist::SharedPtr msg) {
 
 			if (!m_current_file.is_open()){
 				RCLCPP_ERROR(this->get_logger(), "File is not open"); 
@@ -173,16 +162,21 @@ class DataLogger: public rclcpp::Node {
 			cv::Mat right_frame_cam;
 			cv::Mat front_frame_cam; 
 
-			m_left_cam.read(left_frame_cam); 
-			m_right_cam.read(right_frame_cam);
-			m_front_cam.read(front_frame_cam);
+			cv_bridge::CvImagePtr cv_front_ptr; 
+            cv_bridge::CvImagePtr cv_left_ptr; 
+            cv_bridge::CvImagePtr cv_right_ptr; 
+            
+
+			cv_front_ptr = cv_bridge::toCvCopy(m_front_image, sensor_msgs::image_encodings::BGR8);
+            cv_left_ptr = cv_bridge::toCvCopy(m_left_image, sensor_msgs::image_encodings::BGR8);
+            cv_right_ptr = cv_bridge::toCvCopy(m_right_image, sensor_msgs::image_encodings::BGR8);
 
 			/* Check if the camera frame is empty */ 
-			if (left_frame_cam.empty() || right_frame_cam.empty()
+			/* if (left_frame_cam.empty() || right_frame_cam.empty()
 				|| front_frame_cam.empty()) {
 				RCLCPP_INFO(this->get_logger(), "%s", "A frame from one of the cameras is empty"); 	
 				return; 
-			} 
+			} */ 
 
 			m_image_count++;
 
@@ -215,9 +209,9 @@ class DataLogger: public rclcpp::Node {
 			m_current_file << tt << ": " << front_cam_result << " " << left_cam_result << " " << right_cam_result <<  " " << steering_angle_int << std::endl; 
 
 			/* Write to the assign directory */
-			cv::imwrite(right_cam_result, right_frame_cam);
-			cv::imwrite(left_cam_result, left_frame_cam);
-			cv::imwrite(front_cam_result, front_frame_cam); 
+			cv::imwrite(right_cam_result, cv_front_ptr->image);
+			cv::imwrite(left_cam_result, cv_left_ptr->image);
+			cv::imwrite(front_cam_result, cv_front_ptr->image); 
 
 			RCLCPP_INFO(this->get_logger(), "%s", front_cam_result.c_str()); 
 		} 

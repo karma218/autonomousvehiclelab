@@ -21,26 +21,26 @@ find_package(message_filters REQUIRED)
 
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-add_executable(data_logger_node2 src/data_logger_node2.cpp)
+add_executable(data_logger_node src/data_logger_node.cpp)
 
-target_include_directories(data_logger_node2 PUBLIC
+target_include_directories(data_logger_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 
-target_compile_features(data_logger_node2 PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+target_compile_features(data_logger_node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
-ament_target_dependencies(data_logger_node2
+ament_target_dependencies(data_logger_node
 	"rclcpp"
 	"cv_bridge"
 	"OpenCV"
   "message_filters"
 )
 
-target_link_libraries(data_logger_node2 
+target_link_libraries(data_logger_node
   ${OpenCV_libs}
 	image_transport::image_transport)
 
-install(TARGETS data_logger_node2 
+install(TARGETS data_logger_node
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
