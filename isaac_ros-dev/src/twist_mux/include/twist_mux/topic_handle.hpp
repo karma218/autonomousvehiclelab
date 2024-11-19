@@ -186,8 +186,7 @@ public:
 
   void callback(geometry_msgs::msg::Twist::SharedPtr msg)
   {
-    stamp_ = rclcpp::Time(mux_->now(), RCL_ROS_TIME);
-	// stamp_ = mux_->now(); 
+	  stamp_ = mux_->now(); 
     msg_ = *msg;
 
     // Check if this twist has priority.
@@ -232,8 +231,7 @@ public:
 
   void callback(const std_msgs::msg::Bool::ConstSharedPtr msg)
   {
-    stamp_ = rclcpp::Time(mux_->now(), RCL_ROS_TIME);
-    // stamp_ = mux_->now();
+    stamp_ = mux_->now();
     msg_ = *msg;
   }
 };
