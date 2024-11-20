@@ -5,11 +5,28 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
+# ADDED 
 find_package(ament_cmake REQUIRED)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(rclcpp REQUIRED)
+
+install(DIRECTORY 
+    launch 
+    urdf 
+    config
+  DESTINATION share/${PROJECT_NAME}
+)
+
+add_executable(diff_drive_publisher src/diff_drive_publisher.cpp)
+ament_target_dependencies(diff_drive_publisher
+  rclcpp
+  geometry_msgs
+)
+ 
+install(TARGETS
+  diff_drive_publisher
+  DESTINATION share/${PROJECT_NAME})
+# END ADDED
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
