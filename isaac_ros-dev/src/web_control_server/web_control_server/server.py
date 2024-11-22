@@ -5,11 +5,12 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 import cv2
 from flask import Flask, jsonify, Response, stream_with_context
+from flask_socketio import SocketIO
 from threading import Thread, Lock, Event
-from pynput import keyboard
 
 # Flask app setup
 app = Flask(__name__)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 # ROS2 Node Class
 class Server2Node(Node):
@@ -27,22 +28,12 @@ class Server2Node(Node):
         self.move_bindings = {
             'w': (1, 0, 0, 0),  # Forward along x-axis
             's': (-1, 0, 0, 0),  # Backward along x-axis
-            'q': (0, 1, 0, 0),  # Left along y-axis (strafe left)
-            'e': (0, -1, 0, 0),  # Right along y-axis (strafe right)
-            'r': (0, 0, 1, 0),  # Up along z-axis
-            'f': (0, 0, -1, 0)  # Down along z-axis
-        }
-        self.turn_bindings = {
             'a': (0, 0, 0, 1),  # Rotate left (yaw)
-            'd': (0, 0, 0, -1),  # Rotate right (yaw)
-            'z': (1, 0, 0, 0),  # Roll left (angular x)
-            'x': (-1, 0, 0, 0),  # Roll right (angular x)
-            't': (0, 1, 0, 0),  # Pitch up (angular y)
-            'g': (0, -1, 0, 0)  # Pitch down (angular y)
+            'd': (0, 0, 0, -1)  # Rotate right (yaw)
         }
         self.speed_bindings = {
-            'up': (1.1, 1),
-            'down': (0.9, 1),
+            'up': (1.1, 1),  # Increase speed
+            'down': (0.9, 1)  # Decrease speed
         }
 
         # Camera-related attributes
@@ -54,7 +45,7 @@ class Server2Node(Node):
 
     def update_keys(self, key, action):
         """
-        Safely update the pressed keys set.
+        Safely update the pressed keys set based on incoming WebSocket events.
         """
         with self.pressed_keys_lock:
             if action == 'press':
@@ -79,12 +70,6 @@ class Server2Node(Node):
                 y += move_y
                 z += move_z
                 th += move_th
-            elif key in self.turn_bindings:
-                turn_x, turn_y, turn_z, turn_th = self.turn_bindings[key]
-                x += turn_x
-                y += turn_y
-                z += turn_z
-                th += turn_th
             elif key in self.speed_bindings:
                 self.speed *= self.speed_bindings[key][0]
                 # Limit the speed
@@ -93,17 +78,12 @@ class Server2Node(Node):
         # Create and publish Twist message
         twist = Twist()
         twist.linear.x = x * self.speed
-        twist.linear.y = y * self.speed
-        twist.linear.z = z * self.speed
-        twist.angular.x = 0.0
-        twist.angular.y = 0.0
         twist.angular.z = th * self.turn_speed
         self.publisher_.publish(twist)
 
         # Log only when something is happening
-        if x != 0.0 or y != 0.0 or z != 0.0 or th != 0.0:
-            print(f'Direction: {twist.linear.x}, {twist.linear.y}, {twist.linear.z}')
-            print(f'Turn: {twist.angular.z}')
+        if x != 0.0 or th != 0.0:
+            print(f"Published Twist: linear.x={twist.linear.x}, angular.z={twist.angular.z}")
 
     def camera_callback(self, msg):
         """
@@ -146,6 +126,19 @@ def camera_stream():
     return Response(stream_with_context(generate()), content_type='multipart/x-mixed-replace; boundary=frame')
 
 
+# SocketIO Handlers
+@socketio.on('keypress')
+def handle_keypress(data):
+    """
+    Handle keypress events from the frontend.
+    """
+    key = data.get('key')
+    action = data.get('action')  # 'press' or 'release'
+    if key and action:
+        print(f"Received keypress: {key}, action: {action}")
+        server2_node.update_keys(key, action)
+
+
 def run_ros2_node():
     global server2_node
     rclpy.init()
@@ -170,7 +163,7 @@ def main():
     print("Starting Server2...")
 
     # Run Flask server in a separate thread
-    flask_thread = Thread(target=app.run, kwargs={'host': '10.110.194.54', 'port': 5002})
+    flask_thread = Thread(target=socketio.run, kwargs={'app': app, 'host': '10.110.194.54', 'port': 5002})
     flask_thread.start()
 
     # Run ROS2 node in the main thread
@@ -178,39 +171,4 @@ def main():
 
 
 if __name__ == '__main__':
-    def on_press(key):
-        try:
-            key_str = getattr(key, 'char', None) or str(key)
-            print(f'Key pressed: {key_str}')  # Debug print
-
-            if hasattr(key, 'char') and key.char is not None:
-                server2_node.update_keys(key.char, 'press')
-            elif key == keyboard.Key.up:
-                server2_node.update_keys('up', 'press')
-            elif key == keyboard.Key.down:
-                server2_node.update_keys('down', 'press')
-            elif key == keyboard.Key.esc:
-                return False
-        except AttributeError:
-            pass
-
-    def on_release(key):
-        try:
-            key_str = getattr(key, 'char', None) or str(key)
-            print(f'Key released: {key_str}')  # Debug print
-
-            if hasattr(key, 'char') and key.char is not None:
-                server2_node.update_keys(key.char, 'release')
-            elif key == keyboard.Key.up:
-                server2_node.update_keys('up', 'release')
-            elif key == keyboard.Key.down:
-                server2_node.update_keys('down', 'release')
-            elif key == keyboard.Key.esc:
-                return False
-        except KeyError:
-            pass
-
-    listener = keyboard.Listener(on_press=on_press, on_release=on_release)
-    listener.start()
     main()
-    listener.join()
