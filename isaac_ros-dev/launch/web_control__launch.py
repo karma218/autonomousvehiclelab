@@ -52,6 +52,6 @@ def generate_launch_description():
         # motor_control_node,
         image_stitcher_node,
         # web_video_server_node,
-        web_control_server_node,
+        # web_control_server_node,
         
     ])
