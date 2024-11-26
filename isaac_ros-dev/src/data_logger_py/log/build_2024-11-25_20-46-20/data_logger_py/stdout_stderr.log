@@ -1,0 +1,40 @@
+running egg_info
+creating build/data_logger_py/data_logger_py.egg-info
+writing build/data_logger_py/data_logger_py.egg-info/PKG-INFO
+writing dependency_links to build/data_logger_py/data_logger_py.egg-info/dependency_links.txt
+writing entry points to build/data_logger_py/data_logger_py.egg-info/entry_points.txt
+writing requirements to build/data_logger_py/data_logger_py.egg-info/requires.txt
+writing top-level names to build/data_logger_py/data_logger_py.egg-info/top_level.txt
+writing manifest file 'build/data_logger_py/data_logger_py.egg-info/SOURCES.txt'
+reading manifest file 'build/data_logger_py/data_logger_py.egg-info/SOURCES.txt'
+writing manifest file 'build/data_logger_py/data_logger_py.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/build/data_logger_py/build
+creating /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/build/data_logger_py/build/lib
+creating /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/build/data_logger_py/build/lib/data_logger_py
+copying data_logger_py/data_logger_py_node.py -> /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/build/data_logger_py/build/lib/data_logger_py
+copying data_logger_py/__init__.py -> /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/build/data_logger_py/build/lib/data_logger_py
+running install
+running install_lib
+creating /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/lib/python3.10/site-packages/data_logger_py
+copying /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/build/data_logger_py/build/lib/data_logger_py/data_logger_py_node.py -> /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/lib/python3.10/site-packages/data_logger_py
+copying /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/build/data_logger_py/build/lib/data_logger_py/__init__.py -> /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/lib/python3.10/site-packages/data_logger_py
+byte-compiling /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/lib/python3.10/site-packages/data_logger_py/data_logger_py_node.py to data_logger_py_node.cpython-310.pyc
+  File "/home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/lib/python3.10/site-packages/data_logger_py/data_logger_py_node.py", line 30
+    file_count++ 
+                 ^
+SyntaxError: invalid syntax
+
+byte-compiling /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/lib/python3.10/site-packages/data_logger_py/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/share/ament_index
+creating /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/share/ament_index/resource_index
+creating /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/share/ament_index/resource_index/packages
+copying resource/data_logger_py -> /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/share/ament_index/resource_index/packages
+copying package.xml -> /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/share/data_logger_py
+running install_egg_info
+Copying build/data_logger_py/data_logger_py.egg-info to /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/lib/python3.10/site-packages/data_logger_py-0.0.0-py3.10.egg-info
+running install_scripts
+Installing data_logger_py_node script to /home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/lib/data_logger_py
+writing list of installed files to '/home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/build/data_logger_py/install.log'

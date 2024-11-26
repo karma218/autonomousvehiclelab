@@ -74,13 +74,13 @@ class data_logger_py(Node):
 
         timestamp = time.time()
 
-        cv2.imwrite("left_frame_" + str(image_count), "logging/image_data/" + left_frame_cv2) 
-        cv2.imwrite("right_frame_" + str(image_count), "logging/image_data/" + right_frame_cv2) 
-        cv2.imwrite("front_frame_" + str(image_count), "logging/image_data/" + front_frame_cv2) 
+        cv2.imwrite("left_frame_" + str(image_count), left_frame_cv2) 
+        cv2.imwrite("right_frame_" + str(image_count), right_frame_cv2) 
+        cv2.imwrite("front_frame_" + str(image_count), front_frame_cv2) 
 
 
         self.new_file_txt.write(str(timestamp) + " left_frame_" + str(image_count) + " right_frame_" + str(image_count) 
-                + " front_frame_" + str(image_count) + " " + str(self.steering_value_))
+                + " front_frame_" + str(image_count) + " " + str(steering_value))
 
 
 
