@@ -1,0 +1,5 @@
+  File "/home/snow/autonomousvehiclelab/isaac_ros-dev/src/data_logger_py/install/data_logger_py/lib/python3.10/site-packages/data_logger_py/data_logger_py_node.py", line 82
+    self.new_file_txt.write(str(timestamp) + " left_frame_" + str(image_count) + " right_frame_" + str(image_count) 
+                           ^
+SyntaxError: '(' was never closed
+
