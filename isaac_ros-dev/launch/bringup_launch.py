@@ -124,7 +124,7 @@ def generate_launch_description():
         # data_logging,
         # simulator_control_node,
         # realsense_obj_det_node,
-        # web_video_server_node,
+        web_video_server_node,
         # teleop_twist_keyboard_node,
         motor_control_node,
         #road_segmentation_node.0
