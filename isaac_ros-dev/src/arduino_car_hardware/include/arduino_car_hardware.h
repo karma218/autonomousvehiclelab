@@ -1,23 +1,33 @@
 #ifndef ARDUINO_CAR_HARDWARE_H
 #define ARDUINO_CAR_HARDWARE_H
 
-#include <hardware_interface/system_interface.hpp>
+#include "hardware_interface/handle.hpp"
+#include "hardware_interface/hardware_info.hpp"
+#include "hardware_interface/system_interface.hpp"
+#include "hardware_interface/types/hardware_interface_return_values.hpp"
 #include <rclcpp/rclcpp.hpp>
 #include <pluginlib/class_list_macros.hpp>
 #include "arduino_comms.h"
-#include <hardware_interface/types/hardware_interface_return_values.hpp>
-#include <hardware_interface/types/hardware_interface_status_values.hpp>
-
 
 class ArduinoCarHardware : public hardware_interface::SystemInterface {
 public:
+    // Lifecycle methods
     CallbackReturn on_init(const hardware_interface::HardwareInfo &info) override;
-    std::vector<hardware_interface::StateInterface> export_state_interfaces() override;
-    std::vector<hardware_interface::CommandInterface> export_command_interfaces() override;
+    CallbackReturn on_configure(const rclcpp_lifecycle::State & /*previous_state*/) override;
     CallbackReturn on_activate(const rclcpp_lifecycle::State & /*previous_state*/) override;
     CallbackReturn on_deactivate(const rclcpp_lifecycle::State & /*previous_state*/) override;
+    CallbackReturn on_cleanup(const rclcpp_lifecycle::State & /*previous_state*/) override;
+    CallbackReturn on_shutdown(const rclcpp_lifecycle::State & /*previous_state*/) override;
+
+    // ROS 2 hardware interface methods
+    std::vector<hardware_interface::StateInterface> export_state_interfaces() override;
+    std::vector<hardware_interface::CommandInterface> export_command_interfaces() override;
     hardware_interface::return_type read(const rclcpp::Time &, const rclcpp::Duration &) override;
     hardware_interface::return_type write(const rclcpp::Time &, const rclcpp::Duration &) override;
+
+    // Command setters
+    void set_velocity_command(double velocity) { velocity_command_ = velocity; };
+    void set_steering_command(double steering) { steering_command_ = steering; };
 
 private:
     ArduinoComms arduino_comms_;

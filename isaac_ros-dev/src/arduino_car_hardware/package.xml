@@ -4,6 +4,7 @@
   <version>0.1.0</version>
   <description>Arduino-based ROS 2 hardware interface with a bicycle controller for use with ros2_control.</description>
 
+  <!-- Maintainer Information -->
   <maintainer email="avishwakarma@cpp.edu">Abhishek Vishwakarma</maintainer>
   <license>Apache-2.0</license>
 
@@ -15,12 +16,15 @@
   <depend>controller_interface</depend>
   <depend>hardware_interface</depend>
   <depend>pluginlib</depend>
+  <depend>rclcpp_lifecycle</depend>
   <depend>geometry_msgs</depend>
+  <depend>controller_manager</depend> <!-- Added for the controller manager -->
 
   <!-- Exec dependencies for teleop and testing -->
   <exec_depend>teleop_twist_keyboard</exec_depend>
+  <exec_depend>twist_mux</exec_depend> <!-- Added for twist_mux integration -->
 
-  <!-- Test dependencies -->
+  <!-- Testing and Linting dependencies -->
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 </package>

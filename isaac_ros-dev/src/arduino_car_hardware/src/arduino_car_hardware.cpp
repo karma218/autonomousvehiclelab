@@ -1,15 +1,15 @@
 #include "arduino_car_hardware.h"
-#include <hardware_interface/types/hardware_interface_return_values.hpp>
-#include <hardware_interface/types/hardware_interface_status_values.hpp>
+#include "hardware_interface/types/hardware_interface_type_values.hpp"
+#include <rclcpp/logging.hpp>
+#include "pluginlib/class_list_macros.hpp"
 
-
-CallbackReturn ArduinoCarHardware::on_init(const hardware_interface::HardwareInfo &info) {
+hardware_interface::CallbackReturn ArduinoCarHardware::on_init(const hardware_interface::HardwareInfo &info) {
     RCLCPP_INFO(rclcpp::get_logger("ArduinoCarHardware"), "Initializing hardware interface...");
 
     // Retrieve hardware parameters
-    const std::string port = info.hardware_parameters["serial_device"];
-    const int baud_rate = std::stoi(info.hardware_parameters["baud_rate"]);
-    const int timeout_ms = std::stoi(info.hardware_parameters["timeout_ms"]);
+    const std::string port = info.hardware_parameters.at("serial_device");
+    const int baud_rate = std::stoi(info.hardware_parameters.at("baud_rate"));
+    const int timeout_ms = std::stoi(info.hardware_parameters.at("timeout_ms"));
 
     try {
         // Initialize Arduino communication
@@ -18,7 +18,7 @@ CallbackReturn ArduinoCarHardware::on_init(const hardware_interface::HardwareInf
         if (!arduino_comms_.connected()) {
             RCLCPP_ERROR(rclcpp::get_logger("ArduinoCarHardware"),
                          "Failed to connect to Arduino on port: %s", port.c_str());
-            return CallbackReturn::ERROR;
+            return hardware_interface::CallbackReturn::ERROR;
         }
 
         RCLCPP_INFO(rclcpp::get_logger("ArduinoCarHardware"),
@@ -26,36 +26,51 @@ CallbackReturn ArduinoCarHardware::on_init(const hardware_interface::HardwareInf
     } catch (const std::exception &e) {
         RCLCPP_ERROR(rclcpp::get_logger("ArduinoCarHardware"),
                      "Exception during Arduino setup: %s", e.what());
-        return CallbackReturn::ERROR;
+        return hardware_interface::CallbackReturn::ERROR;
     }
 
-    return CallbackReturn::SUCCESS;
+    return hardware_interface::CallbackReturn::SUCCESS;
 }
 
 std::vector<hardware_interface::StateInterface> ArduinoCarHardware::export_state_interfaces() {
-    RCLCPP_INFO(rclcpp::get_logger("ArduinoCarHardware"), "Exporting state interfaces...");
-    return {
-        hardware_interface::StateInterface("wheel", "velocity", &velocity_state_),
-        hardware_interface::StateInterface("steering", "position", &steering_state_)
-    };
+    std::vector<hardware_interface::StateInterface> state_interfaces;
+    state_interfaces.emplace_back("wheel", hardware_interface::HW_IF_VELOCITY, &velocity_state_);
+    state_interfaces.emplace_back("steering", hardware_interface::HW_IF_POSITION, &steering_state_);
+    return state_interfaces;
 }
 
 std::vector<hardware_interface::CommandInterface> ArduinoCarHardware::export_command_interfaces() {
-    RCLCPP_INFO(rclcpp::get_logger("ArduinoCarHardware"), "Exporting command interfaces...");
-    return {
-        hardware_interface::CommandInterface("wheel", "velocity", &velocity_command_),
-        hardware_interface::CommandInterface("steering", "position", &steering_command_)
-    };
+    std::vector<hardware_interface::CommandInterface> command_interfaces;
+    command_interfaces.emplace_back("wheel", hardware_interface::HW_IF_VELOCITY, &velocity_command_);
+    command_interfaces.emplace_back("steering", hardware_interface::HW_IF_POSITION, &steering_command_);
+    return command_interfaces;
 }
 
-CallbackReturn ArduinoCarHardware::on_activate(const rclcpp_lifecycle::State &) {
+hardware_interface::CallbackReturn ArduinoCarHardware::on_configure(const rclcpp_lifecycle::State &) {
+    RCLCPP_INFO(rclcpp::get_logger("ArduinoCarHardware"), "Configuring hardware interface...");
+    return hardware_interface::CallbackReturn::SUCCESS;
+}
+
+hardware_interface::CallbackReturn ArduinoCarHardware::on_activate(const rclcpp_lifecycle::State &) {
     RCLCPP_INFO(rclcpp::get_logger("ArduinoCarHardware"), "Activating hardware interface...");
-    return CallbackReturn::SUCCESS;
+    arduino_comms_.setMotorValues(0.0, 512.0);  // Default state
+    return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-CallbackReturn ArduinoCarHardware::on_deactivate(const rclcpp_lifecycle::State &) {
+hardware_interface::CallbackReturn ArduinoCarHardware::on_deactivate(const rclcpp_lifecycle::State &) {
     RCLCPP_INFO(rclcpp::get_logger("ArduinoCarHardware"), "Deactivating hardware interface...");
-    return CallbackReturn::SUCCESS;
+    arduino_comms_.setMotorValues(0.0, 0.0);  // Stop motors
+    return hardware_interface::CallbackReturn::SUCCESS;
+}
+
+hardware_interface::CallbackReturn ArduinoCarHardware::on_cleanup(const rclcpp_lifecycle::State &) {
+    RCLCPP_INFO(rclcpp::get_logger("ArduinoCarHardware"), "Cleaning up hardware interface...");
+    return hardware_interface::CallbackReturn::SUCCESS;
+}
+
+hardware_interface::CallbackReturn ArduinoCarHardware::on_shutdown(const rclcpp_lifecycle::State &) {
+    RCLCPP_INFO(rclcpp::get_logger("ArduinoCarHardware"), "Shutting down hardware interface...");
+    return hardware_interface::CallbackReturn::SUCCESS;
 }
 
 hardware_interface::return_type ArduinoCarHardware::read(const rclcpp::Time &, const rclcpp::Duration &) {
@@ -91,3 +106,9 @@ hardware_interface::return_type ArduinoCarHardware::write(const rclcpp::Time &, 
     }
     return hardware_interface::return_type::OK;
 }
+
+
+PLUGINLIB_EXPORT_CLASS(
+    ArduinoCarHardware,
+    hardware_interface::SystemInterface
+)
