@@ -75,7 +75,7 @@ class end_to_end_CNN_node(Node):
             return
 
         front_frame = self.front_image_ 
-        front_frame = cv2.cvtColor(front_frame, cv2.COLOR_BGR2YUV)
+        front_frame = cv2.cvtColor(front_frame, cv2.COLOR_RGB2YUV)
 
         steering_value = None 
         with torch.no_grad(): 
